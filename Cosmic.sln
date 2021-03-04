@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmic", "Cosmic\Cosmic.csproj", "{C01B03B8-138C-4400-8931-EFCEA291100F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{28D477F6-956C-4FC0-8E40-A40007A5A090}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmicConsole", "Tests\CosmicConsole\CosmicConsole.csproj", "{7E9AF0C5-8A4F-40A9-9263-CEC55B43A5D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{C01B03B8-138C-4400-8931-EFCEA291100F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C01B03B8-138C-4400-8931-EFCEA291100F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C01B03B8-138C-4400-8931-EFCEA291100F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9AF0C5-8A4F-40A9-9263-CEC55B43A5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9AF0C5-8A4F-40A9-9263-CEC55B43A5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9AF0C5-8A4F-40A9-9263-CEC55B43A5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9AF0C5-8A4F-40A9-9263-CEC55B43A5D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7E9AF0C5-8A4F-40A9-9263-CEC55B43A5D5} = {28D477F6-956C-4FC0-8E40-A40007A5A090}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96D39CE7-5EB3-4F2B-807B-55B25D202E86}
