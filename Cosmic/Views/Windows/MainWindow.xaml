@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:local="clr-namespace:Cosmic"
         xmlns:vm="clr-namespace:Cosmic.ViewModels"
         mc:Ignorable="d"
@@ -27,6 +28,24 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#1C272D"></Grid>
         <Grid Grid.Row="0" Grid.Column="2">
             <Button Style="{StaticResource AuthBautton}"></Button>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Border MaxWidth="740" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBox Margin="30 0 0 0" Width="650" Background="#2E3E4B" BorderThickness="0"
+                             FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
+                             Foreground="#EDEDEE" HorizontalAlignment="Center" VerticalAlignment="Center"
+                             Tag="Поиск по сайту..." Cursor="IBeam" Style="{StaticResource SearchWatermark}">
+                    </TextBox>
+                    <Button Width="50" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True" Cursor="Hand" Style="{StaticResource SearchButton}">
+
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="70 0 0 0 " Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
         </Grid>
     </Grid>
 </Window>
