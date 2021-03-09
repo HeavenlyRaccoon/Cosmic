@@ -47,5 +47,50 @@
         <Grid Grid.Row="0" Grid.Column="0">
             <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="70 0 0 0 " Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
         </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="450"></RowDefinition>
+                <RowDefinition Height="850"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0 40 0 0">
+                <Border CornerRadius="10" MaxWidth="720" Background="#192229" Padding="25 10 25 10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <DockPanel Margin="0 0 12 0">
+                                <Label Content="Хиты 2021" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
+                                <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                            </DockPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <DockPanel Margin="12 0 0 0">
+                                <Label Content="Тик Ток 2020" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
+                                <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                            </DockPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
     </Grid>
+
 </Window>

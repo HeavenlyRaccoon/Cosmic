@@ -77,4 +77,40 @@
         </Setter>
     </Style>
 
+    <Style x:Key="LoadMore" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="15" Background="#141319"  Padding="0 0 0 2"
+                            MinHeight="30" MinWidth="110" MaxHeight="30" MaxWidth="120">
+
+                        <TextBlock Text="смотреть все" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="White" FontSize="12" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"/>
+
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#EB4D4B" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#141319" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Border.Triggers>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
