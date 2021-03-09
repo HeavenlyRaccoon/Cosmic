@@ -13,84 +13,86 @@
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
     </Window.DataContext>
 
-    <Grid Background="#141319">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.13*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="0.05*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2.5*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <ScrollViewer>
+        <Grid Background="#141319">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="0.05*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#1C272D"></Grid>
-        <Grid Grid.Row="0" Grid.Column="2">
-            <Button Style="{StaticResource AuthBautton}"></Button>
-        </Grid>
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Border MaxWidth="740" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
-                <StackPanel Orientation="Horizontal">
+            <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#1C272D"></Grid>
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Button Style="{StaticResource AuthBautton}"></Button>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Border MaxWidth="740" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
+                    <StackPanel Orientation="Horizontal">
 
-                    <TextBox Margin="30 0 0 0" Width="650" Background="#2E3E4B" BorderThickness="0"
+                        <TextBox Margin="30 0 0 0" Width="650" Background="#2E3E4B" BorderThickness="0"
                              FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
                              Foreground="#EDEDEE" HorizontalAlignment="Center" VerticalAlignment="Center"
                              Tag="Поиск по сайту..." Cursor="IBeam" Style="{StaticResource SearchWatermark}">
-                    </TextBox>
-                    <Button Width="50" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True" Cursor="Hand" Style="{StaticResource SearchButton}">
+                        </TextBox>
+                        <Button Width="50" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True" Cursor="Hand" Style="{StaticResource SearchButton}">
 
-                    </Button>
-                </StackPanel>
-            </Border>
-        </Grid>
-        <Grid Grid.Row="0" Grid.Column="0">
-            <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="70 0 0 0 " Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
-        </Grid>
-
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="450"></RowDefinition>
-                <RowDefinition Height="850"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" Margin="0 40 0 0">
-                <Border CornerRadius="10" MaxWidth="720" Background="#192229" Padding="25 10 25 10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0" Grid.Column="0">
-                            <DockPanel Margin="0 0 12 0">
-                                <Label Content="Хиты 2021" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                                <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
-                            </DockPanel>
-                        </Grid>
-
-                        <Grid Grid.Row="0" Grid.Column="1">
-                            <DockPanel Margin="12 0 0 0">
-                                <Label Content="Тик Ток 2020" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                                <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
-                            </DockPanel>
-                        </Grid>
-                    </Grid>
+                        </Button>
+                    </StackPanel>
                 </Border>
             </Grid>
-        </Grid>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="70 0 0 0 " Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
+            </Grid>
 
-    </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="450"></RowDefinition>
+                    <RowDefinition Height="850"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0 40 0 0">
+                    <Border CornerRadius="10" MaxWidth="720" Background="#192229" Padding="25 10 25 10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" Grid.Column="0">
+                                <DockPanel Margin="0 0 12 0">
+                                    <Label Content="Хиты 2021" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
+                                    <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                                </DockPanel>
+                            </Grid>
+
+                            <Grid Grid.Row="0" Grid.Column="1">
+                                <DockPanel Margin="12 0 0 0">
+                                    <Label Content="Тик Ток 2021" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
+                                    <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                                </DockPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </ScrollViewer>
 
 </Window>
