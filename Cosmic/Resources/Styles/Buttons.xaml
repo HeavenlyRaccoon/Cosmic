@@ -211,4 +211,21 @@
         <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
     </Style>
 
+
+    <!--<Style x:Key="GenreMenu" TargetType="{x:Type Menu}">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Menu}">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="AAAAAA" Foreground="White"></Label>
+                        <Label Content="->" Foreground="White"></Label>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
 </ResourceDictionary>

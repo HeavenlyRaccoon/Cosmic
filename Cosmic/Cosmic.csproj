@@ -140,5 +140,8 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\LOGOCreate.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\hit.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

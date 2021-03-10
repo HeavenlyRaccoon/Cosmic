@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace Cosmic
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://vk.com/id210553771");
         }
     }
 }

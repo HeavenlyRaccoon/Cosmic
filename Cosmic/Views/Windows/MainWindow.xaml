@@ -18,7 +18,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="0.05*"></RowDefinition>
+                <RowDefinition Height="1"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -37,7 +38,7 @@
                         <TextBox Margin="30 0 0 0" Width="650" Background="#2E3E4B" BorderThickness="0"
                              FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
                              Foreground="#EDEDEE" HorizontalAlignment="Center" VerticalAlignment="Center"
-                             Tag="Поиск по сайту..." Cursor="IBeam" Style="{StaticResource SearchWatermark}">
+                             Tag="Поиск..." Cursor="IBeam" Style="{StaticResource SearchWatermark}">
                         </TextBox>
                         <Button Width="50" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True" Cursor="Hand" Style="{StaticResource SearchButton}">
 
@@ -46,14 +47,14 @@
                 </Border>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="0">
-                <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="70 0 0 0 " Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
+                <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="50 0 20 0 " Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="450"></RowDefinition>
-                    <RowDefinition Height="850"></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="930"></RowDefinition>
+                    <RowDefinition Height="930"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Margin="0 40 0 0">
@@ -90,8 +91,82 @@
                         </Grid>
                     </Border>
                 </Grid>
+
+                <Grid Grid.Row="1" Margin="0 30 0 0">
+                    <Border CornerRadius="10" MaxWidth="720" Background="#192229" Padding="25 10 25 10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="65"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" Grid.Column="0">
+                                <DockPanel>
+                                    <Label Content="Новая MP3 музыка" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
+                                    <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                                </DockPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="0 30 0 70">
+                    <Border CornerRadius="10" MaxWidth="720" Background="#192229" Padding="25 10 25 10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="65"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" Grid.Column="0">
+                                <DockPanel>
+                                    <Label Content="Популярная музыка" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
+                                    <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                                </DockPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+                
             </Grid>
 
+            <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                <Border Background="Black" Margin="90 0 90 0"></Border>
+            </Grid>
+            
+            <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                <DockPanel >
+                    <TextBlock FontSize="15" Foreground="#CCCCC1" VerticalAlignment="Center"
+                               FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
+                               Margin="90 0 0 0">© Cosmic 2021. Пишите письма на: </TextBlock>
+                    <TextBlock Margin="4 0 0 0" FontSize="15" Foreground="#E056FD"
+                               FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
+                               TextDecorations="Underline" VerticalAlignment="Center">stan55565@gmail.com</TextBlock>
+                    <TextBlock Height="31" Width="31" HorizontalAlignment="Right" Margin="0 0 90 0">
+                        <Hyperlink TextDecorations="None" Click="Hyperlink_Click">
+                            <Image Source="/Resources/Icons/hit.gif" Cursor="Hand"></Image>
+                        </Hyperlink>
+                    </TextBlock>
+                    
+                </DockPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0" Margin="90 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--<Grid Grid.Row="0" Margin="0 40 0 0">
+                    <Menu Style="{StaticResource GenreMenu}">
+                        <MenuItem Header="Музыка">
+                            <MenuItem Header="awd"></MenuItem>
+                            <MenuItem Header="aaaaaa"></MenuItem>
+                            <MenuItem Header="ddddddddddd"></MenuItem>
+                        </MenuItem>
+                    </Menu>
+                </Grid>-->
+            </Grid>
         </Grid>
     </ScrollViewer>
 
