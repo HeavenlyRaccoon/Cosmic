@@ -3,11 +3,13 @@
                     xmlns:svgc="http://sharpvectors.codeplex.com/svgc/">
 
     <Style x:Key="AuthBautton" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="0 0 50 0"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="20" Background="#EB4D4B"  Padding="0 0 0 2"
-                            MinHeight="20" MinWidth="100" MaxHeight="40" MaxWidth="150">
+                            MinHeight="20"  MaxHeight="40" Width="150">
 
                         <TextBlock Text="Авторизация" VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Foreground="White" FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"/>
@@ -211,21 +213,34 @@
         <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
     </Style>
 
-
-    <!--<Style x:Key="GenreMenu" TargetType="{x:Type Menu}">
-        <Setter Property="Background" Value="Transparent"></Setter>
+    <Style x:Name="pop" x:Key="GenreTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="179"></Setter>
+        <Setter Property="MinWidth" Value="60"></Setter>
         <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="FontSize" Value="17"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Menu}">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="AAAAAA" Foreground="White"></Label>
-                        <Label Content="->" Foreground="White"></Label>
-                    </StackPanel>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="FontFamily" Value="/Cosmic;component/Resources/Fonts/#Montserrat"></Setter>
+        <Setter Property="Padding" Value="20 10 0 0"></Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Panel}}, Path=IsMouseOver}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Foreground.Color" To="#E056FD" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Foreground.Color" To="White" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

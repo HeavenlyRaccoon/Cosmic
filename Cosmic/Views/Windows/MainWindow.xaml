@@ -23,7 +23,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
@@ -32,22 +32,22 @@
                 <Button Style="{StaticResource AuthBautton}"></Button>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <Border MaxWidth="740" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
-                    <StackPanel Orientation="Horizontal">
+                <Border MaxWidth="800" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
+                    <DockPanel>
 
-                        <TextBox Margin="30 0 0 0" Width="650" Background="#2E3E4B" BorderThickness="0"
+                        <TextBox Margin="30 0 0 0" MinWidth="500"  Background="#2E3E4B" BorderThickness="0"
                              FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
                              Foreground="#EDEDEE" HorizontalAlignment="Center" VerticalAlignment="Center"
                              Tag="Поиск..." Cursor="IBeam" Style="{StaticResource SearchWatermark}">
                         </TextBox>
-                        <Button Width="50" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True" Cursor="Hand" Style="{StaticResource SearchButton}">
+                        <Button Width="50" HorizontalAlignment="Right" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True" Cursor="Hand" Style="{StaticResource SearchButton}">
 
                         </Button>
-                    </StackPanel>
+                    </DockPanel>
                 </Border>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="0">
-                <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="50 0 20 0 " Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
+                <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="0 0 40 0" HorizontalAlignment="Right" Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1">
@@ -58,7 +58,7 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Margin="0 40 0 0">
-                    <Border CornerRadius="10" MaxWidth="720" Background="#192229" Padding="25 10 25 10">
+                    <Border CornerRadius="10" MaxWidth="780" Background="#192229" Padding="25 10 25 10">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -66,11 +66,7 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="5*"></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0" Grid.Column="0">
@@ -80,6 +76,11 @@
                                     <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
                                 </DockPanel>
                             </Grid>
+                            <Grid Grid.Row="1" Grid.Column="0">
+                                <StackPanel Orientation="Vertical">
+                                    
+                                </StackPanel>
+                            </Grid>
 
                             <Grid Grid.Row="0" Grid.Column="1">
                                 <DockPanel Margin="12 0 0 0">
@@ -88,15 +89,21 @@
                                     <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
                                 </DockPanel>
                             </Grid>
+                            <Grid Grid.Row="1" Grid.Column="1">
+                                <StackPanel Orientation="Vertical">
+                                    
+                                </StackPanel>
+                            </Grid>
                         </Grid>
                     </Border>
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0 30 0 0">
-                    <Border CornerRadius="10" MaxWidth="720" Background="#192229" Padding="25 10 25 10">
+                    <Border CornerRadius="10" MaxWidth="780" Background="#192229" Padding="25 10 25 10">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="65"></RowDefinition>
+                                <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0" Grid.Column="0">
@@ -106,15 +113,21 @@
                                     <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
                                 </DockPanel>
                             </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Orientation="Vertical">
+                                    
+                                </StackPanel>
+                            </Grid>
                         </Grid>
                     </Border>
                 </Grid>
 
                 <Grid Grid.Row="2" Margin="0 30 0 70">
-                    <Border CornerRadius="10" MaxWidth="720" Background="#192229" Padding="25 10 25 10">
+                    <Border CornerRadius="10" MaxWidth="780" Background="#192229" Padding="25 10 25 10">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="65"></RowDefinition>
+                                <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0" Grid.Column="0">
@@ -123,6 +136,11 @@
                                        FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
                                     <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
                                 </DockPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Orientation="Vertical">
+                                    
+                                </StackPanel>
                             </Grid>
                         </Grid>
                     </Border>
@@ -151,21 +169,121 @@
                 </DockPanel>
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="0" Margin="90 0 0 0">
+            <Grid Grid.Row="1" Grid.Column="0" Margin="0 0 0 0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <!--<Grid Grid.Row="0" Margin="0 40 0 0">
-                    <Menu Style="{StaticResource GenreMenu}">
-                        <MenuItem Header="Музыка">
-                            <MenuItem Header="awd"></MenuItem>
-                            <MenuItem Header="aaaaaa"></MenuItem>
-                            <MenuItem Header="ddddddddddd"></MenuItem>
-                        </MenuItem>
-                    </Menu>
-                </Grid>-->
+                <Grid Grid.Row="0" Margin="0 25 5 0">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/bells.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Новинки</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40" >
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/trophy.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Наш чарт</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2021</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2020</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2019</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2018</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2017</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/speakers.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Клубная музыка</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/tire.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Музыка в машину</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/infinity.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Музыка из аниме</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/head-side-headphones.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Русский рэп</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/glass-cheers.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Новогодние</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/guitars.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Зарубежный рок</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/drum.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Русский поп</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/head-side-headphones.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Зарубежный рэп</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/drum.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Зарубежный поп</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/gramophone.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Дискотека 80-90х</TextBlock>
+                        </DockPanel>
+                        <DockPanel Height="40">
+                            <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/infinity.svg"/>
+                            <TextBlock Style="{StaticResource GenreTextBlock}">Топ-100 Shazam</TextBlock>
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBlock MaxWidth="210" Foreground="#ccc" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Top" TextWrapping="Wrap"
+                               HorizontalAlignment="Right" Margin="0 40 0 0" >
+                            Слушайте новые и популярные песни в хорошем качестве. Собирайте песни в плейлист и приятно проводите время и наслаждайтесь. Для Вас мы собрали подборки с лучшими новинками и хитами 2020 года. В 2020 году вышло на свет много интересных звучаний и новых исполнителей, среди которых каждый меломан найдет для себя что-то интересное.
+                    </TextBlock>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <TextBlock MaxWidth="210" Foreground="#ccc" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Top" TextWrapping="Wrap"
+                               HorizontalAlignment="Right" Margin="0 20 0 0" >
+                            У нас представлена музыка разных жанров и исполнителей. Здесь каждый найдет себе что-то по вкусу будь это жесткий рэп или легкая поп-музыка. Ищешь подборку, чтобы раскачать машину? Лирику про любовь? Рингтон для телефона? Включай клубную и танцевальную музыку, самые горячие новинки. У нас есть всё – и даже больше.
+                    </TextBlock>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="2" Height="1200" VerticalAlignment="Top">
+                <Border CornerRadius="10" Background="#192229" MinWidth="150" Margin="5 25 40 0" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition Height="1"></RowDefinition>
+                            <RowDefinition ></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">
+                                Топ треков за день
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Border Background="#141319" ></Border>
+                        </Grid>
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
     </ScrollViewer>
