@@ -1,0 +1,40 @@
+﻿<Window x:Class="Cosmic.Views.Windows.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cosmic.Views.Windows" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Авторизация" Height="450" Width="400" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#e056fd"></Grid>
+        <Grid Grid.Row="1" Background="#192229">
+            <StackPanel Orientation="Vertical">
+                <TextBlock HorizontalAlignment="Center" Margin="0 30 0 15" Foreground="White" FontSize="22" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat Medium">Авторизация</TextBlock>
+                <Border Width="60" Height="60" Background="#111" CornerRadius="30" Margin="0 0 0 15">
+                    <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Center" Cursor="Hand" Source="../../Resources/Icons/user.svg"/>
+                </Border>
+                <Border Width="280" Height="40" Background="White" CornerRadius="5" Padding="15 0 15 0"  Margin="0 0 0 15">
+                    <TextBox FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"></TextBox>
+                </Border>
+                <Border Width="280" Height="40" Background="White" CornerRadius="5" Padding="15 0 15 0"  Margin="0 0 0 15">
+                    <TextBox FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"></TextBox>
+                </Border>
+                <DockPanel Width="280" Margin="0 0 0 15">
+                    <CheckBox  IsChecked="False" Style="{StaticResource CheckBoxStyle1}" Margin="0 0 5 0"></CheckBox>
+                    <Label Foreground="#939393" FontSize="14" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Запомнить</Label>
+                </DockPanel>
+                <Button Style="{StaticResource LogInBautton}" Margin='0 0 0 13'></Button>
+                <DockPanel Width="280">
+                    <TextBlock HorizontalAlignment="Left"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Регистрация</Hyperlink></TextBlock>
+                    <TextBlock HorizontalAlignment="Right"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Восстановить пароль</Hyperlink></TextBlock>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

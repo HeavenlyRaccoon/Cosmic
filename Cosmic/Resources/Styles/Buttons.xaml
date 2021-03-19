@@ -243,4 +243,82 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <!--<BulletDecorator>
+                        <BulletDecorator.Bullet>
+                            <Border Width="30" Height="12" Background="#111111" CornerRadius="6"></Border>
+                        </BulletDecorator.Bullet>
+                    </BulletDecorator>-->
+                    <BulletDecorator>
+                        <Border Background="#111111" Width="30" Height="12" CornerRadius="6">
+                            <Border x:Name="slider" Background="Green" Width="12" Height="12" CornerRadius="6" Margin="0 0 17 0"></Border>
+                        </Border>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                                            <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0, 0,17,0" />
+                                            <SplineThicknessKeyFrame KeyTime="00:00:0.2" Value="17, 0,0,0" />
+                                        </ThicknessAnimationUsingKeyFrames>
+                                        <ColorAnimation Storyboard.TargetName="slider" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#EB4D4B" Duration="00:00:0.2"></ColorAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <Storyboard>
+                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                                            <SplineThicknessKeyFrame KeyTime="00:00:0.2" Value="0, 0,17,0" />
+                                        </ThicknessAnimationUsingKeyFrames>
+                                        <ColorAnimation Storyboard.TargetName="slider" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#2ECC71" Duration="00:00:0.2"></ColorAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </BulletDecorator>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LogInBautton" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="#EB4D4B"  Padding="0 0 0 2"
+                            Height="40" Width="280">
+
+                        <TextBlock Text="Войти" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="White" FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"/>
+
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#FD7676" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#EB4D4B" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Border.Triggers>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

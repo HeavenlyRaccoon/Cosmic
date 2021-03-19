@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmic.Views.Windows;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -29,6 +30,12 @@ namespace Cosmic
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("https://vk.com/id210553771");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AuthWindow authWindow = new AuthWindow();
+            authWindow.ShowDialog();
         }
     }
 }

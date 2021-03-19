@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Cosmic"
         xmlns:vm="clr-namespace:Cosmic.ViewModels"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="{Binding Title}" Height="720" Width="1440">
     
     <Window.DataContext>
@@ -29,7 +30,7 @@
 
             <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#1C272D"></Grid>
             <Grid Grid.Row="0" Grid.Column="2">
-                <Button Style="{StaticResource AuthBautton}"></Button>
+                <Button Style="{StaticResource AuthBautton}" Click="Button_Click"></Button>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Border MaxWidth="800" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
