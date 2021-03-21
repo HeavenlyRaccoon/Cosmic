@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Cosmic"
         xmlns:vm="clr-namespace:Cosmic.ViewModels"
         mc:Ignorable="d"
+        Name="mainWindow"
         WindowStartupLocation="CenterScreen"
         Title="{Binding Title}" Height="720" Width="1440">
     
@@ -30,7 +31,7 @@
 
             <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#1C272D"></Grid>
             <Grid Grid.Row="0" Grid.Column="2">
-                <Button Style="{StaticResource AuthBautton}" Click="Button_Click"></Button>
+                <Button Style="{StaticResource AuthBautton}" Command="{Binding OpenAuthWindowCommand}"></Button>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Border MaxWidth="800" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
@@ -162,7 +163,7 @@
                                FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
                                TextDecorations="Underline" VerticalAlignment="Center">stan55565@gmail.com</TextBlock>
                     <TextBlock Height="31" Width="31" HorizontalAlignment="Right" Margin="0 0 90 0">
-                        <Hyperlink TextDecorations="None" Click="Hyperlink_Click">
+                        <Hyperlink TextDecorations="None" Command="{Binding OpenLinkCommand}">
                             <Image Source="/Resources/Icons/hit.gif" Cursor="Hand"></Image>
                         </Hyperlink>
                     </TextBlock>

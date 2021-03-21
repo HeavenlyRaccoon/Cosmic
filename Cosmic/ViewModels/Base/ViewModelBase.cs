@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Cosmic.ViewModels.Base
 {
@@ -11,7 +12,7 @@ namespace Cosmic.ViewModels.Base
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string PropertyName=null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName=null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
