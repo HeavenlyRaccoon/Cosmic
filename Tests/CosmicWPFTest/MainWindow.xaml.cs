@@ -1,22 +1,16 @@
-﻿using SpotifyAPI.Web;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Media;
+using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using AngleSharp;
+using AngleSharp.Html.Parser;
 
 namespace CosmicWPFTest
 {
@@ -40,31 +34,44 @@ namespace CosmicWPFTest
             //    TextBlock1.Text = str;
             //}
 
-            Prof(TextBlock1);
-            //Task.WaitAll(Prof(TextBlock1));
+            //Play(TextBlock1);
         }
 
-        public static async Task Prof(TextBox textBlock)
+        public static void Play(TextBox textBlock)
         {
-            //var config = SpotifyClientConfig.CreateDefault();
-
-            //var request = new ClientCredentialsRequest("e38f5549120e4f7885ed1472dc58adb6", "0e255d6f56d9433da52bfab4e8e3cf4b");
-            //var response = new OAuthClient(config).RequestToken(request);
-            //var spotify = new SpotifyClient(config.WithToken(response.Result.AccessToken));
-            //// textBlock.Text = response.Id.ToString();
-            //var song = await spotify.Search.Item(new SearchRequest(SearchRequest.Types.Track, "Талия"));
-            //FullTrack track = new FullTrack();
-            //var tracks = spotify.PaginateAll(song.Tracks, (s) => s.Tracks);
-            //track = tracks.Result[0];
-            //textBlock.Text = track.Uri;
-
             WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-            wplayer.URL = "https://hotmo.org/get/music/20200223/MUKKA_Tri_dnya_dozhdya_-_Ne_Kiryajj_68502009.mp3";
-            wplayer.settings.volume = 30;
+            string url = "https://mp3trip.info/"+textBlock.Text;
+            wplayer.URL = url;
+            wplayer.settings.volume = 2;
             wplayer.controls.play();
-
         }
 
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            Pars(TextBlock2);
+        }
 
+        public async void Pars(TextBox textBlock)
+        {
+            string url = "https://mp3trip.info/";
+            using (var webClient = new WebClient())
+            {
+                var pars = new NameValueCollection();
+
+                pars.Add("do", "search");
+                pars.Add("subaction", "search");
+                pars.Add("story", "Талия");
+
+                var response = webClient.UploadValues(url, pars);
+                string source = System.Text.Encoding.UTF8.GetString(response);
+
+                var config = Configuration.Default;
+                var context = BrowsingContext.New(config);
+                var document = await context.OpenAsync(req => req.Content(source));
+                var elements = document.GetElementsByClassName("track-item");
+                textBlock.Text = elements[5].GetAttribute("data-track");
+                Play(textBlock);
+            }
+        }
     }
 }

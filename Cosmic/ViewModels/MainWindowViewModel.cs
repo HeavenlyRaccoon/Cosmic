@@ -47,14 +47,55 @@ namespace Cosmic.ViewModels
 
         private bool CanOpenLinkCommandExecute(object p) => true;
         #endregion
+        #region MinimizeWindowCommand
+        public ICommand MinimizeWindowCommand { get; }
+
+        private void OnMinimizeWindowCommandExecuted(object p)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        private bool CanMinimizeWindowCommandExecute(object p) => true;
+        #endregion
+        #region MaximizeWindowCommand
+        public ICommand MaximizeWindowCommand { get; }
+
+        private void OnMaximizeWindowCommandExecuted(object p)
+        {
+            if (Application.Current.MainWindow.WindowState != WindowState.Maximized)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+            }
+            
+        }
+
+        private bool CanMaximizeWindowCommandExecute(object p) => true;
+        #endregion
+        #region ShutDownCommand
+        public ICommand ShutDownCommand { get; }
+
+        private void OnShutDownCommandExecuted(object p)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private bool CanShutDownCommandExecute(object p) => true;
+        #endregion
 
         #endregion
         public MainWindowViewModel()
         {
             #region Команды
             OpenAuthWindowCommand = new LamdaCommand(OnOpenAuthWindowCommandExecuted, CanOpenAuthWindowCommandExecute);
-            OpenLinkCommand = new LamdaCommand(OnOpenLinkCommandExecuted, CanOpenLinkCommandExecute); 
-            
+            OpenLinkCommand = new LamdaCommand(OnOpenLinkCommandExecuted, CanOpenLinkCommandExecute);
+            MinimizeWindowCommand = new LamdaCommand(OnMinimizeWindowCommandExecuted, CanMinimizeWindowCommandExecute);
+            MaximizeWindowCommand = new LamdaCommand(OnMaximizeWindowCommandExecuted, CanMaximizeWindowCommandExecute);
+            ShutDownCommand = new LamdaCommand(OnShutDownCommandExecuted, CanShutDownCommandExecute);
+
             #endregion
         }
     }

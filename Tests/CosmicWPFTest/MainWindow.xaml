@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CosmicWPFTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="720" Width="1440">
     <Grid>
-        <Button Width="300" Height="100" Content="PLAY" Click="Button_Click" ></Button>
-        <TextBox x:Name="TextBlock1" Margin="-6,291,-0.4,10" Width="800"/>
+        <Button Width="300" Height="100" Content="PLAY" Click="Button_Click" Margin="44,10,1089.6,310" ></Button>
+        <Button Width="300" Height="100" Content="PARS" Click="Button_Click1" Margin="692,10,441.6,310" ></Button>
+        <TextBlock x:Name="TextBlock1" Margin="44,126,1089.6,264" Width="300" Height="30"/>
+        <TextBox x:Name="TextBlock2" Margin="429,250,9.6,10.4"/>
     </Grid>
 </Window>

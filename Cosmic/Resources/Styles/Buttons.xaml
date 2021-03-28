@@ -3,13 +3,13 @@
                     xmlns:svgc="http://sharpvectors.codeplex.com/svgc/">
 
     <Style x:Key="AuthBautton" TargetType="{x:Type Button}">
-        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        <Setter Property="Margin" Value="0 0 50 0"></Setter>
+        <!--<Setter Property="HorizontalAlignment" Value="Right"></Setter>-->
+        <Setter Property="Margin" Value="5 0 100 0"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="20" Background="#EB4D4B"  Padding="0 0 0 2"
-                            MinHeight="20"  MaxHeight="40" Width="150">
+                            MinHeight="20"  MaxHeight="40" MaxWidth="150" MinWidth="120">
 
                         <TextBlock Text="Авторизация" VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Foreground="White" FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"/>
@@ -316,5 +316,103 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ControlButtonShutDown" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="25" Height="25" Background="Transparent">
+                        <svgc:SvgViewbox MaxHeight="15" MaxWidth="15" Stretch="Uniform" Cursor="Hand" Source="../../Resources/Icons/times.svg"/>
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#EB4D4B" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="Transparent" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Border.Triggers>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="ControlButtonMinimize" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="25" Height="25" Background="Transparent">
+                        <svgc:SvgViewbox MaxHeight="15" MaxWidth="15" Stretch="Uniform" VerticalAlignment="Bottom"
+                                         Margin="0 0 0 9" Cursor="Hand" Source="../../Resources/Icons/window-minimize.svg"/>
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#EB4D4B" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="Transparent" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Border.Triggers>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="ControlButtonMaximize" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="25" Height="25" Background="Transparent">
+                        <svgc:SvgViewbox MaxHeight="15" MaxWidth="15" Stretch="Uniform" Cursor="Hand" Source="../../Resources/Icons/window-maximize.svg"/>
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#EB4D4B" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="Transparent" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Border.Triggers>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
 
 </ResourceDictionary>
