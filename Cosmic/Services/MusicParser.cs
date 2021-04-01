@@ -1,64 +1,15 @@
-﻿using System;
+﻿using AngleSharp;
+using Cosmic.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.IO;
+using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using AngleSharp;
-using AngleSharp.Html.Parser;
 
-namespace CosmicWPFTest
+namespace Cosmic.Services
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //string url = "https://m.mp3ha.org/search/%D0%BC%D1%83%D0%BA%D0%BA%D0%B0%20%D0%BF%D0%B8%D0%B6%D0%B0%D0%BC%D0%B0";
-            //using (var webClient = new WebClient())
-            //{
-            //    var response = webClient.DownloadData(url);
-            //    string str = System.Text.Encoding.UTF8.GetString(response);
-            //    TextBlock1.Text = str;
-            //}
-
-            //Play(TextBlock1);
-        }
-
-        public static void Play(TextBox textBlock)
-        {
-            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-            string url = "https://mp3trip.info/"+textBlock.Text;
-            wplayer.URL = url;
-            wplayer.settings.volume = 2;
-            wplayer.controls.play();
-        }
-
-        private void Button_Click1(object sender, RoutedEventArgs e)
-        {
-            Pars(TextBlock2);
-        }
-
-        public void Pars(TextBox textBlock)
-        {
-
-            List<MusicItem> musicItems = MusicParser.Search("Талия");
-            textBlock.Text = musicItems[0].Title;
-        }
-    }
-
     static class MusicParser
     {
         private const string NodeUrl = "https://mp3trip.info";
@@ -70,7 +21,7 @@ namespace CosmicWPFTest
             var context = BrowsingContext.New(config);
             var document = await context.OpenAsync(req => req.Content(source));
             var tracks = document.GetElementsByClassName("track-item");
-            foreach (var track in tracks)
+            foreach(var track in tracks)
             {
                 MusicItem musicItem = new MusicItem();
                 musicItem.Title = track.GetAttribute("data-title");
@@ -88,15 +39,15 @@ namespace CosmicWPFTest
         {
             using (var webClient = new WebClient())
             {
-                var response = webClient.DownloadString(url);
-                return response;
+                var response = webClient.DownloadData(url);
+                return System.Text.Encoding.UTF8.GetString(response);
             }
         }
 
         public static string PostRequest(string url, NameValueCollection valueCollection)
         {
             using (var webClient = new WebClient())
-            {
+            { 
                 var response = webClient.UploadValues(url, valueCollection);
                 return System.Text.Encoding.UTF8.GetString(response);
             }
@@ -119,14 +70,5 @@ namespace CosmicWPFTest
             List<MusicItem> musicItems = GetMusicItems(source).Result;
             return musicItems;
         }
-    }
-
-    class MusicItem
-    {
-        public string Title { get; set; }
-        public string Artist { get; set; }
-        public string TrackTime { get; set; }
-        public string ImgData { get; set; }
-        public string MusicData { get; set; }
     }
 }

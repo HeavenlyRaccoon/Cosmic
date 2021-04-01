@@ -38,9 +38,7 @@
                 <Button Style="{StaticResource ControlButtonMaximize}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="0 5 40 0" Command="{Binding MaximizeWindowCommand}"></Button>
                 <Button Style="{StaticResource ControlButtonShutDown}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="0 5 15 0" Command="{Binding ShutDownCommand}"></Button>
                 <Button Style="{StaticResource ControlButtonMinimize}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="0 5 65 0" Command="{Binding MinimizeWindowCommand}"></Button>
-                <!--<DockPanel Height="25" Width="75" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 15 0">
-                    
-                </DockPanel>-->
+                
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Border MaxWidth="800" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
@@ -89,7 +87,8 @@
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="0">
                                 <StackPanel Orientation="Vertical">
-                                    
+                                    <ListBox ItemsSource="{Binding Hit2021}" Background="Transparent" BorderThickness="0"
+                                              ItemTemplate="{StaticResource MusicItems}" Style="{StaticResource ListBoxScrollDisable}" Margin="0 0 0 0"></ListBox>
                                 </StackPanel>
                             </Grid>
 
@@ -102,7 +101,9 @@
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="1">
                                 <StackPanel Orientation="Vertical">
-                                    
+                                    <ListBox ItemsSource="{Binding TikTok}" Background="Transparent" BorderThickness="0"
+                                             Style="{StaticResource ListBoxScrollDisable}" ItemTemplate="{StaticResource MusicItems}" Margin="13 0 0 0">
+                                    </ListBox>
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -126,7 +127,9 @@
                             </Grid>
                             <Grid Grid.Row="1">
                                 <StackPanel Orientation="Vertical">
-                                    
+                                    <ListBox ItemsSource="{Binding NewMusic}" Background="Transparent" BorderThickness="0"
+                                             Style="{StaticResource ListBoxScrollDisable}" ItemTemplate="{StaticResource MusicItems}" Margin="13 0 0 0">
+                                    </ListBox>
                                 </StackPanel>
                             </Grid>
                         </Grid>
