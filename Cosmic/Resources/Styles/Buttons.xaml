@@ -446,7 +446,7 @@
     </Style>
 
 
-    <DataTemplate x:Key="MusicItems">
+    <DataTemplate x:Key="MusicItemsSmallBox">
         <Grid Width="360" Margin="0 10 0 10" Height="40">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"></ColumnDefinition>
@@ -486,6 +486,134 @@
             <Grid Grid.Column="2">
                 <TextBlock Text="{Binding Path=TrackTime}" FontSize="12" Foreground="#ccc" VerticalAlignment="Center"
                                                                    FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></TextBlock>
+            </Grid>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="Transparent">
+                <Rectangle.Triggers>
+                    <EventTrigger RoutedEvent="Rectangle.MouseEnter">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <DoubleAnimation Storyboard.TargetName="MusicPlayRadius" Storyboard.TargetProperty="Radius" To="5" Duration="0:0:0:0.2"></DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="MusicPlay" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0:0.2"></DoubleAnimation>
+                                    <ColorAnimation To="#E056FD" Duration="0:0:0:0.2" Storyboard.TargetName="MusicTitle" 
+                                                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"></ColorAnimation>
+                                    <ColorAnimation To="#E056FD" Duration="0:0:0:0.2" Storyboard.TargetName="MusicArtist"
+                                                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"></ColorAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <DoubleAnimation Storyboard.TargetName="MusicPlayRadius" Storyboard.TargetProperty="Radius" To="0" Duration="0:0:0:0.2"></DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="MusicPlay" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0:0.2"></DoubleAnimation>
+                                    <ColorAnimation To="White" Duration="0:0:0:2" Storyboard.TargetName="MusicTitle"
+                                                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"></ColorAnimation>
+                                    <ColorAnimation To="White" Duration="0:0:0:0.2" Storyboard.TargetName="MusicArtist"
+                                                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"></ColorAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Rectangle.Triggers>
+            </Rectangle>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MusicItemsLargeBox">
+        <Grid Width="710" Margin="0 10 0 10" Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Rectangle Width="40" Height="40" RadiusX="10" RadiusY="10">
+                    <Rectangle.Effect>
+                        <BlurEffect x:Name="MusicPlayRadius" Radius="0"></BlurEffect>
+                    </Rectangle.Effect>
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding Path=ImgData}" Stretch="Uniform"></ImageBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <svgc:SvgViewbox MaxHeight="27" MaxWidth="27" Stretch="Uniform" x:Name="MusicPlay"
+                                                                         Opacity="0" Panel.ZIndex="1" Source="../../Resources/Icons/play-circle.svg"/>
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="10 0 10 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock Text="{Binding Path=Title}" TextTrimming="CharacterEllipsis" FontSize="16" Foreground="White"
+                                                                       FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" x:Name="MusicTitle"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0 3 0 0">
+                    <TextBlock Text="{Binding Path=Artist}" TextTrimming="CharacterEllipsis" FontSize="13" Foreground="#ccc"
+                                                                       FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" x:Name="MusicArtist"></TextBlock>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2">
+                <TextBlock Text="{Binding Path=TrackTime}" FontSize="12" Foreground="#ccc" VerticalAlignment="Center"
+                                                                   FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" HorizontalAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid Grid.Column="3">
+                <Border MaxHeight="24" MaxWidth="24" CornerRadius="12" Background="Transparent">
+                    <Path MaxHeight="24" MaxWidth="24" x:Name="DownloadIcon" Stretch="Uniform" Fill="#BADC58" Data="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm216 248c0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216zm-92.5-4.5l-6.9-6.9c-4.7-4.7-12.5-4.7-17.1.2L273 330.3V140c0-6.6-5.4-12-12-12h-10c-6.6 0-12 5.4-12 12v190.3l-82.5-85.6c-4.7-4.8-12.4-4.9-17.1-.2l-6.9 6.9c-4.7 4.7-4.7 12.3 0 17l115 115.1c4.7 4.7 12.3 4.7 17 0l115-115.1c4.7-4.6 4.7-12.2 0-16.9z"/>
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="Border.MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#FF60A842" Duration="0:0:0:0.2" Storyboard.TargetName="DownloadIcon" Storyboard.TargetProperty="(Fill).(SolidColorBrush.Color)"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <ColorAnimation To="#BADC58" Duration="0:0:0:0.2" Storyboard.TargetName="DownloadIcon" Storyboard.TargetProperty="(Fill).(SolidColorBrush.Color)"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Border.Triggers>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="4">
+                <Border Width="30" Height="30" CornerRadius="15" Background="#141319">
+                    <svgc:SvgViewbox MaxHeight="15" MaxWidth="15" Stretch="Uniform" Margin="0.5 2 0 0" Source="../../Resources/Icons/heart.svg"/>
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="Border.MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#EB4D4B" Duration="0:0:0:0.2" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <ColorAnimation To="#141319" Duration="0:0:0:0.2" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Border.Triggers>
+                </Border>
             </Grid>
             <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="Transparent">
                 <Rectangle.Triggers>

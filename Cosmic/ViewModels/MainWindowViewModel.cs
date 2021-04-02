@@ -47,10 +47,18 @@ namespace Cosmic.ViewModels
         #endregion
         #region Новая Музыка
 
-        private List<MusicItem> _NewMusic = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 10);
+        private List<MusicItem> _NewMusic = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 13);
         public List<MusicItem> NewMusic
         {
             get => _NewMusic;
+        }
+        #endregion
+        #region Популярная музыка
+
+        private List<MusicItem> _PopularMusic = MusicParser.Playlist("https://mp3trip.info/populyarnye/").GetRange(0, 13);
+        public List<MusicItem> PopularMusic
+        {
+            get => _PopularMusic;
         }
         #endregion
 
