@@ -55,8 +55,9 @@ namespace Cosmic.Services
 
         public static List<MusicItem> Playlist(string url)
         {
+            List<MusicItem> musicItems = new List<MusicItem>();
             string source = GetRequest(url);
-            List<MusicItem> musicItems = GetMusicItems(source).Result;
+            musicItems = GetMusicItems(source).Result;
             return musicItems;
         }
 

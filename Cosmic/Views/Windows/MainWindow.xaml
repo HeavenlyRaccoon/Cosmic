@@ -74,7 +74,7 @@
                         </Border>
                     </Grid>
 
-                    <Frame Grid.Row="1" Grid.Column="1" Content="{Binding FrameContent}" Source="/Views/Pages/MainPage.xaml" NavigationUIVisibility="Hidden"></Frame>
+                    <Frame Grid.Row="1" Grid.Column="1" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}" Source="/Views/Pages/MainPage.xaml" NavigationUIVisibility="Hidden"></Frame>
                     
 
                     <Grid Grid.Row="2" Grid.ColumnSpan="3">
@@ -115,70 +115,128 @@
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Новинки</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40" >
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenTopMusicPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/trophy.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Наш чарт</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenHit2021PageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2021</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenHit2020PageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2020</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenHit2019PageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2019</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenHit2018PageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2018</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenHit2017PageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/compact-disc.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Хиты 2017</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenClubMusicPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/speakers.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Клубная музыка</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenCarMusicPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/tire.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Музыка в машину</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenAnimeMusicPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/infinity.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Музыка из аниме</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenTikTokMusicPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
+                                    <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/running.svg"/>
+                                    <TextBlock Style="{StaticResource GenreTextBlock}">Музыка Тик Ток </TextBlock>
+                                </DockPanel>
+                                <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenRussianRapPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/head-side-headphones.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Русский рэп</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenNewYearPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/glass-cheers.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Новогодние</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenForeignRockPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/guitars.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Зарубежный рок</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenRussianPopPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/drum.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Русский поп</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenForeignRapPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/head-side-headphones.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Зарубежный рэп</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                    <MouseBinding Command="{Binding OpenForeignPopPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/drum.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Зарубежный поп</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenOldMusicPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/gramophone.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Дискотека 80-90х</TextBlock>
                                 </DockPanel>
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenShazamPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/infinity.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Топ-100 Shazam</TextBlock>
                                 </DockPanel>

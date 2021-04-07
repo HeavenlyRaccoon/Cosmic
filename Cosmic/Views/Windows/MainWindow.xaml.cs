@@ -11,8 +11,6 @@ namespace Cosmic
         public MainWindow()
         {
             InitializeComponent();
-            //MainFraim.Content = new MainPage();
-            //MainFraim.Content = new NewMusic();
         }
 
     }

@@ -92,11 +92,83 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\AnimeMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\CarMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ClubMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ForeignPop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ForeignRap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ForeignRock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Hit2017.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Hit2018.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Hit2019.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Hit2020.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Hit2021.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\NewMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\NewYear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\OldMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\RussianPop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\RussianRap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Shazam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\TikTokMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\TopMusic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,11 +191,65 @@
     <Compile Include="ViewModels\AuthWindowViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\Pages\AnimeMusic.xaml.cs">
+      <DependentUpon>AnimeMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\CarMusic.xaml.cs">
+      <DependentUpon>CarMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ClubMusic.xaml.cs">
+      <DependentUpon>ClubMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ForeignPop.xaml.cs">
+      <DependentUpon>ForeignPop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ForeignRap.xaml.cs">
+      <DependentUpon>ForeignRap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ForeignRock.xaml.cs">
+      <DependentUpon>ForeignRock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Hit2017.xaml.cs">
+      <DependentUpon>Hit2017.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Hit2018.xaml.cs">
+      <DependentUpon>Hit2018.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Hit2019.xaml.cs">
+      <DependentUpon>Hit2019.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Hit2020.xaml.cs">
+      <DependentUpon>Hit2020.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Hit2021.xaml.cs">
+      <DependentUpon>Hit2021.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\NewMusic.xaml.cs">
       <DependentUpon>NewMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\NewYear.xaml.cs">
+      <DependentUpon>NewYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\OldMusic.xaml.cs">
+      <DependentUpon>OldMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\RussianPop.xaml.cs">
+      <DependentUpon>RussianPop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\RussianRap.xaml.cs">
+      <DependentUpon>RussianRap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Shazam.xaml.cs">
+      <DependentUpon>Shazam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\TikTokMusic.xaml.cs">
+      <DependentUpon>TikTokMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\TopMusic.xaml.cs">
+      <DependentUpon>TopMusic.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
