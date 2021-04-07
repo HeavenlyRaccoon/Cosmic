@@ -64,114 +64,18 @@
                             </DockPanel>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="0">
-                        <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Stretch="Uniform" Margin="0 0 40 0" HorizontalAlignment="Right" Cursor="Hand" Source="../../Resources/Icons/LOGOCreate.svg"/>
+                    <Grid Grid.Row="0" Grid.Column="0" Background="Transparent">
+                        <Border MaxHeight="100" MaxWidth="170" Margin="0 0 40 0" HorizontalAlignment="Right">
+                            <svgc:SvgViewbox MaxHeight="100" MaxWidth="170" Cursor="Hand" Stretch="Uniform" Source="../../Resources/Icons/LOGOCreate.svg">
+                                <svgc:SvgViewbox.InputBindings>
+                                    <MouseBinding Command="{Binding OpenMainPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                </svgc:SvgViewbox.InputBindings>
+                            </svgc:SvgViewbox>
+                        </Border>
                     </Grid>
 
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="450"></RowDefinition>
-                            <RowDefinition Height="930"></RowDefinition>
-                            <RowDefinition Height="930"></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0" Margin="0 40 0 0">
-                            <Border CornerRadius="10" MaxWidth="780" Background="#192229" Padding="25 10 25 10">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition Height="5*"></RowDefinition>
-                                    </Grid.RowDefinitions>
-
-                                    <Grid Grid.Row="0" Grid.Column="0">
-                                        <DockPanel Margin="0 0 12 0">
-                                            <Label Content="Хиты 2021" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
-                                        </DockPanel>
-                                    </Grid>
-                                    <Grid Grid.Row="1" Grid.Column="0">
-                                        <StackPanel Orientation="Vertical">
-                                            <ListBox ItemsSource="{Binding Hit2021}" Background="Transparent" BorderThickness="0"
-                                              ItemTemplate="{StaticResource MusicItemsSmallBox}" Style="{StaticResource ListBoxScrollDisable}" Margin="0 0 0 0"></ListBox>
-                                        </StackPanel>
-                                    </Grid>
-
-                                    <Grid Grid.Row="0" Grid.Column="1">
-                                        <DockPanel Margin="12 0 0 0">
-                                            <Label Content="Тик Ток 2021" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
-                                        </DockPanel>
-                                    </Grid>
-                                    <Grid Grid.Row="1" Grid.Column="1">
-                                        <StackPanel Orientation="Vertical">
-                                            <ListBox ItemsSource="{Binding TikTok}" Background="Transparent" BorderThickness="0"
-                                             Style="{StaticResource ListBoxScrollDisable}" ItemTemplate="{StaticResource MusicItemsSmallBox}" Margin="13 0 0 0">
-                                            </ListBox>
-                                        </StackPanel>
-                                    </Grid>
-                                </Grid>
-                            </Border>
-                        </Grid>
-
-                        <Grid Grid.Row="1" Margin="0 30 0 0">
-                            <Border CornerRadius="10" MaxWidth="780" Background="#192229" Padding="25 10 25 10">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="65"></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-
-                                    <Grid Grid.Row="0" Grid.Column="0">
-                                        <DockPanel>
-                                            <Label Content="Новая MP3 музыка" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
-                                        </DockPanel>
-                                    </Grid>
-                                    <Grid Grid.Row="1">
-                                        <StackPanel Orientation="Vertical">
-                                            <ListBox ItemsSource="{Binding NewMusic}" Background="Transparent" BorderThickness="0"
-                                             Style="{StaticResource ListBoxScrollDisable}" ItemTemplate="{StaticResource MusicItemsLargeBox}" Margin="13 0 0 0">
-                                            </ListBox>
-                                        </StackPanel>
-                                    </Grid>
-                                </Grid>
-                            </Border>
-                        </Grid>
-
-                        <Grid Grid.Row="2" Margin="0 30 0 70">
-                            <Border CornerRadius="10" MaxWidth="780" Background="#192229" Padding="25 10 25 10">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="65"></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-
-                                    <Grid Grid.Row="0" Grid.Column="0">
-                                        <DockPanel>
-                                            <Label Content="Популярная музыка" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
-                                        </DockPanel>
-                                    </Grid>
-                                    <Grid Grid.Row="1">
-                                        <StackPanel Orientation="Vertical">
-                                            <ListBox ItemsSource="{Binding PopularMusic}" Background="Transparent" BorderThickness="0"
-                                             Style="{StaticResource ListBoxScrollDisable}" ItemTemplate="{StaticResource MusicItemsLargeBox}" Margin="13 0 0 0">
-                                            </ListBox>
-                                        </StackPanel>
-                                    </Grid>
-                                </Grid>
-                            </Border>
-                        </Grid>
-
-                    </Grid>
+                    <Frame Grid.Row="1" Grid.Column="1" Content="{Binding FrameContent}" Source="/Views/Pages/MainPage.xaml" NavigationUIVisibility="Hidden"></Frame>
+                    
 
                     <Grid Grid.Row="2" Grid.ColumnSpan="3">
                         <Border Background="Black" Margin="90 0 90 0"></Border>
@@ -204,6 +108,9 @@
                         <Grid Grid.Row="0" Margin="0 25 5 0">
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
                                 <DockPanel Height="40">
+                                    <DockPanel.InputBindings>
+                                        <MouseBinding Command="{Binding OpenNewMusicPageCommand}" MouseAction="LeftClick"></MouseBinding>
+                                    </DockPanel.InputBindings>
                                     <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Left" Cursor="Hand" Source="../../Resources/Icons/bells.svg"/>
                                     <TextBlock Style="{StaticResource GenreTextBlock}">Новинки</TextBlock>
                                 </DockPanel>

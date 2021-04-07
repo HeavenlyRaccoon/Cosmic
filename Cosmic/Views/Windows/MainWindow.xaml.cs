@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Cosmic.Views.Pages;
+using System.Windows;
 
 namespace Cosmic
 {
@@ -10,6 +11,8 @@ namespace Cosmic
         public MainWindow()
         {
             InitializeComponent();
+            //MainFraim.Content = new MainPage();
+            //MainFraim.Content = new NewMusic();
         }
 
     }

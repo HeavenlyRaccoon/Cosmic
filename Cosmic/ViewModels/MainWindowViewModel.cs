@@ -2,11 +2,13 @@
 using Cosmic.Models;
 using Cosmic.Services;
 using Cosmic.ViewModels.Base;
+using Cosmic.Views.Pages;
 using Cosmic.Views.Windows;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Effects;
 
@@ -59,6 +61,23 @@ namespace Cosmic.ViewModels
         public List<MusicItem> PopularMusic
         {
             get => _PopularMusic;
+        }
+        #endregion
+        #region Страница популярная музыка
+
+        private List<MusicItem> _NewMusicPage = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 45);
+        public List<MusicItem> NewMusicPage
+        {
+            get => _NewMusicPage;
+        }
+        #endregion
+        #region FrameContent
+
+        private Page _FrameContent;
+        public Page FrameContent
+        {
+            get => _FrameContent;
+            set => Set(ref _FrameContent, value);
         }
         #endregion
 
@@ -126,6 +145,26 @@ namespace Cosmic.ViewModels
 
         private bool CanShutDownCommandExecute(object p) => true;
         #endregion
+        #region OpenNewMusicPageCommand
+        public ICommand OpenNewMusicPageCommand { get; }
+
+        private void OnOpenNewMusicPageCommandExecuted(object p)
+        {
+            FrameContent = new NewMusic();
+        }
+
+        private bool CanOpenNewMusicPageCommandExecute(object p) => true;
+        #endregion
+        #region OpenMainPageCommand
+        public ICommand OpenMainPageCommand { get; }
+
+        private void OnOpenMainPageCommandExecuted(object p)
+        {
+            FrameContent = new MainPage();
+        }
+
+        private bool CanOpenMainPageCommandExecute(object p) => true;
+        #endregion
 
         #endregion
         public MainWindowViewModel()
@@ -136,7 +175,8 @@ namespace Cosmic.ViewModels
             MinimizeWindowCommand = new LamdaCommand(OnMinimizeWindowCommandExecuted, CanMinimizeWindowCommandExecute);
             MaximizeWindowCommand = new LamdaCommand(OnMaximizeWindowCommandExecuted, CanMaximizeWindowCommandExecute);
             ShutDownCommand = new LamdaCommand(OnShutDownCommandExecuted, CanShutDownCommandExecute);
-
+            OpenNewMusicPageCommand = new LamdaCommand(OnOpenNewMusicPageCommandExecuted, CanOpenNewMusicPageCommandExecute);
+            OpenMainPageCommand = new LamdaCommand(OnOpenMainPageCommandExecuted, CanOpenMainPageCommandExecute);
             #endregion
         }
     }
