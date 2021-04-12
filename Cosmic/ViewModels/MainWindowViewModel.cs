@@ -6,6 +6,7 @@ using Cosmic.Views.Pages;
 using Cosmic.Views.Windows;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -137,7 +138,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenNewMusicPageCommandExecuted(object p)
         {
-            FrameContent = NewMusic;
+            OpacityFunc(NewMusic);
         }
 
         private bool CanOpenNewMusicPageCommandExecute(object p) => true;
@@ -147,7 +148,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenTopMusicPageCommandExecuted(object p)
         {
-            FrameContent = TopMusic;
+            OpacityFunc(TopMusic);
         }
 
         private bool CanOpenTopMusicPageCommandExecute(object p) => true;
@@ -157,7 +158,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2021PageCommandExecuted(object p)
         {
-            FrameContent = Hit2021;
+            OpacityFunc(Hit2021);
         }
 
         private bool CanOpenHit2021PageCommandExecute(object p) => true;
@@ -167,7 +168,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2020PageCommandExecuted(object p)
         {
-            FrameContent = Hit2020;
+            OpacityFunc(Hit2020);
         }
 
         private bool CanOpenHit2020PageCommandExecute(object p) => true;
@@ -177,7 +178,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2019PageCommandExecuted(object p)
         {
-            FrameContent = Hit2019;
+            OpacityFunc(Hit2019);
         }
 
         private bool CanOpenHit2019PageCommandExecute(object p) => true;
@@ -187,7 +188,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2018PageCommandExecuted(object p)
         {
-            FrameContent = Hit2018;
+            OpacityFunc(Hit2018);
         }
 
         private bool CanOpenHit2018PageCommandExecute(object p) => true;
@@ -197,7 +198,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2017PageCommandExecuted(object p)
         {
-            FrameContent = Hit2017;
+            OpacityFunc(Hit2017);
         }
 
         private bool CanOpenHit2017PageCommandExecute(object p) => true;
@@ -207,7 +208,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenClubMusicPageCommandExecuted(object p)
         {
-            FrameContent = ClubMusic;
+            OpacityFunc(ClubMusic);
         }
 
         private bool CanOpenClubMusicPageCommandExecute(object p) => true;
@@ -217,7 +218,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenCarMusicPageCommandExecuted(object p)
         {
-            FrameContent = CarMusic;
+            OpacityFunc(CarMusic);
         }
 
         private bool CanOpenCarMusicPageCommandExecute(object p) => true;
@@ -227,7 +228,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenAnimeMusicPageCommandExecuted(object p)
         {
-            FrameContent = AnimeMusic;
+            OpacityFunc(AnimeMusic);
         }
 
         private bool CanOpenAnimeMusicPageCommandExecute(object p) => true;
@@ -237,7 +238,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenTikTokMusicPageCommandExecuted(object p)
         {
-            FrameContent = TikTokMusic;
+            OpacityFunc(TikTokMusic);
         }
 
         private bool CanOpenTikTokMusicPageCommandExecute(object p) => true;
@@ -247,7 +248,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenRussianRapPageCommandExecuted(object p)
         {
-            FrameContent = RussianRap;
+            OpacityFunc(RussianRap);
         }
 
         private bool CanOpenRussianRapPageCommandExecute(object p) => true;
@@ -257,7 +258,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenNewYearPageCommandExecuted(object p)
         {
-            FrameContent = NewYear;
+            OpacityFunc(NewYear);
         }
 
         private bool CanOpenNewYearPageCommandExecute(object p) => true;
@@ -267,7 +268,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenForeignRockPageCommandExecuted(object p)
         {
-            FrameContent = ForeignRock;
+            OpacityFunc(ForeignRock);
         }
 
         private bool CanOpenForeignRockPageCommandExecute(object p) => true;
@@ -277,7 +278,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenRussianPopPageCommandExecuted(object p)
         {
-            FrameContent = RussianPop;
+            OpacityFunc(RussianPop);
         }
 
         private bool CanOpenRussianPopPageCommandExecute(object p) => true;
@@ -287,7 +288,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenForeignRapPageCommandExecuted(object p)
         {
-            FrameContent = ForeignRap;
+            OpacityFunc(ForeignRap);
         }
 
         private bool CanOpenForeignRapPageCommandExecute(object p) => true;
@@ -297,7 +298,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenForeignPopPageCommandExecuted(object p)
         {
-            FrameContent = ForeignPop;
+            OpacityFunc(ForeignPop);
         }
 
         private bool CanOpenForeignPopPageCommandExecute(object p) => true;
@@ -307,7 +308,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenOldMusicPageCommandExecuted(object p)
         {
-            FrameContent = OldMusic;
+            OpacityFunc(OldMusic);
         }
 
         private bool CanOpenOldMusicPageCommandExecute(object p) => true;
@@ -317,7 +318,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenShazamPageCommandExecuted(object p)
         {
-            FrameContent = Shazam;
+            OpacityFunc(Shazam);
         }
 
         private bool CanOpenShazamPageCommandExecute(object p) => true;
@@ -327,7 +328,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenMainPageCommandExecuted(object p)
         {
-            FrameContent = MainPage;
+            OpacityFunc(MainPage);
         }
 
         private bool CanOpenMainPageCommandExecute(object p) => true;
@@ -363,6 +364,7 @@ namespace Cosmic.ViewModels
             OpenForeignPopPageCommand = new LamdaCommand(OnOpenForeignPopPageCommandExecuted, CanOpenForeignPopPageCommandExecute);
             OpenOldMusicPageCommand = new LamdaCommand(OnOpenOldMusicPageCommandExecuted, CanOpenOldMusicPageCommandExecute);
             OpenShazamPageCommand = new LamdaCommand(OnOpenShazamPageCommandExecuted, CanOpenShazamPageCommandExecute);
+            FrameContent = MainPage;
             #endregion
         }
 
@@ -388,6 +390,24 @@ namespace Cosmic.ViewModels
             ForeignPop = new ForeignPop();
             OldMusic = new OldMusic();
             Shazam = new Shazam();
+        }
+
+        public async void OpacityFunc(Page page)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                for(double i = 1; i > 0; i -= 0.05)
+                {
+                    FrameOpacity = i;
+                    Thread.Sleep(50);
+                }
+                FrameContent = page;
+                for (double i = 0; i <= 1; i += 0.05)
+                {
+                    FrameOpacity = i;
+                    Thread.Sleep(50);
+                }
+            });
         }
     }
 }

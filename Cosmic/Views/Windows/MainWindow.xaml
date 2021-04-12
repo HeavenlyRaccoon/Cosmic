@@ -75,7 +75,7 @@
                     </Grid>
 
                     <Frame  Grid.Row="1" Grid.Column="1" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}"
-                            Source="/Views/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Opacity="{Binding FrameOpacity}"></Frame>
+                             NavigationUIVisibility="Hidden" Opacity="{Binding FrameOpacity}"></Frame>
                     
 
                     <Grid Grid.Row="2" Grid.ColumnSpan="3">
