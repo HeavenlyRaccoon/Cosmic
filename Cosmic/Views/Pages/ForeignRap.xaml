@@ -9,7 +9,7 @@
       Title="ForeignRap">
 
     <Page.DataContext>
-        <vm:MainWindowViewModel></vm:MainWindowViewModel>
+        <vm:PagesView></vm:PagesView>
     </Page.DataContext>
     <Grid Grid.Row="1" Grid.Column="1" Margin="0 40 0 70">
         <Border CornerRadius="10" MaxWidth="780" Background="#192229" Padding="25 10 25 10">
@@ -20,11 +20,8 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Grid.Column="0">
-                    <DockPanel>
-                        <Label Content="Слушать Зарубежный рэп онлайн" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    <Label Content="Слушать Зарубежный рэп онлайн" HorizontalAlignment="Left" VerticalAlignment="Center"
                                        FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                        <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
-                    </DockPanel>
                 </Grid>
                 <Grid Grid.Row="1">
                     <StackPanel Orientation="Vertical">

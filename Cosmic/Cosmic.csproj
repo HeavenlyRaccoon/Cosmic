@@ -191,6 +191,7 @@
     <Compile Include="ViewModels\AuthWindowViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\PagesView.cs" />
     <Compile Include="Views\Pages\AnimeMusic.xaml.cs">
       <DependentUpon>AnimeMusic.xaml</DependentUpon>
     </Compile>

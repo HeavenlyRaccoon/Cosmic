@@ -26,203 +26,46 @@ namespace Cosmic.ViewModels
         }
 
         #endregion
-
-        #region Хиты 2021
-
-        private static List<MusicItem> _Hit2021;
-        public List<MusicItem> Hit2021
-        {
-            get => _Hit2021;
-        }
-
-
-        #endregion
-        #region Tik Tok 2021
-
-        private static List<MusicItem> _TikTok;
-        public List<MusicItem> TikTok
-        {
-            get => _TikTok;
-        }
-
-
-        #endregion
-        #region Новая Музыка
-
-        private static List<MusicItem> _NewMusic;
-        public List<MusicItem> NewMusic
-        {
-            get => _NewMusic;
-        }
-        #endregion
-        #region Популярная музыка
-
-        private static List<MusicItem> _PopularMusic;
-        public List<MusicItem> PopularMusic
-        {
-            get => _PopularMusic;
-        }
-        #endregion
-        #region Страница Новинки
-
-        private static List<MusicItem> _NewMusicPage;
-        public List<MusicItem> NewMusicPage
-        {
-            get => _NewMusicPage;
-        }
-        #endregion
-        #region Страница Наш Чарт
-
-        private static List<MusicItem> _TopPage;
-        public List<MusicItem> TopPage
-        {
-            get => _TopPage;
-        }
-        #endregion
-        #region Страница Хиты 2021
-
-        private static List<MusicItem> _Hit2021Page;
-        public List<MusicItem> Hit2021Page
-        {
-            get => _Hit2021Page;
-        }
-        #endregion
-        #region Страница Хиты 2020
-
-        private static List<MusicItem> _Hit2020Page;
-        public List<MusicItem> Hit2020Page
-        {
-            get => _Hit2020Page;
-        }
-        #endregion
-        #region Страница Хиты 2019
-
-        private static List<MusicItem> _Hit2019Page;
-        public List<MusicItem> Hit2019Page
-        {
-            get => _Hit2019Page;
-        }
-        #endregion
-        #region Страница Хиты 2018
-
-        private static List<MusicItem> _Hit2018Page;
-        public List<MusicItem> Hit2018Page
-        {
-            get => _Hit2018Page;
-        }
-        #endregion
-        #region Страница Хиты 2017
-
-        private static List<MusicItem> _Hit2017Page;
-        public List<MusicItem> Hit2017Page
-        {
-            get => _Hit2017Page;
-        }
-        #endregion
-        #region Страница Клубная музыка
-
-        private static List<MusicItem> _ClubMusicPage;
-        public List<MusicItem> ClubMusicPage
-        {
-            get => _ClubMusicPage;
-        }
-        #endregion
-        #region Страница Музыка в машину
-
-        private static List<MusicItem> _CarMusicPage;
-        public List<MusicItem> CarMusicPage
-        {
-            get => _CarMusicPage;
-        }
-        #endregion
-        #region Страница Музыка из аниме
-
-        private static List<MusicItem> _AnimeMusicPage;
-        public List<MusicItem> AnimeMusicPage
-        {
-            get => _AnimeMusicPage;
-        }
-        #endregion
-        #region Страница Музыка Тик Ток
-
-        private static List<MusicItem> _TikTokMusicPage;
-        public List<MusicItem> TikTokMusicPage
-        {
-            get => _TikTokMusicPage;
-        }
-        #endregion
-        #region Страница Русский рэп
-
-        private static List<MusicItem> _RussianRapPage;
-        public List<MusicItem> RussianRapPage
-        {
-            get => _RussianRapPage;
-        }
-        #endregion
-        #region Страница Новогодние
-
-        private static List<MusicItem> _NewYearPage;
-        public List<MusicItem> NewYearPage
-        {
-            get => _NewYearPage;
-        }
-        #endregion
-        #region Страница Зарубежный рок
-
-        private static List<MusicItem> _ForeignRockPage;
-        public List<MusicItem> ForeignRockPage
-        {
-            get => _ForeignRockPage;
-        }
-        #endregion
-        #region Страница Русский поп
-
-        private static List<MusicItem> _RussianPopPage;
-        public List<MusicItem> RussianPopPage
-        {
-            get => _RussianPopPage;
-        }
-        #endregion
-        #region Страница Зарубежный рэп
-
-        private static List<MusicItem> _ForeignRapPage;
-        public List<MusicItem> ForeignRapPage
-        {
-            get => _ForeignRapPage;
-        }
-        #endregion
-        #region Страница Зарубежный поп
-
-        private static List<MusicItem> _ForeignPopPage;
-        public List<MusicItem> ForeignPopPage
-        {
-            get => _ForeignPopPage;
-        }
-        #endregion
-        #region Страница Дискотека 80-90ых
-
-        private static List<MusicItem> _OldMusicPage;
-        public List<MusicItem> OldMusicPage
-        {
-            get => _OldMusicPage;
-        }
-        #endregion
-        #region Страница Топ Shazam
-
-        private static List<MusicItem> _ShazamPage;
-        public List<MusicItem> ShazamPage
-        {
-            get => _ShazamPage;
-        }
-        #endregion
         #region FrameContent
 
-        private Page _FrameContent;
+        private static Page _FrameContent;
         public Page FrameContent
         {
             get => _FrameContent;
             set => Set(ref _FrameContent, value);
         }
+        #endregion
+        #region FrameOpacity
+
+        private static double _FrameOpacity=1;
+        public double FrameOpacity
+        {
+            get => _FrameOpacity;
+            set => Set(ref _FrameOpacity, value);
+        }
+        #endregion
+
+        #region Страницы
+        private static MainPage MainPage;
+        private static NewMusic NewMusic;
+        private static TopMusic TopMusic;
+        private static Hit2021 Hit2021;
+        private static Hit2020 Hit2020;
+        private static Hit2019 Hit2019;
+        private static Hit2018 Hit2018;
+        private static Hit2017 Hit2017;
+        private static ClubMusic ClubMusic;
+        private static CarMusic CarMusic;
+        private static AnimeMusic AnimeMusic;
+        private static TikTokMusic TikTokMusic;
+        private static RussianRap RussianRap;
+        private static NewYear NewYear;
+        private static ForeignRap ForeignRap;
+        private static ForeignRock ForeignRock;
+        private static RussianPop RussianPop;
+        private static ForeignPop ForeignPop;
+        private static OldMusic OldMusic;
+        private static Shazam Shazam;
         #endregion
 
         #region Команды
@@ -294,7 +137,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenNewMusicPageCommandExecuted(object p)
         {
-            FrameContent = new NewMusic();
+            FrameContent = NewMusic;
         }
 
         private bool CanOpenNewMusicPageCommandExecute(object p) => true;
@@ -304,7 +147,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenTopMusicPageCommandExecuted(object p)
         {
-            FrameContent = new TopMusic();
+            FrameContent = TopMusic;
         }
 
         private bool CanOpenTopMusicPageCommandExecute(object p) => true;
@@ -314,7 +157,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2021PageCommandExecuted(object p)
         {
-            FrameContent = new Hit2021();
+            FrameContent = Hit2021;
         }
 
         private bool CanOpenHit2021PageCommandExecute(object p) => true;
@@ -324,7 +167,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2020PageCommandExecuted(object p)
         {
-            FrameContent = new Hit2020();
+            FrameContent = Hit2020;
         }
 
         private bool CanOpenHit2020PageCommandExecute(object p) => true;
@@ -334,7 +177,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2019PageCommandExecuted(object p)
         {
-            FrameContent = new Hit2019();
+            FrameContent = Hit2019;
         }
 
         private bool CanOpenHit2019PageCommandExecute(object p) => true;
@@ -344,7 +187,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2018PageCommandExecuted(object p)
         {
-            FrameContent = new Hit2018();
+            FrameContent = Hit2018;
         }
 
         private bool CanOpenHit2018PageCommandExecute(object p) => true;
@@ -354,7 +197,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenHit2017PageCommandExecuted(object p)
         {
-            FrameContent = new Hit2017();
+            FrameContent = Hit2017;
         }
 
         private bool CanOpenHit2017PageCommandExecute(object p) => true;
@@ -364,7 +207,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenClubMusicPageCommandExecuted(object p)
         {
-            FrameContent = new ClubMusic();
+            FrameContent = ClubMusic;
         }
 
         private bool CanOpenClubMusicPageCommandExecute(object p) => true;
@@ -374,7 +217,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenCarMusicPageCommandExecuted(object p)
         {
-            FrameContent = new CarMusic();
+            FrameContent = CarMusic;
         }
 
         private bool CanOpenCarMusicPageCommandExecute(object p) => true;
@@ -384,7 +227,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenAnimeMusicPageCommandExecuted(object p)
         {
-            FrameContent = new AnimeMusic();
+            FrameContent = AnimeMusic;
         }
 
         private bool CanOpenAnimeMusicPageCommandExecute(object p) => true;
@@ -394,7 +237,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenTikTokMusicPageCommandExecuted(object p)
         {
-            FrameContent = new TikTokMusic();
+            FrameContent = TikTokMusic;
         }
 
         private bool CanOpenTikTokMusicPageCommandExecute(object p) => true;
@@ -404,7 +247,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenRussianRapPageCommandExecuted(object p)
         {
-            FrameContent = new RussianRap();
+            FrameContent = RussianRap;
         }
 
         private bool CanOpenRussianRapPageCommandExecute(object p) => true;
@@ -414,7 +257,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenNewYearPageCommandExecuted(object p)
         {
-            FrameContent = new NewYear();
+            FrameContent = NewYear;
         }
 
         private bool CanOpenNewYearPageCommandExecute(object p) => true;
@@ -424,7 +267,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenForeignRockPageCommandExecuted(object p)
         {
-            FrameContent = new ForeignRock();
+            FrameContent = ForeignRock;
         }
 
         private bool CanOpenForeignRockPageCommandExecute(object p) => true;
@@ -434,7 +277,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenRussianPopPageCommandExecuted(object p)
         {
-            FrameContent = new RussianPop();
+            FrameContent = RussianPop;
         }
 
         private bool CanOpenRussianPopPageCommandExecute(object p) => true;
@@ -444,7 +287,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenForeignRapPageCommandExecuted(object p)
         {
-            FrameContent = new ForeignRap();
+            FrameContent = ForeignRap;
         }
 
         private bool CanOpenForeignRapPageCommandExecute(object p) => true;
@@ -454,7 +297,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenForeignPopPageCommandExecuted(object p)
         {
-            FrameContent = new ForeignPop();
+            FrameContent = ForeignPop;
         }
 
         private bool CanOpenForeignPopPageCommandExecute(object p) => true;
@@ -464,7 +307,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenOldMusicPageCommandExecuted(object p)
         {
-            FrameContent = new OldMusic();
+            FrameContent = OldMusic;
         }
 
         private bool CanOpenOldMusicPageCommandExecute(object p) => true;
@@ -474,7 +317,7 @@ namespace Cosmic.ViewModels
 
         private void OnOpenShazamPageCommandExecuted(object p)
         {
-            FrameContent = new Shazam();
+            FrameContent = Shazam;
         }
 
         private bool CanOpenShazamPageCommandExecute(object p) => true;
@@ -484,12 +327,13 @@ namespace Cosmic.ViewModels
 
         private void OnOpenMainPageCommandExecuted(object p)
         {
-            FrameContent = new MainPage();
+            FrameContent = MainPage;
         }
 
         private bool CanOpenMainPageCommandExecute(object p) => true;
         #endregion
 
+        
         #endregion
         public MainWindowViewModel()
         {
@@ -524,29 +368,26 @@ namespace Cosmic.ViewModels
 
         static MainWindowViewModel()
         {
-            _Hit2021 = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2021/").GetRange(0, 5);
-            _TikTok = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-tik-tok/").GetRange(0, 5);
-            _NewMusic = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 13);
-            _PopularMusic = MusicParser.Playlist("https://mp3trip.info/populyarnye/").GetRange(0, 13);
-            _NewMusicPage = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 45);
-            _TopPage = MusicParser.Playlist("https://mp3trip.info/populyarnye/").GetRange(0, 45);
-            _Hit2021Page = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2021/").GetRange(0, 45);
-            _Hit2020Page = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2020/").GetRange(0, 45);
-            _Hit2019Page = MusicParser.Playlist("https://mp3trip.info/hity-2019/").GetRange(0, 45);
-            _Hit2018Page = MusicParser.Playlist("https://mp3trip.info/hity-2018/").GetRange(0, 45);
-            _Hit2017Page = MusicParser.Playlist("https://mp3trip.info/hity-2017/").GetRange(0, 45);
-            _ClubMusicPage = MusicParser.Playlist("https://mp3trip.info/klubnaya-muzyka/").GetRange(0, 45);
-            _CarMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-v-mashinu/").GetRange(0, 45);
-            _AnimeMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-anime/").GetRange(0, 45);
-            _TikTokMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-tik-tok/").GetRange(0, 45);
-            _RussianRapPage = MusicParser.Playlist("https://mp3trip.info/russkiy-rep/").GetRange(0, 45);
-            _NewYearPage = MusicParser.Playlist("https://mp3trip.info/novogodnie-pesni-2019-2020/").GetRange(0, 45);
-            _ForeignRockPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-rok/").GetRange(0, 45);
-            _RussianPopPage = MusicParser.Playlist("https://mp3trip.info/russkiy-pop/").GetRange(0, 45);
-            _ForeignRapPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-rep/").GetRange(0, 45);
-            _ForeignPopPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-pop/").GetRange(0, 45);
-            _OldMusicPage = MusicParser.Playlist("https://mp3trip.info/diskoteka-80-90x/").GetRange(0, 45);
-            _ShazamPage = MusicParser.Playlist("https://mp3trip.info/top-100-shazam/").GetRange(0, 45);
+            MainPage = new MainPage();
+            NewMusic = new NewMusic();
+            TopMusic = new TopMusic();
+            Hit2021 = new Hit2021();
+            Hit2020 = new Hit2020();
+            Hit2019 = new Hit2019();
+            Hit2018 = new Hit2018();
+            Hit2017 = new Hit2017();
+            ClubMusic = new ClubMusic();
+            CarMusic = new CarMusic();
+            AnimeMusic = new AnimeMusic();
+            TikTokMusic = new TikTokMusic();
+            RussianRap = new RussianRap();
+            NewYear = new NewYear();
+            ForeignRock = new ForeignRock();
+            RussianPop = new RussianPop();
+            ForeignRap = new ForeignRap();
+            ForeignPop = new ForeignPop();
+            OldMusic = new OldMusic();
+            Shazam = new Shazam();
         }
     }
 }

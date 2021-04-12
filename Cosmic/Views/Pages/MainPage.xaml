@@ -9,7 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
     <Page.DataContext>
-        <vm:MainWindowViewModel></vm:MainWindowViewModel>
+        <vm:PagesView></vm:PagesView>
     </Page.DataContext>
     <Grid Grid.Row="1" Grid.Column="1">
         <Grid.RowDefinitions>
@@ -34,7 +34,7 @@
                         <DockPanel Margin="0 0 12 0">
                             <Label Content="Хиты 2021" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}" Command="{Binding OpenHit2021PageCommand}"></Button>
                         </DockPanel>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="0">
@@ -48,7 +48,7 @@
                         <DockPanel Margin="12 0 0 0">
                             <Label Content="Тик Ток 2021" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}" Command="{Binding OpenTikTokMusicPageCommand}"></Button>
                         </DockPanel>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="1">
@@ -74,7 +74,7 @@
                         <DockPanel>
                             <Label Content="Новая MP3 музыка" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}" Command="{Binding OpenNewMusicPageCommand}"></Button>
                         </DockPanel>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -100,7 +100,7 @@
                         <DockPanel>
                             <Label Content="Популярная музыка" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
-                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}"></Button>
+                            <Button HorizontalAlignment="Right" Style="{StaticResource LoadMore}" Command="{Binding OpenTopMusicPageCommand}"></Button>
                         </DockPanel>
                     </Grid>
                     <Grid Grid.Row="1">

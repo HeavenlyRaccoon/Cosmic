@@ -13,7 +13,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="{Binding Title}" Height="720" Width="1440">
-
+    
     <Window.DataContext>
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
     </Window.DataContext>
@@ -74,7 +74,8 @@
                         </Border>
                     </Grid>
 
-                    <Frame Grid.Row="1" Grid.Column="1" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}" Source="/Views/Pages/MainPage.xaml" NavigationUIVisibility="Hidden"></Frame>
+                    <Frame  Grid.Row="1" Grid.Column="1" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}"
+                            Source="/Views/Pages/MainPage.xaml" NavigationUIVisibility="Hidden" Opacity="{Binding FrameOpacity}"></Frame>
                     
 
                     <Grid Grid.Row="2" Grid.ColumnSpan="3">
