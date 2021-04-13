@@ -160,6 +160,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\SearchResponse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Shazam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -242,6 +246,9 @@
     </Compile>
     <Compile Include="Views\Pages\RussianRap.xaml.cs">
       <DependentUpon>RussianRap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SearchResponse.xaml.cs">
+      <DependentUpon>SearchResponse.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Shazam.xaml.cs">
       <DependentUpon>Shazam.xaml</DependentUpon>

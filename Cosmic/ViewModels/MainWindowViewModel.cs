@@ -27,6 +27,49 @@ namespace Cosmic.ViewModels
         }
 
         #endregion
+
+        #region WindowWidth
+
+        private double _WindowWidth = 1440;
+        public double WindowWidth
+        {
+            get => _WindowWidth;
+            set => Set(ref _WindowWidth, value);
+        }
+
+        #endregion
+
+        #region RequestInfo
+
+        private string _RequestInfo;
+        public string RequestInfo
+        {
+            get => _RequestInfo;
+            set => Set(ref _RequestInfo, value);
+        }
+
+        #endregion
+        #region ResponseInfo
+
+        private static string _ResponseInfo;
+        public string ResponseInfo
+        {
+            get => _ResponseInfo;
+            set => Set(ref _ResponseInfo, value);
+        }
+
+        #endregion
+        #region Response
+
+        private static List<MusicItem> _Response;
+        public List<MusicItem> Response
+        {
+            get => _Response;
+        }
+
+
+        #endregion
+
         #region FrameContent
 
         private static Page _FrameContent;
@@ -333,8 +376,20 @@ namespace Cosmic.ViewModels
 
         private bool CanOpenMainPageCommandExecute(object p) => true;
         #endregion
+        #region OpenSearchResponsePageCommand
+        public ICommand OpenSearchResponsePageCommand { get; }
 
-        
+        private void OnOpenSearchResponsePageCommandExecuted(object p)
+        {
+            _Response = MusicParser.Search(RequestInfo);
+            ResponseInfo = $"По Вашему запросу найдено {_Response.Count} ответов:";
+            OpacityFunc(new SearchResponse());
+        }
+
+        private bool CanOpenSearchResponsePageCommandExecute(object p) => true;
+        #endregion
+
+
         #endregion
         public MainWindowViewModel()
         {
@@ -364,6 +419,7 @@ namespace Cosmic.ViewModels
             OpenForeignPopPageCommand = new LamdaCommand(OnOpenForeignPopPageCommandExecuted, CanOpenForeignPopPageCommandExecute);
             OpenOldMusicPageCommand = new LamdaCommand(OnOpenOldMusicPageCommandExecuted, CanOpenOldMusicPageCommandExecute);
             OpenShazamPageCommand = new LamdaCommand(OnOpenShazamPageCommandExecuted, CanOpenShazamPageCommandExecute);
+            OpenSearchResponsePageCommand = new LamdaCommand(OnOpenSearchResponsePageCommandExecuted, CanOpenSearchResponsePageCommandExecute);
             FrameContent = MainPage;
             #endregion
         }

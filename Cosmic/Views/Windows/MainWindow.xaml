@@ -9,10 +9,10 @@
         mc:Ignorable="d"
         Name="mainWindow"
         WindowStyle="None"
-        AllowsTransparency="False"
-        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterScreen"
-        Title="{Binding Title}" Height="720" Width="1440">
+        Title="{Binding Title}" MinWidth="1440" Height="720" Width="{Binding WindowWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
 
     <Window.DataContext>
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
@@ -56,11 +56,10 @@
                                 <TextBox Margin="30 0 0 0" MinWidth="500"  Background="#2E3E4B" BorderThickness="0"
                              FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
                              Foreground="#EDEDEE" HorizontalAlignment="Center" VerticalAlignment="Center"
-                             Tag="Поиск..." Cursor="IBeam" Style="{StaticResource SearchWatermark}">
+                             Tag="Поиск..." Cursor="IBeam" Style="{StaticResource SearchWatermark}" Text="{Binding RequestInfo}">
                                 </TextBox>
-                                <Button Width="50" HorizontalAlignment="Right" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True" Cursor="Hand" Style="{StaticResource SearchButton}">
-
-                                </Button>
+                                <Button Width="50" HorizontalAlignment="Right" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True"
+                                        Cursor="Hand" Style="{StaticResource SearchButton}" Command="{Binding OpenSearchResponsePageCommand}"></Button>
                             </DockPanel>
                         </Border>
                     </Grid>
@@ -74,7 +73,7 @@
                         </Border>
                     </Grid>
 
-                    <Frame  Grid.Row="1" Grid.Column="1" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}"
+                    <Frame  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}"
                              NavigationUIVisibility="Hidden" Opacity="{Binding FrameOpacity}"></Frame>
                     
 
@@ -249,7 +248,7 @@
                             Слушайте новые и популярные песни в хорошем качестве. Собирайте песни в плейлист и приятно проводите время и наслаждайтесь. Для Вас мы собрали подборки с лучшими новинками и хитами 2020 года. В 2020 году вышло на свет много интересных звучаний и новых исполнителей, среди которых каждый меломан найдет для себя что-то интересное.
                             </TextBlock>
                         </Grid>
-                        <Grid Grid.Row="2">
+                        <Grid Grid.Row="2" Margin="0 0 0 20">
                             <TextBlock MaxWidth="210" Foreground="#ccc" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Top" TextWrapping="Wrap"
                                HorizontalAlignment="Right" Margin="0 20 0 0" >
                             У нас представлена музыка разных жанров и исполнителей. Здесь каждый найдет себе что-то по вкусу будь это жесткий рэп или легкая поп-музыка. Ищешь подборку, чтобы раскачать машину? Лирику про любовь? Рингтон для телефона? Включай клубную и танцевальную музыку, самые горячие новинки. У нас есть всё – и даже больше.
