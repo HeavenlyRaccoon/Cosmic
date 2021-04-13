@@ -11,8 +11,9 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
+        BorderThickness="5"
         WindowStartupLocation="CenterScreen"
-        Title="{Binding Title}" MinWidth="1440" Height="720" Width="{Binding WindowWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+        Title="{Binding Title}" MinWidth="1080" MinHeight="360" Height="720" Width="1440">
 
     <Window.DataContext>
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
@@ -73,7 +74,7 @@
                         </Border>
                     </Grid>
 
-                    <Frame  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}"
+                    <Frame  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="{Binding ColumnSpan}" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}"
                              NavigationUIVisibility="Hidden" Opacity="{Binding FrameOpacity}"></Frame>
                     
 
@@ -256,7 +257,7 @@
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Row="1" Grid.Column="2" Height="1200" VerticalAlignment="Top">
+                    <Grid Grid.Row="1" Grid.Column="2" Height="1200" VerticalAlignment="Top" Visibility="{Binding VisibilityState}">
                         <Border CornerRadius="10" Background="#192229" MinWidth="150" Margin="5 25 40 0" >
                             <Grid>
                                 <Grid.RowDefinitions>

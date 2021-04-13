@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Effects;
 
@@ -34,7 +35,40 @@ namespace Cosmic.ViewModels
         public double WindowWidth
         {
             get => _WindowWidth;
-            set => Set(ref _WindowWidth, value);
+            set
+            {
+                if (value <= 1300)
+                {
+                    VisibilityState = Visibility.Collapsed;
+                    ColumnSpan = 2;
+                }
+                else
+                {
+                    VisibilityState = Visibility.Visible;
+                    ColumnSpan = 1;
+                }
+                Set(ref _WindowWidth, value);
+            }
+        }
+
+        #endregion
+        #region VisibilityState
+
+        private Visibility _VisibilityState = Visibility.Visible;
+        public Visibility VisibilityState
+        {
+            get => _VisibilityState;
+            set => Set(ref _VisibilityState, value);
+        }
+
+        #endregion
+        #region ColumnSpan
+
+        private int _ColumnSpan = 1;
+        public int ColumnSpan
+        {
+            get => _ColumnSpan;
+            set => Set(ref _ColumnSpan, value);
         }
 
         #endregion
@@ -113,7 +147,6 @@ namespace Cosmic.ViewModels
         #endregion
 
         #region Команды
-
         #region OpenAuthWindowCommand
         public ICommand OpenAuthWindowCommand { get; }
 
@@ -421,6 +454,7 @@ namespace Cosmic.ViewModels
             OpenShazamPageCommand = new LamdaCommand(OnOpenShazamPageCommandExecuted, CanOpenShazamPageCommandExecute);
             OpenSearchResponsePageCommand = new LamdaCommand(OnOpenSearchResponsePageCommandExecuted, CanOpenSearchResponsePageCommandExecute);
             FrameContent = MainPage;
+            BindWidth();
             #endregion
         }
 
@@ -464,6 +498,15 @@ namespace Cosmic.ViewModels
                     Thread.Sleep(50);
                 }
             });
+        }
+
+        public void BindWidth()
+        {
+            Binding bind = new Binding();
+            bind.Source = this;
+            bind.Path = new PropertyPath("WindowWidth");
+            bind.Mode = BindingMode.TwoWay;
+            Application.Current.MainWindow.SetBinding(MainWindow.WidthProperty, bind);
         }
     }
 }
