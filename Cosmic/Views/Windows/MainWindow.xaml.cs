@@ -1,4 +1,5 @@
 ﻿using Cosmic.Views.Pages;
+using System;
 using System.Windows;
 
 namespace Cosmic

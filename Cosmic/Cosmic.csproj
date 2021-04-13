@@ -308,5 +308,8 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\play-circle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Resources\Icons\oao.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
