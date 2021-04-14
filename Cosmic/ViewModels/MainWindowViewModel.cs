@@ -29,6 +29,7 @@ namespace Cosmic.ViewModels
 
         #endregion
 
+        #region Адаптация
         #region WindowWidth
 
         private double _WindowWidth = 1440;
@@ -72,7 +73,9 @@ namespace Cosmic.ViewModels
         }
 
         #endregion
+        #endregion
 
+        #region Поиск музыки
         #region RequestInfo
 
         private string _RequestInfo;
@@ -95,13 +98,15 @@ namespace Cosmic.ViewModels
         #endregion
         #region Response
 
-        private static List<MusicItem> _Response;
+        private static List<MusicItem> _Response=new List<MusicItem>();
         public List<MusicItem> Response
         {
             get => _Response;
+            set => Set(ref _Response, value);
         }
 
 
+        #endregion
         #endregion
 
         #region FrameContent
@@ -121,6 +126,17 @@ namespace Cosmic.ViewModels
             get => _FrameOpacity;
             set => Set(ref _FrameOpacity, value);
         }
+        #endregion
+
+        #region ProgressBar
+
+        private Visibility _ProgressBar = Visibility.Collapsed;
+        public Visibility ProgressBar
+        {
+            get => _ProgressBar;
+            set => Set(ref _ProgressBar, value);
+        }
+
         #endregion
 
         #region Страницы
@@ -412,10 +428,15 @@ namespace Cosmic.ViewModels
         #region OpenSearchResponsePageCommand
         public ICommand OpenSearchResponsePageCommand { get; }
 
-        private void OnOpenSearchResponsePageCommandExecuted(object p)
+        private async void OnOpenSearchResponsePageCommandExecuted(object p)
         {
-            _Response = MusicParser.Search(RequestInfo);
-            ResponseInfo = $"По Вашему запросу найдено {_Response.Count} ответов:";
+            await Task.Factory.StartNew(() =>
+            {
+                ProgressBar = Visibility.Visible;
+                Response = MusicParser.Search(RequestInfo);
+                ResponseInfo = $"По Вашему запросу найдено {_Response.Count} ответов:";
+                ProgressBar = Visibility.Collapsed;
+            });
             OpacityFunc(new SearchResponse());
         }
 
@@ -453,9 +474,8 @@ namespace Cosmic.ViewModels
             OpenOldMusicPageCommand = new LamdaCommand(OnOpenOldMusicPageCommandExecuted, CanOpenOldMusicPageCommandExecute);
             OpenShazamPageCommand = new LamdaCommand(OnOpenShazamPageCommandExecuted, CanOpenShazamPageCommandExecute);
             OpenSearchResponsePageCommand = new LamdaCommand(OnOpenSearchResponsePageCommandExecuted, CanOpenSearchResponsePageCommandExecute);
-            FrameContent = MainPage;
-            BindWidth();
             #endregion
+            BindWidth();
         }
 
         static MainWindowViewModel()
@@ -480,12 +500,14 @@ namespace Cosmic.ViewModels
             ForeignPop = new ForeignPop();
             OldMusic = new OldMusic();
             Shazam = new Shazam();
+            _FrameContent = MainPage;
         }
 
         public async void OpacityFunc(Page page)
         {
             await Task.Factory.StartNew(() =>
             {
+                ProgressBar = Visibility.Visible;
                 for(double i = 1; i > 0; i -= 0.05)
                 {
                     FrameOpacity = i;
@@ -497,6 +519,7 @@ namespace Cosmic.ViewModels
                     FrameOpacity = i;
                     Thread.Sleep(50);
                 }
+                ProgressBar = Visibility.Collapsed;
             });
         }
 

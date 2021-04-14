@@ -57,6 +57,11 @@ namespace CosmicWPFTest
             List<MusicItem> musicItems = MusicParser.Search("Талия");
             textBlock.Text = musicItems[0].Title;
         }
+
+        private async void Go(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 
     static class MusicParser

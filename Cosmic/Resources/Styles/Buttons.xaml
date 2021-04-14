@@ -660,4 +660,8 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ProgressBar" TargetType="{x:Type ProgressBar}">
+        <Setter Property="Background" Value="SlateGray"></Setter>
+        <Setter Property="Foreground" Value="DarkRed"></Setter>
+    </Style>
 </ResourceDictionary>

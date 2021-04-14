@@ -23,12 +23,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="#1C272D">
             <Button Style="{StaticResource ControlButtonMaximize}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="0 0 25 0" Command="{Binding MaximizeWindowCommand}"></Button>
             <Button Style="{StaticResource ControlButtonShutDown}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Command="{Binding ShutDownCommand}"></Button>
             <Button Style="{StaticResource ControlButtonMinimize}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="0 0 50 0" Command="{Binding MinimizeWindowCommand}"></Button>
+        </Grid>
+
+        <Grid Grid.Row="2"  Background="#1C272D">
+            <ProgressBar IsIndeterminate="True" Style="{StaticResource ProgressBar}" Visibility="{Binding ProgressBar}"></ProgressBar>
         </Grid>
         
         <Grid Grid.Row="1">
@@ -73,9 +78,9 @@
                             </svgc:SvgViewbox>
                         </Border>
                     </Grid>
-
-                    <Frame  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="{Binding ColumnSpan}" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}"
+                    <Frame Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="{Binding ColumnSpan}" Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              NavigationUIVisibility="Hidden" Opacity="{Binding FrameOpacity}"></Frame>
+                    
                     
 
                     <Grid Grid.Row="2" Grid.ColumnSpan="3">

@@ -24,7 +24,7 @@
                                        FontSize="22" Foreground="White" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></Label>
                 </Grid>
                 <Grid Grid.Row="1" Margin="0 20 0 40">
-                    <Border Height="60" Background="#fce5ba">
+                    <Border Height="60" Background="#fce5ba" VerticalAlignment="Bottom">
                         <StackPanel Orientation="Vertical">
                             <TextBlock FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat Medium" Foreground="#a76846" Margin="20 10 0 0">Информация</TextBlock>
                             <TextBlock FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" Foreground="#a76846" Margin="20 3 0 0" Text="{Binding ResponseInfo, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
@@ -33,7 +33,7 @@
                 </Grid>
                 <Grid Grid.Row="2">
                     <StackPanel Orientation="Vertical">
-                        <ListBox ItemsSource="{Binding Response}" Background="Transparent" BorderThickness="0"
+                        <ListBox ItemsSource="{Binding Response, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Background="Transparent" BorderThickness="0"
                                              Style="{StaticResource ListBoxScrollDisable}" ItemTemplate="{StaticResource MusicItemsLargeBox}" Margin="13 0 0 0">
                         </ListBox>
                     </StackPanel>
