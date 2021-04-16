@@ -23,6 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="5"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -31,12 +32,83 @@
             <Button Style="{StaticResource ControlButtonShutDown}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Command="{Binding ShutDownCommand}"></Button>
             <Button Style="{StaticResource ControlButtonMinimize}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="0 0 50 0" Command="{Binding MinimizeWindowCommand}"></Button>
         </Grid>
-
-        <Grid Grid.Row="2"  Background="#1C272D">
+        <Grid Grid.Row="3"  Background="#1C272D">
             <ProgressBar IsIndeterminate="True" Style="{StaticResource ProgressBar}" Visibility="{Binding ProgressBar}"></ProgressBar>
         </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="1">
+                <Popup x:Name="pLink" IsOpen="{Binding Popup}" Height="75" MaxWidth="770"  Placement="Center" PopupAnimation="Slide" AllowsTransparency="True">
+                    <StackPanel>
+                        <Border Height="15" Width="770" Background="#000" CornerRadius="10 10 0 0"></Border>
+                        <Border Height="60" Width="770" Background="#141319" CornerRadius="0 0 10 10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition Width="230"></ColumnDefinition>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Margin="10 0 0 0">
+                                    <Rectangle Width="45" Height="45" RadiusX="10" RadiusY="10">
+                                        <Rectangle.Fill>
+                                            <ImageBrush ImageSource="{Binding Path=MusicItem.ImgData}" Stretch="Uniform"></ImageBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Grid>
+                                <Grid Grid.Column="1" Margin="10 7 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <TextBlock Text="{Binding MusicItem.Title}" TextTrimming="CharacterEllipsis" FontSize="15" Foreground="#eee" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" ></TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <TextBlock Text="{Binding MusicItem.Artist}" TextTrimming="CharacterEllipsis" FontSize="13" Foreground="#ccc" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" ></TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Column="2" Margin="10 0 0 0">
+                                    <Button Style="{StaticResource BackwardStyle}"></Button>
+                                </Grid>
+                                <Grid Grid.Column="3" Margin="10 0 0 0">
+                                    <Button Style="{StaticResource PlayStyle}"></Button>
+                                </Grid>
+                                <Grid Grid.Column="4" Margin="10 0 0 0">
+                                    <Button Style="{StaticResource ForwardStyle}"></Button>
+                                </Grid>
+                                <Grid Grid.Column="5" Margin="0 0 15 0">
+                                    <DockPanel HorizontalAlignment="Right">
+                                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#ccc" FontSize="14"  
+                                                   Text="00:00/" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></TextBlock>
+                                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#ccc" FontSize="14"
+                                                   Text="{Binding MusicItem.TrackTime}" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></TextBlock>
+                                    </DockPanel>
+                                </Grid>
+                                <Grid Grid.Column="6" Margin="0 0 10 0">
+                                    <Button Style="{StaticResource DownloadStyle}"></Button>
+                                </Grid>
+                                <Grid Grid.Column="7" Margin=" 0 0 10 0">
+                                    <Button Style="{StaticResource VolumeUpStyle}"></Button>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Popup>
+            </Grid>
+        </Grid>
         
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.RowSpan="2">
             <ScrollViewer Background="#1C272D" BorderBrush="#1C272D">
                 <Grid Background="#141319">
                     <Grid.RowDefinitions>

@@ -204,6 +204,39 @@ namespace Cosmic.ViewModels
         }
         #endregion
 
+        #region MusicItem
+
+        private static MusicItem _MusicItem;
+        public MusicItem MusicItem
+        {
+            get => _MusicItem;
+            set => Set(ref _MusicItem, value);
+        }
+
+
+        #endregion
+        #region Response
+
+        private static List<MusicItem> _Response = new List<MusicItem>();
+        public List<MusicItem> Response
+        {
+            get => _Response;
+            set => Set(ref _Response, value);
+        }
+
+
+        #endregion
+        #region ResponseInfo
+
+        private static string _ResponseInfo;
+        public string ResponseInfo
+        {
+            get => _ResponseInfo;
+            set => Set(ref _ResponseInfo, value);
+        }
+
+        #endregion
+
         #region OpenHit2021PageCommand
         public ICommand OpenHit2021PageCommand { get; }
 
@@ -248,6 +281,21 @@ namespace Cosmic.ViewModels
 
         private bool CanOpenTopMusicPageCommandExecute(object p) => true;
         #endregion
+        #region PlayMusicCommand
+        public ICommand PlayMusicCommand { get; }
+
+        private void OnPlayMusicCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            context.Popup = false;
+            context.Popup = true;
+            context.MusicItem = (MusicItem)p;
+
+        }
+
+        private bool CanPlayMusicCommandExecute(object p) => true;
+        #endregion
+
 
         public PagesView()
         {
@@ -255,6 +303,7 @@ namespace Cosmic.ViewModels
             OpenTikTokMusicPageCommand = new LamdaCommand(OnOpenTikTokMusicPageCommandExecuted, CanOpenTikTokMusicPageCommandExecute);
             OpenNewMusicPageCommand = new LamdaCommand(OnOpenNewMusicPageCommandExecuted, CanOpenNewMusicPageCommandExecute);
             OpenTopMusicPageCommand = new LamdaCommand(OnOpenTopMusicPageCommandExecuted, CanOpenTopMusicPageCommandExecute);
+            PlayMusicCommand = new LamdaCommand(OnPlayMusicCommandExecuted, CanPlayMusicCommandExecute);
         }
 
         static PagesView()

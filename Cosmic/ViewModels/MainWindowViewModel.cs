@@ -29,6 +29,28 @@ namespace Cosmic.ViewModels
 
         #endregion
 
+        #region Popup
+
+        private bool _Popup=false;
+        public bool Popup
+        {
+            get => _Popup;
+            set => Set(ref _Popup, value);
+        }
+
+        #endregion
+
+        #region MusicItem
+
+        private MusicItem _MusicItem;
+        public MusicItem MusicItem
+        {
+            get => _MusicItem;
+            set => Set(ref _MusicItem, value);
+        }
+        #endregion
+
+
         #region Адаптация
         #region WindowWidth
 
@@ -86,27 +108,7 @@ namespace Cosmic.ViewModels
         }
 
         #endregion
-        #region ResponseInfo
-
-        private static string _ResponseInfo;
-        public string ResponseInfo
-        {
-            get => _ResponseInfo;
-            set => Set(ref _ResponseInfo, value);
-        }
-
-        #endregion
-        #region Response
-
-        private static List<MusicItem> _Response=new List<MusicItem>();
-        public List<MusicItem> Response
-        {
-            get => _Response;
-            set => Set(ref _Response, value);
-        }
-
-
-        #endregion
+       
         #endregion
 
         #region FrameContent
@@ -430,11 +432,12 @@ namespace Cosmic.ViewModels
 
         private async void OnOpenSearchResponsePageCommandExecuted(object p)
         {
+            var context = (PagesView)MainPage.DataContext;
             await Task.Factory.StartNew(() =>
             {
                 ProgressBar = Visibility.Visible;
-                Response = MusicParser.Search(RequestInfo);
-                ResponseInfo = $"По Вашему запросу найдено {_Response.Count} ответов:";
+                context.Response = MusicParser.Search(RequestInfo);
+                context.ResponseInfo = $"По Вашему запросу найдено {context.Response.Count} ответов:";
                 ProgressBar = Visibility.Collapsed;
             });
             OpacityFunc(new SearchResponse());
@@ -442,6 +445,7 @@ namespace Cosmic.ViewModels
 
         private bool CanOpenSearchResponsePageCommandExecute(object p) => true;
         #endregion
+       
 
 
         #endregion
@@ -474,6 +478,7 @@ namespace Cosmic.ViewModels
             OpenOldMusicPageCommand = new LamdaCommand(OnOpenOldMusicPageCommandExecuted, CanOpenOldMusicPageCommandExecute);
             OpenShazamPageCommand = new LamdaCommand(OnOpenShazamPageCommandExecuted, CanOpenShazamPageCommandExecute);
             OpenSearchResponsePageCommand = new LamdaCommand(OnOpenSearchResponsePageCommandExecuted, CanOpenSearchResponsePageCommandExecute);
+            
             #endregion
             BindWidth();
         }

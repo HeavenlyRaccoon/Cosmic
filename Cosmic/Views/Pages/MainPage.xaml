@@ -40,7 +40,8 @@
                     <Grid Grid.Row="1" Grid.Column="0">
                         <StackPanel Orientation="Vertical">
                             <ListBox ItemsSource="{Binding Hit2021}" Background="Transparent" BorderThickness="0"
-                                              ItemTemplate="{StaticResource MusicItemsSmallBox}" Style="{StaticResource ListBoxScrollDisable}" Margin="0 0 0 0"></ListBox>
+                                              ItemTemplate="{StaticResource MusicItemsSmallBox}" Style="{StaticResource ListBoxScrollDisable}" Margin="0 0 0 0">
+                            </ListBox>
                         </StackPanel>
                     </Grid>
 
