@@ -60,17 +60,43 @@ namespace Cosmic.ViewModels
             get => _WindowWidth;
             set
             {
-                if (value <= 1300)
+                if (Popup == true)
                 {
-                    VisibilityState = Visibility.Collapsed;
-                    ColumnSpan = 2;
+                    Task.Factory.StartNew(() =>
+                    {
+
+                        Popup = false;
+                        Thread.Sleep(500);
+                        Popup = true;
+                    });
+                    if (value <= 1300)
+                    {
+                        VisibilityState = Visibility.Collapsed;
+                        ColumnSpan = 2;
+                    }
+                    else
+                    {
+                        VisibilityState = Visibility.Visible;
+                        ColumnSpan = 1;
+                    }
+                    Set(ref _WindowWidth, value);
+
                 }
                 else
                 {
-                    VisibilityState = Visibility.Visible;
-                    ColumnSpan = 1;
+                    if (value <= 1300)
+                    {
+                        VisibilityState = Visibility.Collapsed;
+                        ColumnSpan = 2;
+                    }
+                    else
+                    {
+                        VisibilityState = Visibility.Visible;
+                        ColumnSpan = 1;
+                    }
+                    Set(ref _WindowWidth, value);
                 }
-                Set(ref _WindowWidth, value);
+                
             }
         }
 
@@ -445,7 +471,26 @@ namespace Cosmic.ViewModels
 
         private bool CanOpenSearchResponsePageCommandExecute(object p) => true;
         #endregion
-       
+        #region DragMoveCommand
+        public ICommand DragMoveCommand { get; }
+
+        private void OnDragMoveCommandExecuted(object p)
+        {
+            if (Popup == true)
+            {
+                Popup = false;
+                Application.Current.MainWindow.DragMove();
+                Popup = true;
+            }
+            else
+            {
+                Application.Current.MainWindow.DragMove();
+            }
+        }
+
+        private bool CanDragMoveCommandExecute(object p) => true;
+        #endregion
+
 
 
         #endregion
@@ -478,7 +523,8 @@ namespace Cosmic.ViewModels
             OpenOldMusicPageCommand = new LamdaCommand(OnOpenOldMusicPageCommandExecuted, CanOpenOldMusicPageCommandExecute);
             OpenShazamPageCommand = new LamdaCommand(OnOpenShazamPageCommandExecuted, CanOpenShazamPageCommandExecute);
             OpenSearchResponsePageCommand = new LamdaCommand(OnOpenSearchResponsePageCommandExecuted, CanOpenSearchResponsePageCommandExecute);
-            
+            DragMoveCommand = new LamdaCommand(OnDragMoveCommandExecuted, CanDragMoveCommandExecute);
+
             #endregion
             BindWidth();
         }

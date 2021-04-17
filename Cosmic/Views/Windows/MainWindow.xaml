@@ -28,6 +28,14 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="#1C272D">
+            <Grid.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding DragMoveCommand}"></MouseBinding>
+            </Grid.InputBindings>
+            <!--<Rectangle Height="25">
+                <Rectangle.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command=""></MouseBinding>
+                </Rectangle.InputBindings>
+            </Rectangle>-->
             <Button Style="{StaticResource ControlButtonMaximize}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="0 0 25 0" Command="{Binding MaximizeWindowCommand}"></Button>
             <Button Style="{StaticResource ControlButtonShutDown}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Command="{Binding ShutDownCommand}"></Button>
             <Button Style="{StaticResource ControlButtonMinimize}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Margin="0 0 50 0" Command="{Binding MinimizeWindowCommand}"></Button>
@@ -44,7 +52,7 @@
             </Grid.ColumnDefinitions>
             
             <Grid Grid.Column="1">
-                <Popup x:Name="pLink" IsOpen="{Binding Popup}" Height="75" MaxWidth="770"  Placement="Center" PopupAnimation="Slide" AllowsTransparency="True">
+                <Popup x:Name="pLink" IsOpen="{Binding Popup}" Height="75" MaxWidth="770"  Placement="Center" PopupAnimation="Fade" AllowsTransparency="True">
                     <StackPanel>
                         <Border Height="15" Width="770" Background="#000" CornerRadius="10 10 0 0"></Border>
                         <Border Height="60" Width="770" Background="#141319" CornerRadius="0 0 10 10">

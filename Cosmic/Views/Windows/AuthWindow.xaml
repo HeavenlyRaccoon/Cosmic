@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Cosmic.Views.Windows" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:vm="clr-namespace:Cosmic.ViewModels"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
         Name="authWindow"
         Title="Авторизация" Height="465" Width="460" ResizeMode="NoResize">
     <Window.DataContext>
