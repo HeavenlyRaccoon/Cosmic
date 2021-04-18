@@ -50,6 +50,16 @@ namespace Cosmic.ViewModels
         }
         #endregion
 
+        #region TrackTime
+
+        private string _TrackTime;
+        public string TrackTime
+        {
+            get => _TrackTime;
+            set => Set(ref _TrackTime, value);
+        }
+        #endregion
+
 
         #region Адаптация
         #region WindowWidth
@@ -490,6 +500,24 @@ namespace Cosmic.ViewModels
 
         private bool CanDragMoveCommandExecute(object p) => true;
         #endregion
+        #region PauseMusicCommand
+        public ICommand PauseMusicCommand { get; }
+
+        private void OnPauseMusicCommandExecuted(object p)
+        {
+            if (Player.IsPlaying())
+            {
+                Player.Pause();
+            }
+            else
+            {
+                Player.Resume();
+            }
+        }
+
+        private bool CanPauseMusicCommandExecute(object p) => true;
+        #endregion
+      
 
 
 
@@ -524,6 +552,7 @@ namespace Cosmic.ViewModels
             OpenShazamPageCommand = new LamdaCommand(OnOpenShazamPageCommandExecuted, CanOpenShazamPageCommandExecute);
             OpenSearchResponsePageCommand = new LamdaCommand(OnOpenSearchResponsePageCommandExecuted, CanOpenSearchResponsePageCommandExecute);
             DragMoveCommand = new LamdaCommand(OnDragMoveCommandExecuted, CanDragMoveCommandExecute);
+            PauseMusicCommand = new LamdaCommand(OnPauseMusicCommandExecuted, CanPauseMusicCommandExecute);
 
             #endregion
             BindWidth();

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -288,8 +289,17 @@ namespace Cosmic.ViewModels
         {
             var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
             context.Popup = false;
-            context.Popup = true;
             context.MusicItem = (MusicItem)p;
+            Player.Play(context.MusicItem.MusicData);
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(500);
+                    context.TrackTime = Player.wplayer.controls.currentPositionString;
+                }
+            });
+            context.Popup = true;
 
         }
 
