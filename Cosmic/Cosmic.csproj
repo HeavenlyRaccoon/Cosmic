@@ -326,5 +326,11 @@
   <ItemGroup>
     <SplashScreen Include="Resources\Icons\oao.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\play.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

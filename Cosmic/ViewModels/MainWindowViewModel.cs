@@ -60,6 +60,16 @@ namespace Cosmic.ViewModels
         }
         #endregion
 
+        #region ImagePlayButton
+
+        private string _ImagePlayButton= "/Resources/Icons/pause.png";
+        public string ImagePlayButton
+        {
+            get => _ImagePlayButton;
+            set => Set(ref _ImagePlayButton, value);
+        }
+        #endregion
+
 
         #region Адаптация
         #region WindowWidth
@@ -507,10 +517,13 @@ namespace Cosmic.ViewModels
         {
             if (Player.IsPlaying())
             {
+                ImagePlayButton = "/Resources/Icons/play.png";
                 Player.Pause();
+
             }
             else
             {
+                ImagePlayButton = "/Resources/Icons/pause.png";
                 Player.Resume();
             }
         }

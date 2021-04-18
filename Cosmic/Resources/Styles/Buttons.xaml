@@ -706,7 +706,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="PlayStyle" TargetType="{x:Type Button}">
+    <!--<Style x:Key="PlayStyle" TargetType="{x:Type Button}">
         <Setter Property="Width" Value="40"></Setter>
         <Setter Property="Height" Value="40"></Setter>
         <Setter Property="Template">
@@ -714,6 +714,44 @@
                 <ControlTemplate TargetType="Button">
                     <Border Width="40" Height="40" CornerRadius="20" Background="#EB4D4B">
                         <svgc:SvgViewbox MaxHeight="20" MaxWidth="20" Stretch="Uniform" Margin="5 0 2 0" Source="../../Resources/Icons/play.svg"/>
+                            <Border.Triggers>
+                            <EventTrigger RoutedEvent="Border.MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="#E056FD" Duration="0:0:0:0.2" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard >
+                                            <ColorAnimation To="#EB4D4B" Duration="0:0:0:0.2" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Border.Triggers>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+    <Style x:Key="PlayStyle" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="40"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="40" Height="40" CornerRadius="20" Background="#EB4D4B">
+                        <Border.DataContext>
+                            <vm:MainWindowViewModel></vm:MainWindowViewModel>
+                        </Border.DataContext>
+                        <Image Width="20" Height="20" Stretch="Uniform" Source="{Binding ImagePlayButton, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Image>
+                        <!--<svgc:SvgViewbox MaxHeight="20" MaxWidth="20" Stretch="Uniform" Margin="5 0 2 0" Source="../../Resources/Icons/play.svg"/>-->
                         <Border.Triggers>
                             <EventTrigger RoutedEvent="Border.MouseEnter">
                                 <EventTrigger.Actions>
