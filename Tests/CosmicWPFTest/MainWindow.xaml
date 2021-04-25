@@ -15,5 +15,11 @@
         <TextBlock x:Name="TextBlock1" Margin="44,126,1089.6,264" Width="300" Height="30"/>
         <TextBox x:Name="TextBlock2" Margin="429,250,9.6,10.4"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="1278,89,0,0" VerticalAlignment="Top" Width="75" Click="Go"/>
+        <Border x:Name="Slide" Height="15" Width="770" CornerRadius="10 10 0 0" Margin="64,93,599.6,582.4">
+            <ProgressBar Style="{StaticResource Slides}" Value="100"></ProgressBar>
+        </Border>
+        <Border Background="#333" Width="40" Height="200" Margin="81,333,1312.6,157.4" Padding="5">
+            <Slider Orientation="Vertical" Style="{StaticResource SliderStyle2}"></Slider>
+        </Border>
     </Grid>
 </Window>

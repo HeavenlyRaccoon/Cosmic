@@ -59,6 +59,24 @@ namespace Cosmic.ViewModels
             set => Set(ref _TrackTime, value);
         }
         #endregion
+        #region TrackProgress
+
+        private double _TrackProgress;
+        public double TrackProgress
+        {
+            get => _TrackProgress;
+            set => Set(ref _TrackProgress, value);
+        }
+        #endregion
+        #region MaxTrackProgress
+
+        private double _MaxTrackProgress;
+        public double MaxTrackProgress
+        {
+            get => _MaxTrackProgress;
+            set => Set(ref _MaxTrackProgress, value);
+        }
+        #endregion
 
         #region ImagePlayButton
 
@@ -69,7 +87,15 @@ namespace Cosmic.ViewModels
             set => Set(ref _ImagePlayButton, value);
         }
         #endregion
+        #region Volume
 
+        private int _Volume=40;
+        public int Volume
+        {
+            get => _Volume;
+            set { Set(ref _Volume, value); Player.wplayer.settings.volume = _Volume; }
+        }
+        #endregion
 
         #region Адаптация
         #region WindowWidth
@@ -146,7 +172,7 @@ namespace Cosmic.ViewModels
         #region Поиск музыки
         #region RequestInfo
 
-        private string _RequestInfo;
+        private static string _RequestInfo;
         public string RequestInfo
         {
             get => _RequestInfo;

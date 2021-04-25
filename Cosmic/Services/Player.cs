@@ -11,9 +11,11 @@ namespace Cosmic.Services
        public static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
         public static void Play(string url)
         {
-            wplayer.URL = url;
-            wplayer.settings.volume = 2;
-            wplayer.controls.play();
+            Task.Factory.StartNew(() =>
+            {
+                wplayer.URL = url;
+                wplayer.controls.play();
+            });
         }
 
         public static void Pause()

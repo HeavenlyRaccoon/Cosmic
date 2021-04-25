@@ -47,9 +47,11 @@
             </Grid.ColumnDefinitions>
             
             <Grid Grid.Column="1">
-                <Popup x:Name="pLink" IsOpen="{Binding Popup}" Height="75" MaxWidth="770"  Placement="Center" PopupAnimation="Fade" AllowsTransparency="True">
+                <Popup x:Name="pLink" IsOpen="{Binding Popup}" Height="80" MaxWidth="770" Placement="Center" PopupAnimation="Fade" AllowsTransparency="True">
                     <StackPanel>
-                        <Border Height="15" Width="770" Background="#000" CornerRadius="10 10 0 0"></Border>
+                        <Border Height="15" Width="770" Background="#000" CornerRadius="10 10 0 0">
+                            <ProgressBar Style="{StaticResource Slides}" Value="{Binding TrackProgress}" Maximum="{Binding MaxTrackProgress}"></ProgressBar>
+                        </Border>
                         <Border Height="60" Width="770" Background="#141319" CornerRadius="0 0 10 10">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -132,7 +134,8 @@
                                     <Button Style="{StaticResource DownloadStyle}"></Button>
                                 </Grid>
                                 <Grid Grid.Column="7" Margin=" 0 0 10 0">
-                                    <Button Style="{StaticResource VolumeUpStyle}"></Button>
+                                    
+                                    <Button  Style="{StaticResource VolumeUpStyle}"></Button>
                                 </Grid>
                             </Grid>
                         </Border>
@@ -167,7 +170,7 @@
                                 <TextBox Margin="30 0 0 0" MinWidth="500"  Background="#2E3E4B" BorderThickness="0"
                              FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"
                              Foreground="#EDEDEE" HorizontalAlignment="Center" VerticalAlignment="Center"
-                             Tag="Поиск..." Cursor="IBeam" Style="{StaticResource SearchWatermark}" Text="{Binding RequestInfo}">
+                             Tag="Поиск..." Cursor="IBeam" Style="{StaticResource SearchWatermark}" Text="{Binding RequestInfo, UpdateSourceTrigger=PropertyChanged}">
                                 </TextBox>
                                 <Button Width="50" HorizontalAlignment="Right" MaxHeight="40" Background="#2E3E4B" BorderThickness="0" ForceCursor="True"
                                         Cursor="Hand" Style="{StaticResource SearchButton}" Command="{Binding OpenSearchResponsePageCommand}"></Button>

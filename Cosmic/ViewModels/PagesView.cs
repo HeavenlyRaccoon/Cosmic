@@ -290,13 +290,20 @@ namespace Cosmic.ViewModels
             var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
             context.Popup = false;
             context.MusicItem = (MusicItem)p;
+            string[] res = context.MusicItem.TrackTime.Split(':');
+            double max = Convert.ToInt32(res[0]) * 60 + Convert.ToInt32(res[1]);
+            context.MaxTrackProgress = max;
+            context.ImagePlayButton = "/Resources/Icons/pause.png";
             Player.Play(context.MusicItem.MusicData);
+
+
             Task.Factory.StartNew(() =>
             {
                 while (true)
                 {
-                    Thread.Sleep(500);
+                    Thread.Sleep(200);
                     context.TrackTime = Player.wplayer.controls.currentPositionString;
+                    context.TrackProgress = Player.wplayer.controls.currentPosition;
                 }
             });
             context.Popup = true;
