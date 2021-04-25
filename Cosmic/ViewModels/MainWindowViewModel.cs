@@ -4,6 +4,7 @@ using Cosmic.Services;
 using Cosmic.ViewModels.Base;
 using Cosmic.Views.Pages;
 using Cosmic.Views.Windows;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -65,7 +66,18 @@ namespace Cosmic.ViewModels
         public double TrackProgress
         {
             get => _TrackProgress;
-            set => Set(ref _TrackProgress, value);
+            set 
+            {
+                if (Math.Abs(Player.wplayer.controls.currentPosition - value) > 1)
+                {
+                    Set(ref _TrackProgress, value);
+                    Player.wplayer.controls.currentPosition = _TrackProgress;
+                }
+                else
+                {
+                    Set(ref _TrackProgress, value);
+                }
+            }
         }
         #endregion
         #region MaxTrackProgress
@@ -89,7 +101,7 @@ namespace Cosmic.ViewModels
         #endregion
         #region Volume
 
-        private int _Volume=40;
+        private int _Volume=20;
         public int Volume
         {
             get => _Volume;
@@ -556,7 +568,27 @@ namespace Cosmic.ViewModels
 
         private bool CanPauseMusicCommandExecute(object p) => true;
         #endregion
-      
+        #region NextMusicCommand
+        public ICommand NextMusicCommand { get; }
+
+        private void OnNextMusicCommandExecuted(object p)
+        {
+            Player.Next();
+        }
+
+        private bool CanNextMusicCommandExecute(object p) => true;
+        #endregion
+        #region PreviousMusicCommand
+        public ICommand PreviousMusicCommand { get; }
+
+        private void OnPreviousMusicCommandExecuted(object p)
+        {
+            Player.Previous();
+        }
+
+        private bool CanPreviousMusicCommandExecute(object p) => true;
+        #endregion
+
 
 
 
@@ -592,6 +624,8 @@ namespace Cosmic.ViewModels
             OpenSearchResponsePageCommand = new LamdaCommand(OnOpenSearchResponsePageCommandExecuted, CanOpenSearchResponsePageCommandExecute);
             DragMoveCommand = new LamdaCommand(OnDragMoveCommandExecuted, CanDragMoveCommandExecute);
             PauseMusicCommand = new LamdaCommand(OnPauseMusicCommandExecuted, CanPauseMusicCommandExecute);
+            NextMusicCommand = new LamdaCommand(OnNextMusicCommandExecuted, CanNextMusicCommandExecute);
+            PreviousMusicCommand = new LamdaCommand(OnPreviousMusicCommandExecuted, CanPreviousMusicCommandExecute);
 
             #endregion
             BindWidth();

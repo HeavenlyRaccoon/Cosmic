@@ -37,5 +37,15 @@ namespace Cosmic.Services
                 return false;
             }
         }
+
+        public static void Next()
+        {
+            wplayer.controls.next();
+        }
+
+        public static void Previous()
+        {
+            wplayer.controls.previous();
+        }
     }
 }

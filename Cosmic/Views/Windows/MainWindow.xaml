@@ -50,7 +50,8 @@
                 <Popup x:Name="pLink" IsOpen="{Binding Popup}" Height="80" MaxWidth="770" Placement="Center" PopupAnimation="Fade" AllowsTransparency="True">
                     <StackPanel>
                         <Border Height="15" Width="770" Background="#000" CornerRadius="10 10 0 0">
-                            <ProgressBar Style="{StaticResource Slides}" Value="{Binding TrackProgress}" Maximum="{Binding MaxTrackProgress}"></ProgressBar>
+                            <!--<ProgressBar Style="{StaticResource Slides}" Value="{Binding TrackProgress}" Maximum="{Binding MaxTrackProgress}"></ProgressBar>-->
+                            <Slider Value="{Binding TrackProgress,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Orientation="Horizontal" Maximum="{Binding MaxTrackProgress}" Style="{StaticResource HorizontalSliderStyle}"></Slider>
                         </Border>
                         <Border Height="60" Width="770" Background="#141319" CornerRadius="0 0 10 10">
                             <Grid>
@@ -84,7 +85,7 @@
                                     </Grid>
                                 </Grid>
                                 <Grid Grid.Column="2" Margin="10 0 0 0">
-                                    <Button Style="{StaticResource BackwardStyle}"></Button>
+                                    <Button Style="{StaticResource BackwardStyle}" Command="{Binding PreviousMusicCommand}"></Button>
                                 </Grid>
                                 <Grid Grid.Column="3" Margin="10 0 0 0">
                                     <Button Command="{Binding PauseMusicCommand}">
@@ -118,7 +119,7 @@
                                     </Button>
                                 </Grid>
                                 <Grid Grid.Column="4" Margin="10 0 0 0">
-                                    <Button Style="{StaticResource ForwardStyle}"></Button>
+                                    <Button Style="{StaticResource ForwardStyle}" Command="{Binding NextMusicCommand}"></Button>
                                 </Grid>
                                 <Grid Grid.Column="5" Margin="0 0 15 0">
                                     <DockPanel HorizontalAlignment="Right">

@@ -870,7 +870,7 @@
     </Style>
     
 
-    <Style x:Key="SliderStyle" TargetType="{x:Type Slider}">
+    <Style x:Key="VerticalSliderStyle" TargetType="{x:Type Slider}">
         <Setter Property="IsSelectionRangeEnabled" Value="True"></Setter>
         <Setter Property="LargeChange" Value="5"></Setter>
         <Setter Property="Maximum" Value="100"></Setter>
@@ -932,7 +932,7 @@
                                     <Border.DataContext>
                                         <vm:MainWindowViewModel></vm:MainWindowViewModel>
                                     </Border.DataContext>
-                                    <Slider Orientation="Vertical" Style="{StaticResource SliderStyle}" Value="{Binding Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Slider>
+                                    <Slider Orientation="Vertical" Style="{StaticResource VerticalSliderStyle}" Value="{Binding Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Slider>
                                 </Border>
                             </Border>
                         </Popup>
@@ -965,6 +965,53 @@
                             <Setter TargetName="Volume" Property="IsOpen" Value="true"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="HorizontalSliderStyle" TargetType="{x:Type Slider}">
+        <Setter Property="IsSelectionRangeEnabled" Value="True"></Setter>
+        <Setter Property="LargeChange" Value="5"></Setter>
+        <Setter Property="Minimum" Value="0"></Setter>
+        <Setter Property="IsMoveToPointEnabled" Value="True"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate  TargetType="{x:Type Slider}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border Name="TrackBackground" Background="#000" BorderThickness="0" CornerRadius="10 10 0 0" />
+                        <Track Name="PART_Track">
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Command="Slider.IncreaseLarge">
+                                    <RepeatButton.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="0 10 0 0"  Background="#000"></Border>
+                                        </ControlTemplate>
+                                    </RepeatButton.Template>
+                                </RepeatButton>
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb BorderThickness="0">
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Background="#E056FD" Command="Slider.DecreaseLarge">
+                                    <RepeatButton.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="10 10 0 0" Background="#E056FD"></Border>
+                                        </ControlTemplate>
+                                    </RepeatButton.Template>
+                                </RepeatButton>
+                            </Track.DecreaseRepeatButton>
+                        </Track>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
