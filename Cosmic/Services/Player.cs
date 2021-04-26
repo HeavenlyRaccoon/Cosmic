@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmic.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,29 @@ namespace Cosmic.Services
     static class Player
     {
        public static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+
+        public static void Play(object items, object item)
+        {
+            List<MusicItem> musicItems = (List<MusicItem>)items;
+            MusicItem musicItem = (MusicItem)item;
+            wplayer.currentPlaylist.clear();
+            foreach(var i in musicItems)
+            {
+                wplayer.currentPlaylist.appendItem(wplayer.mediaCollection.add(i.MusicData));
+            }
+            Task.Factory.StartNew(() =>
+            {
+                for(int i = 0; i < wplayer.currentPlaylist.count; i++)
+                {
+                    if (wplayer.currentPlaylist.Item[i].sourceURL == musicItem.MusicData)
+                    {
+                        wplayer.controls.playItem(wplayer.currentPlaylist.Item[i]);
+                        break;
+                    }
+                }
+            });
+        }
+
         public static void Play(string url)
         {
             Task.Factory.StartNew(() =>

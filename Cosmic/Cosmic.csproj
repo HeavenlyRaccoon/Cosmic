@@ -198,6 +198,7 @@
     <Compile Include="Infastructure\Commands\Base\Command.cs" />
     <Compile Include="Infastructure\Commands\LamdaCommand.cs" />
     <Compile Include="Models\MusicItem.cs" />
+    <Compile Include="Services\Converter.cs" />
     <Compile Include="Services\MusicParser.cs" />
     <Compile Include="Services\Player.cs" />
     <Compile Include="ViewModels\AuthWindowViewModel.cs" />

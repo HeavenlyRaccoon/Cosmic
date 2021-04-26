@@ -287,14 +287,18 @@ namespace Cosmic.ViewModels
 
         private void OnPlayMusicCommandExecuted(object p)
         {
+            var values = (object[])p;
+            var Parm1 = values[0];
+            var Parm2 = values[1];
+            Player.Play(Parm1, Parm2);
             var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
             context.Popup = false;
-            context.MusicItem = (MusicItem)p;
+            context.MusicItem = (MusicItem)Parm2;
+            context.CurrentPlaylist = (List<MusicItem>)Parm1;
             string[] res = context.MusicItem.TrackTime.Split(':');
             double max = Convert.ToInt32(res[0]) * 60 + Convert.ToInt32(res[1]);
             context.MaxTrackProgress = max;
             context.ImagePlayButton = "/Resources/Icons/pause.png";
-            Player.Play(context.MusicItem.MusicData);
 
 
             Task.Factory.StartNew(() =>

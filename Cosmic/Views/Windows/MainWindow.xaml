@@ -6,6 +6,7 @@
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:local="clr-namespace:Cosmic"
         xmlns:vm="clr-namespace:Cosmic.ViewModels"
+        xmlns:converters="clr-namespace:Cosmic.Services"
         mc:Ignorable="d"
         Name="mainWindow"
         WindowStyle="None"
@@ -15,6 +16,9 @@
         WindowStartupLocation="CenterScreen"
         Title="{Binding Title}" MinWidth="1080" MinHeight="360" Height="720" Width="1440">
 
+    <Window.Resources>
+        <converters:Converter x:Key="parmConverter"></converters:Converter>
+    </Window.Resources>
     <Window.DataContext>
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
     </Window.DataContext>

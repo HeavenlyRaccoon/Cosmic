@@ -7,6 +7,7 @@ using Cosmic.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,6 +49,15 @@ namespace Cosmic.ViewModels
         {
             get => _MusicItem;
             set => Set(ref _MusicItem, value);
+        }
+        #endregion
+        #region CurrentPlaylist
+
+        private List<MusicItem> _CurrentPlaylist;
+        public List<MusicItem> CurrentPlaylist
+        {
+            get => _CurrentPlaylist;
+            set => Set(ref _CurrentPlaylist, value);
         }
         #endregion
 
@@ -574,6 +584,10 @@ namespace Cosmic.ViewModels
         private void OnNextMusicCommandExecuted(object p)
         {
             Player.Next();
+            MusicItem = CurrentPlaylist.Where(t => t.MusicData == Player.wplayer.currentMedia.sourceURL).First();
+            string[] res = MusicItem.TrackTime.Split(':');
+            double max = Convert.ToInt32(res[0]) * 60 + Convert.ToInt32(res[1]);
+            MaxTrackProgress = max;
         }
 
         private bool CanNextMusicCommandExecute(object p) => true;
@@ -584,6 +598,10 @@ namespace Cosmic.ViewModels
         private void OnPreviousMusicCommandExecuted(object p)
         {
             Player.Previous();
+            MusicItem = CurrentPlaylist.Where(t => t.MusicData == Player.wplayer.currentMedia.sourceURL).First();
+            string[] res = MusicItem.TrackTime.Split(':');
+            double max = Convert.ToInt32(res[0]) * 60 + Convert.ToInt32(res[1]);
+            MaxTrackProgress = max;
         }
 
         private bool CanPreviousMusicCommandExecute(object p) => true;

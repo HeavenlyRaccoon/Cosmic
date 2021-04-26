@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-                    xmlns:vm="clr-namespace:Cosmic.ViewModels">
+                    xmlns:vm="clr-namespace:Cosmic.ViewModels"
+                    xmlns:converters="clr-namespace:Cosmic.Services">
 
     <Style x:Key="AuthBautton" TargetType="{x:Type Button}">
         <Setter Property="Margin" Value="5 0 100 0"></Setter>
@@ -489,8 +490,18 @@
                                                                    FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"></TextBlock>
             </Grid>
             <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="Transparent">
+                <Rectangle.Resources>
+                    <converters:Converter x:Key="ParmConverter"></converters:Converter>
+                </Rectangle.Resources>
                 <Rectangle.InputBindings>
-                    <MouseBinding Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=DataContext.PlayMusicCommand}" CommandParameter="{Binding}" MouseAction="LeftClick"></MouseBinding>
+                    <MouseBinding Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=DataContext.PlayMusicCommand}" MouseAction="LeftClick">
+                        <MouseBinding.CommandParameter>
+                            <MultiBinding Converter="{StaticResource ParmConverter}">
+                                <Binding RelativeSource="{RelativeSource AncestorType=ListBox}" Path="ItemsSource"></Binding>
+                                <Binding></Binding>
+                            </MultiBinding>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
                 </Rectangle.InputBindings>
                 <Rectangle.Triggers>
                     <EventTrigger RoutedEvent="Rectangle.MouseEnter">
@@ -620,8 +631,18 @@
                 </Border>
             </Grid>
             <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="Transparent">
+                <Rectangle.Resources>
+                    <converters:Converter x:Key="ParmConverter"></converters:Converter>
+                </Rectangle.Resources>
                 <Rectangle.InputBindings>
-                    <MouseBinding Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=DataContext.PlayMusicCommand}" CommandParameter="{Binding}" MouseAction="LeftClick"></MouseBinding>
+                    <MouseBinding Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=DataContext.PlayMusicCommand}" MouseAction="LeftClick">
+                        <MouseBinding.CommandParameter>
+                            <MultiBinding Converter="{StaticResource ParmConverter}">
+                                <Binding RelativeSource="{RelativeSource AncestorType=ListBox}" Path="ItemsSource"></Binding>
+                                <Binding></Binding>
+                            </MultiBinding>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
                 </Rectangle.InputBindings>
                 <Rectangle.Triggers>
                     <EventTrigger RoutedEvent="Rectangle.MouseEnter">
