@@ -3,7 +3,7 @@
                     xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
                     xmlns:vm="clr-namespace:Cosmic.ViewModels"
                     xmlns:converters="clr-namespace:Cosmic.Services">
-
+    
     <Style x:Key="AuthBautton" TargetType="{x:Type Button}">
         <Setter Property="Margin" Value="5 0 100 0"></Setter>
         <Setter Property="Template">

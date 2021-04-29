@@ -33,7 +33,7 @@ namespace Cosmic.ViewModels
 
         #region Popup
 
-        private bool _Popup=false;
+        private static bool _Popup=false;
         public bool Popup
         {
             get => _Popup;
@@ -44,7 +44,7 @@ namespace Cosmic.ViewModels
 
         #region MusicItem
 
-        private MusicItem _MusicItem;
+        private static MusicItem _MusicItem;
         public MusicItem MusicItem
         {
             get => _MusicItem;
@@ -53,7 +53,7 @@ namespace Cosmic.ViewModels
         #endregion
         #region CurrentPlaylist
 
-        private List<MusicItem> _CurrentPlaylist;
+        private static List<MusicItem> _CurrentPlaylist;
         public List<MusicItem> CurrentPlaylist
         {
             get => _CurrentPlaylist;
@@ -92,7 +92,7 @@ namespace Cosmic.ViewModels
         #endregion
         #region MaxTrackProgress
 
-        private double _MaxTrackProgress;
+        private static double _MaxTrackProgress;
         public double MaxTrackProgress
         {
             get => _MaxTrackProgress;
@@ -134,7 +134,7 @@ namespace Cosmic.ViewModels
                     {
 
                         Popup = false;
-                        Thread.Sleep(500);
+                        Thread.Sleep(300);
                         Popup = true;
                     });
                     if (value <= 1300)
@@ -148,10 +148,13 @@ namespace Cosmic.ViewModels
                         ColumnSpan = 1;
                     }
                     Set(ref _WindowWidth, value);
-
                 }
                 else
                 {
+                    if (Application.Current.MainWindow.WindowState!=WindowState.Minimized&&Player.IsPlaying())
+                    {
+                        Popup = true;
+                    }
                     if (value <= 1300)
                     {
                         VisibilityState = Visibility.Collapsed;
@@ -171,7 +174,7 @@ namespace Cosmic.ViewModels
         #endregion
         #region VisibilityState
 
-        private Visibility _VisibilityState = Visibility.Visible;
+        private static Visibility _VisibilityState = Visibility.Visible;
         public Visibility VisibilityState
         {
             get => _VisibilityState;
@@ -181,7 +184,7 @@ namespace Cosmic.ViewModels
         #endregion
         #region ColumnSpan
 
-        private int _ColumnSpan = 1;
+        private static int _ColumnSpan = 1;
         public int ColumnSpan
         {
             get => _ColumnSpan;
@@ -288,6 +291,7 @@ namespace Cosmic.ViewModels
 
         private void OnMinimizeWindowCommandExecuted(object p)
         {
+
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
@@ -584,10 +588,6 @@ namespace Cosmic.ViewModels
         private void OnNextMusicCommandExecuted(object p)
         {
             Player.Next();
-            MusicItem = CurrentPlaylist.Where(t => t.MusicData == Player.wplayer.currentMedia.sourceURL).First();
-            string[] res = MusicItem.TrackTime.Split(':');
-            double max = Convert.ToInt32(res[0]) * 60 + Convert.ToInt32(res[1]);
-            MaxTrackProgress = max;
         }
 
         private bool CanNextMusicCommandExecute(object p) => true;
@@ -607,8 +607,13 @@ namespace Cosmic.ViewModels
         private bool CanPreviousMusicCommandExecute(object p) => true;
         #endregion
 
-
-
+        public static void ChangeMusic(object item)
+        {
+            _MusicItem = _CurrentPlaylist.Where(t => t.MusicData == Player.wplayer.currentMedia.sourceURL).First();
+            string[] res = _MusicItem.TrackTime.Split(':');
+            double max = Convert.ToInt32(res[0]) * 60 + Convert.ToInt32(res[1]);
+            _MaxTrackProgress = max;
+        }
 
         #endregion
         public MainWindowViewModel()
@@ -672,6 +677,7 @@ namespace Cosmic.ViewModels
             OldMusic = new OldMusic();
             Shazam = new Shazam();
             _FrameContent = MainPage;
+            Player.wplayer.MediaChange += ChangeMusic;
         }
 
         public async void OpacityFunc(Page page)

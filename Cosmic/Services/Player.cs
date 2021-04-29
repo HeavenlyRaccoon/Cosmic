@@ -10,7 +10,6 @@ namespace Cosmic.Services
     static class Player
     {
        public static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-
         public static void Play(object items, object item)
         {
             List<MusicItem> musicItems = (List<MusicItem>)items;
