@@ -21,6 +21,20 @@ namespace Cosmic.ViewModels
 
         private bool CanCloseAuthWindowCommandExecute(object p) => true;
         #endregion
+        #region OpenRegistration
+        public ICommand OpenRegistrationCommand { get; }
+
+        private void OnOpenRegistrationCommandExecuted(object p)
+        {
+
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            context.OpenRegistrationCommand.Execute(p);
+            Application.Current.Windows[1].Close();
+            Application.Current.Windows[0].Effect = null;
+        }
+
+        private bool CanOpenRegistrationCommandExecute(object p) => true;
+        #endregion
 
         #endregion
 
@@ -28,6 +42,7 @@ namespace Cosmic.ViewModels
         {
             #region Команды
             CloseAuthWindowCommand = new LamdaCommand(OnCloseAuthWindowCommandExecuted, CanCloseAuthWindowCommandExecute);
+            OpenRegistrationCommand = new LamdaCommand(OnOpenRegistrationCommandExecuted, CanOpenRegistrationCommandExecute);
 
             #endregion
         }

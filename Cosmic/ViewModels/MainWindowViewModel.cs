@@ -525,6 +525,16 @@ namespace Cosmic.ViewModels
 
         private bool CanOpenMainPageCommandExecute(object p) => true;
         #endregion
+        #region OpenRegistrationCommand
+        public ICommand OpenRegistrationCommand { get; }
+
+        private void OnOpenRegistrationCommandExecuted(object p)
+        {
+            FrameContent = new Registration();
+        }
+
+        private bool CanOpenRegistrationCommandExecute(object p) => true;
+        #endregion
         #region OpenSearchResponsePageCommand
         public ICommand OpenSearchResponsePageCommand { get; }
 
@@ -649,6 +659,7 @@ namespace Cosmic.ViewModels
             PauseMusicCommand = new LamdaCommand(OnPauseMusicCommandExecuted, CanPauseMusicCommandExecute);
             NextMusicCommand = new LamdaCommand(OnNextMusicCommandExecuted, CanNextMusicCommandExecute);
             PreviousMusicCommand = new LamdaCommand(OnPreviousMusicCommandExecuted, CanPreviousMusicCommandExecute);
+            OpenRegistrationCommand = new LamdaCommand(OnOpenRegistrationCommandExecuted, CanOpenRegistrationCommandExecute);
 
             #endregion
             BindWidth();

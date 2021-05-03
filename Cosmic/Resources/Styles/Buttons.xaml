@@ -1037,4 +1037,40 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="RegistrationBautton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20" Background="#EB4D4B"  Padding="0 0 0 2"
+                            MinHeight="20"  MaxHeight="40" MinWidth="180">
+
+                        <TextBlock Text="Заригистрироваться" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="White" FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat"/>
+
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#FD7676" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Background.Color">
+                                            <ColorAnimation To="#EB4D4B" Duration="0:0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Border.Triggers>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -48,7 +48,7 @@
                     </DockPanel>
                     <Button Style="{StaticResource LogInBautton}" Margin='0 0 0 13'></Button>
                     <DockPanel Width="280">
-                        <TextBlock HorizontalAlignment="Left"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Регистрация</Hyperlink></TextBlock>
+                        <TextBlock HorizontalAlignment="Left"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" Command="{Binding OpenRegistrationCommand}">Регистрация</Hyperlink></TextBlock>
                         <TextBlock HorizontalAlignment="Right"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Восстановить пароль</Hyperlink></TextBlock>
                     </DockPanel>
                 </StackPanel>
