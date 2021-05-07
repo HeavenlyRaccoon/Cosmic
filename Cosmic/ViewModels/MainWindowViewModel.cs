@@ -238,6 +238,29 @@ namespace Cosmic.ViewModels
 
         #endregion
 
+        #region AuthButtonVisibility
+
+        private static Visibility _AuthButtonVisibility = Visibility.Visible;
+        public Visibility AuthButtonVisibility
+        {
+            get => _AuthButtonVisibility;
+            set => Set(ref _AuthButtonVisibility, value);
+        }
+
+        #endregion
+        #region ProfileButtonVisibility
+
+        private static Visibility _ProfileButtonVisibility = Visibility.Collapsed;
+        public Visibility ProfileButtonVisibility
+        {
+            get => _ProfileButtonVisibility;
+            set => Set(ref _ProfileButtonVisibility, value);
+        }
+
+        #endregion
+
+
+
         #region Страницы
         private static MainPage MainPage;
         private static NewMusic NewMusic;
@@ -275,6 +298,20 @@ namespace Cosmic.ViewModels
         }
 
         private bool CanOpenAuthWindowCommandExecute(object p) => true;
+        #endregion
+        #region OpenProfileWindowCommand
+        public ICommand OpenProfileWindowCommand { get; }
+
+        private void OnOpenProfileWindowCommandExecuted(object p)
+        {
+            ProfileWindow profileWindow = new ProfileWindow();
+            BlurEffect blurEffect = new BlurEffect();
+            blurEffect.Radius = 10;
+            Application.Current.MainWindow.Effect = blurEffect;
+            profileWindow.ShowDialog();
+        }
+
+        private bool CanOpenProfileWindowCommandExecute(object p) => true;
         #endregion
         #region OpenLinkCommand
         public ICommand OpenLinkCommand { get; }
@@ -616,6 +653,17 @@ namespace Cosmic.ViewModels
 
         private bool CanPreviousMusicCommandExecute(object p) => true;
         #endregion
+        #region AuthorizationCommand
+        public ICommand AuthorizationCommand { get; }
+
+        private void OnAuthorizationCommandExecuted(object p)
+        {
+            AuthButtonVisibility = Visibility.Collapsed;
+            ProfileButtonVisibility = Visibility.Visible;
+        }
+
+        private bool CanAuthorizationCommandExecute(object p) => true;
+        #endregion
 
         public static void ChangeMusic(object item)
         {
@@ -630,6 +678,7 @@ namespace Cosmic.ViewModels
         {
             #region Команды
             OpenAuthWindowCommand = new LamdaCommand(OnOpenAuthWindowCommandExecuted, CanOpenAuthWindowCommandExecute);
+            OpenProfileWindowCommand = new LamdaCommand(OnOpenProfileWindowCommandExecuted, CanOpenProfileWindowCommandExecute);
             OpenLinkCommand = new LamdaCommand(OnOpenLinkCommandExecuted, CanOpenLinkCommandExecute);
             MinimizeWindowCommand = new LamdaCommand(OnMinimizeWindowCommandExecuted, CanMinimizeWindowCommandExecute);
             MaximizeWindowCommand = new LamdaCommand(OnMaximizeWindowCommandExecuted, CanMaximizeWindowCommandExecute);
@@ -660,6 +709,7 @@ namespace Cosmic.ViewModels
             NextMusicCommand = new LamdaCommand(OnNextMusicCommandExecuted, CanNextMusicCommandExecute);
             PreviousMusicCommand = new LamdaCommand(OnPreviousMusicCommandExecuted, CanPreviousMusicCommandExecute);
             OpenRegistrationCommand = new LamdaCommand(OnOpenRegistrationCommandExecuted, CanOpenRegistrationCommandExecute);
+            AuthorizationCommand = new LamdaCommand(OnAuthorizationCommandExecuted, CanAuthorizationCommandExecute);
 
             #endregion
             BindWidth();

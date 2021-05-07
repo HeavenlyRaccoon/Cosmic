@@ -44,6 +44,24 @@ namespace Cosmic.Services
             
         }
 
+        public static string Authorization(string login, string password)
+        {
+            try
+            {
+                string tmpPassword = GetHashString(password);
+                using (var context = new MyDbContext())
+                {
+                    User user = context.Users.Where(t => t.Login == login && t.Password == tmpPassword).First();
+
+                    return "";
+                }
+            }
+            catch
+            {
+                return "Неверный логин или пароль";
+            }
+        }
+
         public static string GetHashString(string s)
         {
             //переводим строку в байт-массим  

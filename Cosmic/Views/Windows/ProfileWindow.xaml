@@ -1,0 +1,86 @@
+﻿<Window x:Class="Cosmic.Views.Windows.ProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cosmic.Views.Windows" xmlns:vm="clr-namespace:Cosmic.ViewModels" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Name="authWindow"
+        Title="Профиль" Height="350" Width="460" ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:ProfileWindowViewModel></vm:ProfileWindowViewModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="400"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" Background="#e056fd" Margin="1 0 1 0"></Grid>
+        <Grid Grid.Row="2" Grid.Column="1" Background="#192229">
+            <Border BorderThickness="2" BorderBrush="#FF141C23">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center" Margin="0 30 0 15" Foreground="White" FontSize="22"
+                               Text="{Binding Login}" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat Medium"></TextBlock>
+                    <Ellipse Width="60" Height="60" Margin="0 0 0 15">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Avatar}"></ImageBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<Border Width="60" Height="60" Background="#111" CornerRadius="30" Margin="0 0 0 15">
+                        <Image Source="{Binding Avatar}"></Image>
+                    </Border>-->
+                    <Grid Width="300" Height="100">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Button Content="Мой профиль" Style="{StaticResource ProfileMenuButton}"></Button>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Button Content="Мои закладки" Style="{StaticResource ProfileMenuButton}"></Button>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <Button Content="Coming soon" Style="{StaticResource ProfileMenuButton}"></Button>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <Button Content="Выйти" Style="{StaticResource ProfileMenuButton}"></Button>
+                        </Grid>
+                    </Grid>
+                    </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Visibility="Collapsed" Background="Transparent"></Grid>
+        <Grid Grid.Row="4" Grid.ColumnSpan="3" Background="Transparent"></Grid>
+        <Grid Grid.Row="2" Grid.Column="0" Background="Transparent"></Grid>
+        <Grid Grid.Row="2" Grid.Column="2" Background="Transparent"></Grid>
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Button Height="25" Width="25" Cursor="Hand" Command="{Binding CloseProfileWindowCommand}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="Transparent">
+                            <Path x:Name="Pt" Height="20" Width="20" Stretch="Uniform" Data="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"
+                                Fill="#FFFFFF"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

@@ -37,20 +37,21 @@
                     </Border>
                     <Border Width="280" Height="40" Background="White" CornerRadius="5" Padding="15 0 15 0"  Margin="0 0 0 15">
                         <TextBox FontSize="16" MaxLength="20" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"
-                                 Tag="Логин" Style="{StaticResource SearchWatermark}"></TextBox>
+                                 Tag="Логин" Style="{StaticResource SearchWatermark}" Text="{Binding Login}"></TextBox>
                     </Border>
                     <Border Width="280" Height="40" Background="White" CornerRadius="5" Padding="15 0 15 0"  Margin="0 0 0 15">
-                        <styles:BindablePasswordBoxPlaceholder FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"></styles:BindablePasswordBoxPlaceholder>
+                        <styles:BindablePasswordBoxPlaceholder Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"></styles:BindablePasswordBoxPlaceholder>
                     </Border>
                     <DockPanel Width="280" Margin="0 0 0 15">
                         <CheckBox  IsChecked="False" Style="{StaticResource CheckBoxStyle1}" Margin="0 0 5 0"></CheckBox>
                         <Label Foreground="#939393" FontSize="14" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Запомнить</Label>
                     </DockPanel>
-                    <Button Style="{StaticResource LogInBautton}" Margin='0 0 0 13'></Button>
+                    <Button Style="{StaticResource LogInBautton}" Margin='0 0 0 13' Command="{Binding AuthorizationCommand}"></Button>
                     <DockPanel Width="280">
                         <TextBlock HorizontalAlignment="Left"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" Command="{Binding OpenRegistrationCommand}">Регистрация</Hyperlink></TextBlock>
                         <TextBlock HorizontalAlignment="Right"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Восстановить пароль</Hyperlink></TextBlock>
                     </DockPanel>
+                    <TextBlock Margin="25 5 25 0 " FontSize="15" Foreground="#e85319" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" Text="{Binding ExepMassage, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 </StackPanel>
             </Border>
         </Grid>
