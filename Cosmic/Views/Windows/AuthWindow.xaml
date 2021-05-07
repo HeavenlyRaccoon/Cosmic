@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cosmic.Views.Windows" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-        xmlns:vm="clr-namespace:Cosmic.ViewModels"
+        xmlns:vm="clr-namespace:Cosmic.ViewModels" xmlns:styles="clr-namespace:Cosmic.Resources.Styles"
         mc:Ignorable="d"
         WindowStyle="None"
         Background="Transparent"
@@ -36,11 +36,11 @@
                         <svgc:SvgViewbox MaxHeight="25" MaxWidth="25" Stretch="Uniform" HorizontalAlignment="Center" Cursor="Hand" Source="../../Resources/Icons/user.svg"/>
                     </Border>
                     <Border Width="280" Height="40" Background="White" CornerRadius="5" Padding="15 0 15 0"  Margin="0 0 0 15">
-                        <TextBox FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"
+                        <TextBox FontSize="16" MaxLength="20" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"
                                  Tag="Логин" Style="{StaticResource SearchWatermark}"></TextBox>
                     </Border>
                     <Border Width="280" Height="40" Background="White" CornerRadius="5" Padding="15 0 15 0"  Margin="0 0 0 15">
-                        <PasswordBox FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"></PasswordBox>
+                        <styles:BindablePasswordBoxPlaceholder FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"></styles:BindablePasswordBoxPlaceholder>
                     </Border>
                     <DockPanel Width="280" Margin="0 0 0 15">
                         <CheckBox  IsChecked="False" Style="{StaticResource CheckBoxStyle1}" Margin="0 0 5 0"></CheckBox>

@@ -105,6 +105,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\Styles\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\BindablePasswordBoxPlaceholder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,13 +224,21 @@
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Playlist.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Resources\Styles\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Styles\BindablePasswordBoxPlaceholder.xaml.cs">
+      <DependentUpon>BindablePasswordBoxPlaceholder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\Converter.cs" />
+    <Compile Include="Services\EntityFunction.cs" />
     <Compile Include="Services\MusicParser.cs" />
     <Compile Include="Services\Player.cs" />
     <Compile Include="ViewModels\AuthWindowViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PagesView.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Views\Pages\AnimeMusic.xaml.cs">
       <DependentUpon>AnimeMusic.xaml</DependentUpon>
     </Compile>
