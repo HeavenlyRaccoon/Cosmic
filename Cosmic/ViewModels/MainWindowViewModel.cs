@@ -4,6 +4,7 @@ using Cosmic.Services;
 using Cosmic.ViewModels.Base;
 using Cosmic.Views.Pages;
 using Cosmic.Views.Windows;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Imaging;
 
 namespace Cosmic.ViewModels
 {
@@ -258,7 +260,169 @@ namespace Cosmic.ViewModels
         }
 
         #endregion
+        #region ProfileChangeVisibility
 
+        private static Visibility _ProfileChangeVisibility = Visibility.Collapsed;
+        public Visibility ProfileChangeVisibility
+        {
+            get => _ProfileChangeVisibility;
+            set => Set(ref _ProfileChangeVisibility, value);
+        }
+
+        #endregion
+
+        #region User
+        #region Login
+
+        private static string _Login = "";
+        public string Login
+        {
+            get => _Login;
+            set => Set(ref _Login, value);
+        }
+
+        #endregion
+        #region Id
+
+        private static int _Id;
+        public int Id
+        {
+            get => _Id;
+            set => Set(ref _Id, value);
+        }
+
+        #endregion
+        #region Avatar
+
+        private static BitmapImage _Avatar = new BitmapImage(new Uri("../../Resources/Icons/noavatar.png", UriKind.Relative));
+        public BitmapImage Avatar
+        {
+            get
+            {
+                return _Avatar;
+            }
+            set => Set(ref _Avatar, value);
+        }
+
+        #endregion
+        #region Group
+
+        public string Group
+        {
+            get {
+                if (Id <= 10)
+                {
+                    return "Администратор";
+                }
+                else return "Посетитель";
+            }
+        }
+
+        #endregion
+        #region Name
+
+        private static string _Name = "User";
+        public string Name
+        {
+            get => _Name;
+            set => Set(ref _Name, value);
+        }
+
+        #endregion
+        #region AboutUser
+
+        private static string _AboutUser = "";
+        public string AboutUser
+        {
+            get => _AboutUser;
+            set => Set(ref _AboutUser, value);
+        }
+
+        #endregion
+        #region tmpPassword
+
+        private string _tmpPassword = "";
+        public string tmpPassword
+        {
+            get => _tmpPassword;
+            set => Set(ref _tmpPassword, value);
+        }
+
+        #endregion
+        #endregion
+
+        #region Change Profile
+        #region AvatarName
+
+        private static string _AvatarName = "Файл не выбран";
+        public string AvatarName
+        {
+            get => _AvatarName;
+            set => Set(ref _AvatarName, value);
+        }
+
+        #endregion
+        #region ExepMassage
+
+        private static string _ExepMassage = "";
+        public string ExepMassage
+        {
+            get => _ExepMassage;
+            set => Set(ref _ExepMassage, value);
+        }
+
+        #endregion
+        #region ChangeName
+
+        private static string _ChangeName = "";
+        public string ChangeName
+        {
+            get => _ChangeName;
+            set => Set(ref _ChangeName, value);
+        }
+
+        #endregion
+        #region OldPassword
+
+        private string _OldPassword = "";
+        public string OldPassword
+        {
+            get => _OldPassword;
+            set => Set(ref _OldPassword, value);
+        }
+
+        #endregion
+        #region NewPassword
+
+        private string _NewPassword = "";
+        public string NewPassword
+        {
+            get => _NewPassword;
+            set => Set(ref _NewPassword, value);
+        }
+
+        #endregion
+        #region ConfirmPassword
+
+        private string _ConfirmPassword = "";
+        public string ConfirmPassword
+        {
+            get => _ConfirmPassword;
+            set => Set(ref _ConfirmPassword, value);
+        }
+
+        #endregion
+        #region ChangeAboutUser
+
+        private static string _ChangeAboutUser = "";
+        public string ChangeAboutUser
+        {
+            get => _ChangeAboutUser;
+            set => Set(ref _ChangeAboutUser, value);
+        }
+
+        #endregion
+        #endregion
 
 
         #region Страницы
@@ -664,6 +828,108 @@ namespace Cosmic.ViewModels
 
         private bool CanAuthorizationCommandExecute(object p) => true;
         #endregion
+        #region ExitCommand
+        public ICommand ExitCommand { get; }
+
+        private void OnExitCommandExecuted(object p)
+        {
+            ProfileButtonVisibility = Visibility.Collapsed;
+            AuthButtonVisibility = Visibility.Visible;
+            Name = "";
+            AboutUser = "";
+            Avatar = new BitmapImage(new Uri("../../Resources/Icons/noavatar.png", UriKind.Relative));
+        }
+
+        private bool CanExitCommandExecute(object p) => true;
+        #endregion
+        #region CloseProfileWindowCommand
+        public ICommand CloseProfileWindowCommand { get; }
+
+        private void OnCloseProfileWindowCommandExecuted(object p)
+        {
+            Application.Current.Windows[1].Close();
+            Application.Current.Windows[0].Effect = null;
+        }
+
+        private bool CanCloseProfileWindowCommandExecute(object p) => true;
+        #endregion
+        #region OpenProfilePageCommand
+        public ICommand OpenProfilePageCommand { get; }
+
+        private void OnOpenProfilePageCommandExecuted(object p)
+        {
+            FrameContent = new ProfilePage();
+        }
+
+        private bool CanOpenProfilePageCommandExecute(object p) => true;
+        #endregion
+        #region OpenProfileChangeCommand
+        public ICommand OpenProfileChangeCommand { get; }
+
+        private void OnOpenProfileChangeCommandExecuted(object p)
+        {
+            ProfileChangeVisibility = Visibility.Visible;
+        }
+
+        private bool CanOpenProfileChangeCommandExecute(object p) => true;
+        #endregion
+        #region ChooseAvatarCommand
+        public ICommand ChooseAvatarCommand { get; }
+
+        private void OnChooseAvatarCommandExecuted(object p)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+            if (dialog.ShowDialog() == true)
+            {
+                AvatarName = dialog.FileName;
+            }
+        }
+
+        private bool CanChooseAvatarCommandExecute(object p) => true;
+        #endregion
+        #region SaveChangeCommand
+        public ICommand SaveChangeCommand { get; }
+
+        private void OnSaveChangeCommandExecuted(object p)
+        {
+            if (OldPassword != "")
+            {
+                if (EntityFunction.PasswordEqual(Id, OldPassword))
+                {
+                    if (NewPassword.Length >= 6)
+                    {
+                        if (NewPassword == ConfirmPassword)
+                        {
+                            tmpPassword = NewPassword;
+                            ExepMassage = "";
+                        }
+                        else ExepMassage = "Пароли не совпадают";
+                    }
+                    else ExepMassage = "Пароль слишком короткий, минимум 6 символов";
+                }
+                else ExepMassage = "Неверный старый пароль";
+            }
+            if (ExepMassage == "")
+            {
+                if (ChangeName != "") Name = ChangeName;
+                if (ChangeAboutUser != "") AboutUser = ChangeAboutUser;
+                if(AvatarName!="Файл не выбран")
+                {
+                    BitmapImage bitmapImage = new BitmapImage(new Uri(AvatarName));
+                    Avatar = bitmapImage;
+                }
+                EntityFunction.ChangeUser(Id, Name, AboutUser, tmpPassword, Avatar);
+                ProfileChangeVisibility = Visibility.Collapsed;
+                ChangeName = "";
+                ChangeAboutUser = "";
+                tmpPassword = "";
+                AvatarName = "";
+            }
+        }
+
+        private bool CanSaveChangeCommandExecute(object p) => true;
+        #endregion
 
         public static void ChangeMusic(object item)
         {
@@ -710,6 +976,12 @@ namespace Cosmic.ViewModels
             PreviousMusicCommand = new LamdaCommand(OnPreviousMusicCommandExecuted, CanPreviousMusicCommandExecute);
             OpenRegistrationCommand = new LamdaCommand(OnOpenRegistrationCommandExecuted, CanOpenRegistrationCommandExecute);
             AuthorizationCommand = new LamdaCommand(OnAuthorizationCommandExecuted, CanAuthorizationCommandExecute);
+            ExitCommand = new LamdaCommand(OnExitCommandExecuted, CanExitCommandExecute);
+            CloseProfileWindowCommand = new LamdaCommand(OnCloseProfileWindowCommandExecuted, CanCloseProfileWindowCommandExecute);
+            OpenProfilePageCommand = new LamdaCommand(OnOpenProfilePageCommandExecuted, CanOpenProfilePageCommandExecute);
+            OpenProfileChangeCommand = new LamdaCommand(OnOpenProfileChangeCommandExecuted, CanOpenProfileChangeCommandExecute);
+            ChooseAvatarCommand = new LamdaCommand(OnChooseAvatarCommandExecuted, CanChooseAvatarCommandExecute);
+            SaveChangeCommand = new LamdaCommand(OnSaveChangeCommandExecuted, CanSaveChangeCommandExecute);
 
             #endregion
             BindWidth();

@@ -1,11 +1,13 @@
 ﻿using Cosmic.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Cosmic.Services
 {
@@ -38,13 +40,12 @@ namespace Cosmic.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 return ex.Message;
             }
             
         }
 
-        public static string Authorization(string login, string password)
+        public static User Authorization(string login, string password)
         {
             try
             {
@@ -53,15 +54,79 @@ namespace Cosmic.Services
                 {
                     User user = context.Users.Where(t => t.Login == login && t.Password == tmpPassword).First();
 
-                    return "";
+                    return user;
                 }
             }
             catch
             {
-                return "Неверный логин или пароль";
+                return null;
             }
         }
 
+        public static bool PasswordEqual(int id, string password)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    User user = context.Users.Where(t => t.Id==id).First();
+                    if (user.Password == GetHashString(password))
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static void ChangeUser(int id, string name, string aboutUser, string password, BitmapImage image)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    User user = context.Users.Where(t => t.Id == id).First();
+                    user.Name = name;
+                    user.AboutUser = aboutUser;
+                    if (password != "")
+                    {
+                        user.Password = GetHashString(password);
+                    }
+                    byte[] data;
+                    JpegBitmapEncoder bitmapEncoder = new JpegBitmapEncoder();
+                    bitmapEncoder.Frames.Add(BitmapFrame.Create(image));
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        bitmapEncoder.Save(ms);
+                        data = ms.ToArray();
+                    }
+                    user.Avatar = data;
+                    context.SaveChanges();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Change faild");
+            }
+        }
+
+
+        public static BitmapImage ToImage(byte[] array)
+        {
+            using (var ms = new System.IO.MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+        }
         public static string GetHashString(string s)
         {
             //переводим строку в байт-массим  

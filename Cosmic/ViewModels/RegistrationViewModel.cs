@@ -1,4 +1,5 @@
 ﻿using Cosmic.Infastructure.Commands;
+using Cosmic.Models;
 using Cosmic.Services;
 using Cosmic.ViewModels.Base;
 using System;
@@ -84,8 +85,15 @@ namespace Cosmic.ViewModels
                             ExepMassage = EntityFunction.AddUser(Login, Password);
                             if (ExepMassage == "")
                             {
-                                var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
-                                context.OpenMainPageCommand.Execute(p);
+                                User user = EntityFunction.Authorization(Login, Password);
+                                if (user != null)
+                                {
+                                    var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+                                    context.Id = user.Id;
+                                    context.Login = user.Login;
+                                    context.OpenMainPageCommand.Execute(p);
+                                    context.AuthorizationCommand.Execute(p);
+                                }
                             }
                         }
                     }else ExepMassage = "Повторите пароль";

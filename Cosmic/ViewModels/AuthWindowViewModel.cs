@@ -1,4 +1,5 @@
 ﻿using Cosmic.Infastructure.Commands;
+using Cosmic.Models;
 using Cosmic.Services;
 using Cosmic.ViewModels.Base;
 using System.Windows;
@@ -75,14 +76,23 @@ namespace Cosmic.ViewModels
             {
                 if (Password.Length >= 6)
                 {
-                    ExepMassage = EntityFunction.Authorization(Login, Password);
-                    if (ExepMassage == "")
+                    User user = EntityFunction.Authorization(Login, Password);
+                    if (user != null)
                     {
                         var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+                        context.Id = user.Id;
+                        context.Login = user.Login;
+                        context.Name = user.Name;
+                        context.AboutUser = user.AboutUser;
+                        if (user.Avatar != null)
+                        {
+                           context.Avatar = EntityFunction.ToImage(user.Avatar);
+                        }
                         context.OpenMainPageCommand.Execute(p);
                         context.AuthorizationCommand.Execute(p);
                         CloseAuthWindowCommand.Execute(p);
                     }
+                    else ExepMassage = "Неверный логин или пароль";
                 }
                 else ExepMassage = "Пароль слишком короткий, минимум 6 символов";
             }

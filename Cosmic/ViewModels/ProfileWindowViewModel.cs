@@ -13,40 +13,6 @@ namespace Cosmic.ViewModels
 {
     class ProfileWindowViewModel : ViewModelBase
     {
-        #region Login
-
-        private static string _Login = "";
-        public string Login
-        {
-            get => _Login;
-            set => Set(ref _Login, value);
-        }
-
-        #endregion
-        #region Id
-
-        private static int _Id;
-        public int Id
-        {
-            get => _Id;
-            set => Set(ref _Id, value);
-        }
-
-        #endregion
-        #region Avatar
-
-        private static BitmapImage _Avatar = new BitmapImage(new Uri("../../Resources/Icons/noavatar.png", UriKind.Relative));
-        public BitmapImage Avatar
-        {
-            get
-            {
-                return _Avatar;
-            }
-            set => Set(ref _Avatar, value);
-        }
-
-        #endregion
-
         #region Команды
 
         #region CloseProfileWindowCommand
@@ -60,12 +26,39 @@ namespace Cosmic.ViewModels
 
         private bool CanCloseProfileWindowCommandExecute(object p) => true;
         #endregion
-        
+        #region OpenProfilePageCommand
+        public ICommand OpenProfilePageCommand { get; }
+
+        private void OnOpenProfilePageCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            context.OpenProfilePageCommand.Execute(p);
+            context.CloseProfileWindowCommand.Execute(p);
+        }
+
+        private bool CanOpenProfilePageCommandExecute(object p) => true;
+        #endregion
+        #region ExitCommand
+        public ICommand ExitCommand { get; }
+
+        private void OnExitCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            context.OpenMainPageCommand.Execute(p);
+            context.ExitCommand.Execute(p);
+            CloseProfileWindowCommand.Execute(p);
+        }
+
+        private bool CanExitCommandExecute(object p) => true;
+        #endregion
+
         #endregion
 
         public ProfileWindowViewModel()
         {
             CloseProfileWindowCommand = new LamdaCommand(OnCloseProfileWindowCommandExecuted, CanCloseProfileWindowCommandExecute);
+            OpenProfilePageCommand = new LamdaCommand(OnOpenProfilePageCommandExecuted, CanOpenProfilePageCommandExecute);
+            ExitCommand = new LamdaCommand(OnExitCommandExecuted, CanExitCommandExecute);
 
         }
     }

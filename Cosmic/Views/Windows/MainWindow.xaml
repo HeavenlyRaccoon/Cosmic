@@ -166,8 +166,8 @@
 
                     <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#1C272D"></Grid>
                     <Grid Grid.Row="0" Grid.Column="2">
-                        <Button Style="{StaticResource AuthBautton}" Command="{Binding OpenAuthWindowCommand}" Visibility="{Binding AuthButtonVisibility}"></Button>
-                        <Button Style="{StaticResource ProfileBautton}" Command="{Binding OpenProfileWindowCommand}" Visibility="{Binding ProfileButtonVisibility}"></Button>
+                        <Button Style="{StaticResource AuthBautton}" Command="{Binding OpenAuthWindowCommand}" Visibility="{Binding AuthButtonVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
+                        <Button Style="{StaticResource ProfileBautton}" Command="{Binding OpenProfileWindowCommand}" Visibility="{Binding ProfileButtonVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
                     </Grid>
                     <Grid Grid.Row="0" Grid.Column="1">
                         <Border MaxWidth="800" MaxHeight="40" Background="#2E3E4B" CornerRadius="10">
