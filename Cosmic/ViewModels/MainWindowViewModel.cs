@@ -43,6 +43,16 @@ namespace Cosmic.ViewModels
         }
 
         #endregion
+        #region MessagePopup
+
+        private static bool _MessagePopup = false;
+        public bool MessagePopup
+        {
+            get => _MessagePopup;
+            set => Set(ref _MessagePopup, value);
+        }
+
+        #endregion
 
         #region MusicItem
 
@@ -113,7 +123,7 @@ namespace Cosmic.ViewModels
         #endregion
         #region Volume
 
-        private int _Volume=20;
+        private int _Volume=50;
         public int Volume
         {
             get => _Volume;
@@ -124,7 +134,7 @@ namespace Cosmic.ViewModels
         #region Адаптация
         #region WindowWidth
 
-        private double _WindowWidth = 1440;
+        private static double _WindowWidth = 1440;
         public double WindowWidth
         {
             get => _WindowWidth;
@@ -267,6 +277,27 @@ namespace Cosmic.ViewModels
         {
             get => _ProfileChangeVisibility;
             set => Set(ref _ProfileChangeVisibility, value);
+        }
+
+        #endregion
+
+        #region PlaylistName
+
+        private static string _PlaylistName = "";
+        public string PlaylistName
+        {
+            get => _PlaylistName;
+            set => Set(ref _PlaylistName, value);
+        }
+
+        #endregion
+        #region PlaylistMusics
+
+        private static ICollection<Music> _PlaylistMusics;
+        public ICollection<Music> PlaylistMusics
+        {
+            get => _PlaylistMusics;
+            set => Set(ref _PlaylistMusics, value);
         }
 
         #endregion
@@ -835,6 +866,7 @@ namespace Cosmic.ViewModels
         {
             ProfileButtonVisibility = Visibility.Collapsed;
             AuthButtonVisibility = Visibility.Visible;
+            Login = "";
             Name = "";
             AboutUser = "";
             Avatar = new BitmapImage(new Uri("../../Resources/Icons/noavatar.png", UriKind.Relative));
@@ -930,6 +962,26 @@ namespace Cosmic.ViewModels
 
         private bool CanSaveChangeCommandExecute(object p) => true;
         #endregion
+        #region OpenPlaylistsCommand
+        public ICommand OpenPlaylistsCommand;
+        private void OnOpenPlaylistsCommandExecuted(object p)
+        {
+            FrameContent = new Playlists();
+            var context = (PagesView)FrameContent.DataContext;
+            context.Playlists = EntityFunction.GetPlaylists(Id);
+        }
+
+        private bool CanOpenPlaylistsCommandExecute(object p) => true;
+        #endregion
+        #region OpenPlaylistCommand
+        public ICommand OpenPlaylistCommand;
+        private void OnOpenPlaylistCommandExecuted(object p)
+        {
+            FrameContent = new UserPlaylist();
+        }
+
+        private bool CanOpenPlaylistCommandExecute(object p) => true;
+        #endregion
 
         public static void ChangeMusic(object item)
         {
@@ -982,6 +1034,8 @@ namespace Cosmic.ViewModels
             OpenProfileChangeCommand = new LamdaCommand(OnOpenProfileChangeCommandExecuted, CanOpenProfileChangeCommandExecute);
             ChooseAvatarCommand = new LamdaCommand(OnChooseAvatarCommandExecuted, CanChooseAvatarCommandExecute);
             SaveChangeCommand = new LamdaCommand(OnSaveChangeCommandExecuted, CanSaveChangeCommandExecute);
+            OpenPlaylistsCommand = new LamdaCommand(OnOpenPlaylistsCommandExecuted, CanOpenPlaylistsCommandExecute);
+            OpenPlaylistCommand = new LamdaCommand(OnOpenPlaylistCommandExecuted, CanOpenPlaylistCommandExecute);
 
             #endregion
             BindWidth();

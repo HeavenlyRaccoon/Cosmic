@@ -38,6 +38,18 @@ namespace Cosmic.ViewModels
 
         private bool CanOpenProfilePageCommandExecute(object p) => true;
         #endregion
+        #region OpenPlaylistsCommand
+        public ICommand OpenPlaylistsCommand { get; }
+
+        private void OnOpenPlaylistsCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            context.OpenPlaylistsCommand.Execute(p);
+            context.CloseProfileWindowCommand.Execute(p);
+        }
+
+        private bool CanOpenPlaylistsCommandExecute(object p) => true;
+        #endregion
         #region ExitCommand
         public ICommand ExitCommand { get; }
 
@@ -58,6 +70,7 @@ namespace Cosmic.ViewModels
         {
             CloseProfileWindowCommand = new LamdaCommand(OnCloseProfileWindowCommandExecuted, CanCloseProfileWindowCommandExecute);
             OpenProfilePageCommand = new LamdaCommand(OnOpenProfilePageCommandExecuted, CanOpenProfilePageCommandExecute);
+            OpenPlaylistsCommand = new LamdaCommand(OnOpenPlaylistsCommandExecuted, CanOpenPlaylistsCommandExecute);
             ExitCommand = new LamdaCommand(OnExitCommandExecuted, CanExitCommandExecute);
 
         }

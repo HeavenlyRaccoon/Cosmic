@@ -238,6 +238,58 @@ namespace Cosmic.ViewModels
 
         #endregion
 
+
+        #region Playlists
+
+        private static ICollection<Playlist> _Playlists = new List<Playlist>();
+        public ICollection<Playlist> Playlists
+        {
+            get => _Playlists;
+            set => Set(ref _Playlists, value);
+        }
+
+        #endregion
+        #region PlaylistName
+
+        private static string _PlaylistName = "";
+        public string PlaylistName
+        {
+            get => _PlaylistName;
+            set => Set(ref _PlaylistName, value);
+        }
+
+        #endregion
+        #region PlaylistMusics
+
+        private static ICollection<Music> _PlaylistMusics;
+        public ICollection<Music> PlaylistMusics
+        {
+            get => _PlaylistMusics;
+            set => Set(ref _PlaylistMusics, value);
+        }
+
+        #endregion
+        #region CreatePlaylistName
+
+        private static string _CreatePlaylistName = "";
+        public string CreatePlaylistName
+        {
+            get => _CreatePlaylistName;
+            set => Set(ref _CreatePlaylistName, value);
+        }
+
+        #endregion
+        #region PlaylistPopup
+
+        private static bool _PlaylistPopup = false;
+        public bool PlaylistPopup
+        {
+            get => _PlaylistPopup;
+            set => Set(ref _PlaylistPopup, value);
+        }
+
+        #endregion
+
         #region OpenHit2021PageCommand
         public ICommand OpenHit2021PageCommand { get; }
 
@@ -287,14 +339,46 @@ namespace Cosmic.ViewModels
 
         private void OnPlayMusicCommandExecuted(object p)
         {
+            List<MusicItem> Parm1;
+            MusicItem Parm2;
             var values = (object[])p;
-            var Parm1 = values[0];
-            var Parm2 = values[1];
+            if (values[1] is Music)
+            {
+                Music music = (Music)values[1];
+                Parm2 = new MusicItem()
+                {
+                    Artist = music.Author,
+                    ImgData = music.ImgData,
+                    MusicData = music.MusicSource,
+                    Title = music.Title,
+                    TrackTime = music.TrackTime
+                };
+            }
+            else Parm2 = (MusicItem)values[1];
+            if (values[0] is ICollection<Music>)
+            {
+                var musics = (ICollection<Music>)values[0];
+                Parm1 = new List<MusicItem>();
+                foreach (var i in musics)
+                {
+                    MusicItem musicItem = new MusicItem()
+                    {
+                        Artist = i.Author,
+                        ImgData = i.ImgData,
+                        MusicData = i.MusicSource,
+                        Title = i.Title,
+                        TrackTime = i.TrackTime
+                    };
+                    Parm1.Add(musicItem);
+                }
+            }
+            else Parm1 = (List<MusicItem>)values[0];
+
             Player.Play(Parm1, Parm2);
             var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
             context.Popup = false;
-            context.MusicItem = (MusicItem)Parm2;
-            context.CurrentPlaylist = (List<MusicItem>)Parm1;
+            context.MusicItem = Parm2;
+            context.CurrentPlaylist = Parm1;
             string[] res = context.MusicItem.TrackTime.Split(':');
             double max = Convert.ToInt32(res[0]) * 60 + Convert.ToInt32(res[1]);
             context.MaxTrackProgress = max;
@@ -316,8 +400,93 @@ namespace Cosmic.ViewModels
 
         private bool CanPlayMusicCommandExecute(object p) => true;
         #endregion
+        #region LikeMusicCommand
+        public ICommand LikeMusicCommand { get; }
+        private void OnLikeMusicCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            MusicItem musicItem = (MusicItem)p;
+            if (context.Login == "") context.OpenAuthWindowCommand.Execute(p);
+            else if (Playlists == null || Playlists.Count == 0)
+            {
+                EntityFunction.AddDefaultPlaylist(context.Id);
+                Playlists = EntityFunction.GetPlaylists(context.Id);
+                EntityFunction.AddMusic(context.Id, musicItem);
+                Task.Factory.StartNew(() =>
+                {
+                    context.MessagePopup = true;
+                    Thread.Sleep(500);
+                    context.MessagePopup = false;
+                });
+            }
+            else
+            {
+                EntityFunction.AddMusic(context.Id, musicItem);
+                Task.Factory.StartNew(() =>
+                {
+                    context.MessagePopup = true;
+                    Thread.Sleep(1000);
+                    context.MessagePopup = false;
+                });
+            }
+        }
+        private bool CanLikeMusicCommandExecute(object p) => true;
+        #endregion
+        #region RemoveMusicCommand
+        public ICommand RemoveMusicCommand { get; }
+        private void OnRemoveMusicCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            Music music = (Music)p;
+            int playlistId = music.PlaylistId;
+            EntityFunction.RemoveMusic(music.Id);
+            PlaylistMusics = EntityFunction.GetMusics(playlistId);
 
+        }
+        private bool CanRemoveMusicCommandExecute(object p) => true;
+        #endregion
+        #region CreatePlaylistCommand
+        public ICommand CreatePlaylistCommand { get; }
+        private void OnCreatePlaylistCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            EntityFunction.CreatePlaylist(CreatePlaylistName, context.Id);
+            Playlists = EntityFunction.GetPlaylists(context.Id);
+        }
+        private bool CanCreatePlaylistCommandExecute(object p) => true;
+        #endregion
+        #region ChoosePlaylistCommand
+        public ICommand ChoosePlaylistCommand { get; }
+        private void OnChoosePlaylistCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            var values = (object[])p;
+            Playlist playlist = (Playlist)values[1];
+            Music music = (Music)values[0];
+            EntityFunction.AddMusic(playlist.Id, music);
+            Task.Factory.StartNew(() =>
+            {
+                context.MessagePopup = true;
+                Thread.Sleep(500);
+                context.MessagePopup = false;
+            });
+        }
+        private bool CanChoosePlaylistCommandExecute(object p) => true;
+        #endregion
 
+        #region OpenPlaylistCommand
+        public ICommand OpenPlaylistCommand { get; }
+        private void OnOpenPlaylistCommandExecuted(object p)
+        {
+            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            Playlist playlist = (Playlist)p;
+            PlaylistName = playlist.Name;
+            PlaylistMusics = EntityFunction.GetMusics(playlist.Id);
+            context.OpenPlaylistCommand.Execute(p);
+        }
+
+        private bool CanOpenPlaylistCommandExecute(object p) => true;
+        #endregion
         public PagesView()
         {
             OpenHit2021PageCommand = new LamdaCommand(OnOpenHit2021PageCommandExecuted, CanOpenHit2021PageCommandExecute);
@@ -325,6 +494,11 @@ namespace Cosmic.ViewModels
             OpenNewMusicPageCommand = new LamdaCommand(OnOpenNewMusicPageCommandExecuted, CanOpenNewMusicPageCommandExecute);
             OpenTopMusicPageCommand = new LamdaCommand(OnOpenTopMusicPageCommandExecuted, CanOpenTopMusicPageCommandExecute);
             PlayMusicCommand = new LamdaCommand(OnPlayMusicCommandExecuted, CanPlayMusicCommandExecute);
+            LikeMusicCommand = new LamdaCommand(OnLikeMusicCommandExecuted, CanLikeMusicCommandExecute);
+            OpenPlaylistCommand = new LamdaCommand(OnOpenPlaylistCommandExecuted, CanOpenPlaylistCommandExecute);
+            RemoveMusicCommand = new LamdaCommand(OnRemoveMusicCommandExecuted, CanRemoveMusicCommandExecute);
+            CreatePlaylistCommand = new LamdaCommand(OnCreatePlaylistCommandExecuted, CanCreatePlaylistCommandExecute);
+            ChoosePlaylistCommand = new LamdaCommand(OnChoosePlaylistCommandExecuted, CanChoosePlaylistCommandExecute);
         }
 
         static PagesView()

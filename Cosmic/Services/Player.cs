@@ -10,10 +10,10 @@ namespace Cosmic.Services
     static class Player
     {
        public static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-        public static void Play(object items, object item)
+        public static void Play(List<MusicItem> items, MusicItem item)
         {
-            List<MusicItem> musicItems = (List<MusicItem>)items;
-            MusicItem musicItem = (MusicItem)item;
+            List<MusicItem> musicItems = items;
+            MusicItem musicItem = item;
             wplayer.currentPlaylist.clear();
             foreach(var i in musicItems)
             {
@@ -37,6 +37,7 @@ namespace Cosmic.Services
             Task.Factory.StartNew(() =>
             {
                 wplayer.URL = url;
+                wplayer.settings.volume = 50;
                 wplayer.controls.play();
             });
         }

@@ -61,7 +61,7 @@
                             <Button Content="Мой профиль" Style="{StaticResource ProfileMenuButton}" Command="{Binding OpenProfilePageCommand}"></Button>
                         </Grid>
                         <Grid Grid.Row="0" Grid.Column="1">
-                            <Button Content="Мои закладки" Style="{StaticResource ProfileMenuButton}"></Button>
+                            <Button Content="Мои закладки" Style="{StaticResource ProfileMenuButton}" Command="{Binding OpenPlaylistsCommand}"></Button>
                         </Grid>
                         <Grid Grid.Row="1" Grid.Column="0">
                             <Button Content="Coming soon" Style="{StaticResource ProfileMenuButton}"></Button>

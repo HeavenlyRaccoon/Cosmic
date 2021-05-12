@@ -29,7 +29,6 @@ namespace Cosmic.Services
                     {
                         Login = login,
                         Password = GetHashString(password)
-
                     };
 
                     context.Users.Add(user);
@@ -125,6 +124,143 @@ namespace Cosmic.Services
                 image.StreamSource = ms;
                 image.EndInit();
                 return image;
+            }
+        }
+
+        public static ICollection<Playlist> GetPlaylists(int id)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    var Playlists = context.Users.Where(t => t.Id == id).First().Playlists;
+                    return Playlists;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public static ICollection<Music> GetMusics(int id)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    var Playlists = context.Playlists.Where(t => t.Id == id).First();
+                    return Playlists.Musics;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static void AddDefaultPlaylist(int id)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    var Playlist = new Playlist() { Name = "Мне нравится" };
+                    var playlists = context.Users.Where(t => t.Id == id).First().Playlists;
+                    playlists.Add(Playlist);
+                    context.SaveChanges();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cannot add default playlist");
+            }
+        }
+
+        public static void AddMusic(int id, MusicItem musicItem)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    var playlist = context.Users.Where(t => t.Id == id).First().Playlists.First();
+                    Music music = new Music()
+                    {
+                        Author = musicItem.Artist,
+                        MusicSource = musicItem.MusicData,
+                        Title = musicItem.Title,
+                        TrackTime = musicItem.TrackTime,
+                        ImgData = musicItem.ImgData
+                    };
+                    playlist.Musics.Add(music);
+                    context.SaveChanges();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cannot add music to playlist");
+            }
+        }
+
+        public static void AddMusic(int idPlaylist, Music music)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    var musics = context.Playlists.Where(t=>t.Id==idPlaylist).First().Musics;
+                    Music music1 = new Music() 
+                    { 
+                        Author = music.Author, 
+                        ImgData = music.ImgData, 
+                        MusicSource = music.MusicSource, 
+                        Title = music.Title, 
+                        TrackTime = music.TrackTime 
+                    };
+                    musics.Add(music1);
+                    context.SaveChanges();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cannot add music to playlist");
+            }
+        }
+
+        public static void RemoveMusic(int id)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    var Musics = context.Musics;
+                    Musics.Remove(Musics.Where(t => t.Id == id).First());
+                    context.SaveChanges();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cannot remove music from playlist");
+            }
+        }
+
+        public static void CreatePlaylist(string name, int userId)
+        {
+            try
+            {
+                using (var context = new MyDbContext())
+                {
+                    var Playlist = new Playlist()
+                    {
+                        Name = name
+                    };
+                    var playlists = context.Users.Where(t => t.Id == userId).First().Playlists;
+                    playlists.Add(Playlist);
+                    context.SaveChanges();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cannot remove music from playlist");
             }
         }
         public static string GetHashString(string s)

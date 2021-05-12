@@ -13,5 +13,6 @@ namespace Cosmic.Models
         public string TrackTime { get; set; }
         public string ImgData { get; set; }
         public string MusicData { get; set; }
+
     }
 }

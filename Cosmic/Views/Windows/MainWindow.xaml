@@ -51,6 +51,14 @@
             </Grid.ColumnDefinitions>
             
             <Grid Grid.Column="1">
+                <Popup IsOpen="{Binding MessagePopup}" Height="80" MaxWidth="770" Placement="Center" PopupAnimation="Fade" AllowsTransparency="True">
+                    <StackPanel>
+                        <Border Height="15" Width="770" Background="#000" CornerRadius="10 10 0 0"></Border>
+                        <Border Height="60" Width="770" Background="#141319" CornerRadius="0 0 10 10">
+                            <TextBlock Text="Успешно добавлено" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+                        </Border>
+                    </StackPanel>
+                </Popup>
                 <Popup x:Name="pLink" IsOpen="{Binding Popup}" Height="80" MaxWidth="770" Placement="Center" PopupAnimation="Fade" AllowsTransparency="True">
                     <StackPanel>
                         <Border Height="15" Width="770" Background="#000" CornerRadius="10 10 0 0">
