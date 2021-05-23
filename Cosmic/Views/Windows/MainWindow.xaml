@@ -144,7 +144,11 @@
                                     </DockPanel>
                                 </Grid>
                                 <Grid Grid.Column="6" Margin="0 0 10 0">
-                                    <Button Style="{StaticResource DownloadStyle}"></Button>
+                                    <Grid.DataContext>
+                                        <vm:PagesView></vm:PagesView>
+                                    </Grid.DataContext>
+                                    <Button Style="{StaticResource DownloadStyle}" Command="{Binding DownloadMusicCommand}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Popup}, Path=DataContext.MusicItem}"></Button>
                                 </Grid>
                                 <Grid Grid.Column="7" Margin=" 0 0 10 0">
                                     

@@ -6,6 +6,7 @@ using Cosmic.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -473,6 +474,38 @@ namespace Cosmic.ViewModels
         }
         private bool CanChoosePlaylistCommandExecute(object p) => true;
         #endregion
+        #region DownloadMusicCommand
+        public ICommand DownloadMusicCommand { get; }
+        private void OnDownloadMusicCommandExecuted(object p)
+        {
+            string path = "";
+            string title = "";
+            if (p is Music)
+            {
+                Music music = (Music)p;
+                path = music.MusicSource;
+                title = music.Title;
+            }
+            else
+            {
+                MusicItem musicItem = (MusicItem)p;
+                path = musicItem.MusicData;
+                title = musicItem.Title;
+            }
+            System.Windows.Forms.FolderBrowserDialog folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = folderBrowser.ShowDialog();
+            if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    WebClient webcl = new WebClient();
+                    webcl.DownloadFile(path, folderBrowser.SelectedPath + $"\\{title}.mp3");
+                });
+            }
+        }
+        private bool CanDownloadMusicCommandExecute(object p) => true;
+        #endregion
+
 
         #region OpenPlaylistCommand
         public ICommand OpenPlaylistCommand { get; }
@@ -499,6 +532,7 @@ namespace Cosmic.ViewModels
             RemoveMusicCommand = new LamdaCommand(OnRemoveMusicCommandExecuted, CanRemoveMusicCommandExecute);
             CreatePlaylistCommand = new LamdaCommand(OnCreatePlaylistCommandExecuted, CanCreatePlaylistCommandExecute);
             ChoosePlaylistCommand = new LamdaCommand(OnChoosePlaylistCommandExecuted, CanChoosePlaylistCommandExecute);
+            DownloadMusicCommand = new LamdaCommand(OnDownloadMusicCommandExecuted, CanDownloadMusicCommandExecute);
         }
 
         static PagesView()
