@@ -870,6 +870,8 @@ namespace Cosmic.ViewModels
             Name = "";
             AboutUser = "";
             Avatar = new BitmapImage(new Uri("../../Resources/Icons/noavatar.png", UriKind.Relative));
+            Popup = false;
+            Player.Pause();
         }
 
         private bool CanExitCommandExecute(object p) => true;

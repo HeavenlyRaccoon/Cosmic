@@ -1,5 +1,6 @@
 ﻿using Cosmic.Infastructure.Commands;
 using Cosmic.ViewModels.Base;
+using Cosmic.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 
 namespace Cosmic.ViewModels
 {
     class ProfileWindowViewModel : ViewModelBase
     {
+
+
+        #region AdminButton
+        public Visibility AdminButton
+        {
+            get
+            {
+                var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+                if (context.Id <= 5)
+                {
+                    return Visibility.Visible;
+                }
+                else return Visibility.Collapsed;
+            }
+        }
+
+        #endregion
+
+
         #region Команды
 
         #region CloseProfileWindowCommand
@@ -37,6 +58,21 @@ namespace Cosmic.ViewModels
         }
 
         private bool CanOpenProfilePageCommandExecute(object p) => true;
+        #endregion
+        #region OpenAdminPanelCommand
+        public ICommand OpenAdminPanelCommand { get; }
+
+        private void OnOpenAdminPanelCommandExecuted(object p)
+        {
+            //var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+            AdminWindow adminWindow = new AdminWindow();
+            BlurEffect blurEffect = new BlurEffect();
+            blurEffect.Radius = 10;
+            Application.Current.MainWindow.Effect = blurEffect;
+            adminWindow.ShowDialog();
+        }
+
+        private bool CanOpenAdminPanelCommandExecute(object p) => true;
         #endregion
         #region OpenPlaylistsCommand
         public ICommand OpenPlaylistsCommand { get; }
@@ -72,6 +108,7 @@ namespace Cosmic.ViewModels
             OpenProfilePageCommand = new LamdaCommand(OnOpenProfilePageCommandExecuted, CanOpenProfilePageCommandExecute);
             OpenPlaylistsCommand = new LamdaCommand(OnOpenPlaylistsCommandExecuted, CanOpenPlaylistsCommandExecute);
             ExitCommand = new LamdaCommand(OnExitCommandExecuted, CanExitCommandExecute);
+            OpenAdminPanelCommand = new LamdaCommand(OnOpenAdminPanelCommandExecuted, CanOpenAdminPanelCommandExecute);
 
         }
     }

@@ -49,7 +49,7 @@
                     <Button Style="{StaticResource LogInBautton}" Margin='0 0 0 13' Command="{Binding AuthorizationCommand}"></Button>
                     <DockPanel Width="280">
                         <TextBlock HorizontalAlignment="Left"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" Command="{Binding OpenRegistrationCommand}">Регистрация</Hyperlink></TextBlock>
-                        <TextBlock HorizontalAlignment="Right"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Восстановить пароль</Hyperlink></TextBlock>
+                        <!--<TextBlock HorizontalAlignment="Right"><Hyperlink TextDecorations="None" Foreground="#e056fd" FontSize="13" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Восстановить пароль</Hyperlink></TextBlock>-->
                     </DockPanel>
                     <TextBlock Margin="25 5 25 0 " FontSize="15" Foreground="#e85319" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" Text="{Binding ExepMassage, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 </StackPanel>
