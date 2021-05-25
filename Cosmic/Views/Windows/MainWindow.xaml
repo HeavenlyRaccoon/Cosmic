@@ -388,7 +388,7 @@
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Row="1" Grid.Column="2" Height="1200" VerticalAlignment="Top" Visibility="{Binding VisibilityState}">
+                    <Grid Grid.Row="1" Grid.Column="2" Height="1200" VerticalAlignment="Top" Visibility="{Binding VisibilityState, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         <Border CornerRadius="10" Background="#192229" MinWidth="150" Margin="5 25 40 0" >
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -403,6 +403,13 @@
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <Border Background="#141319" ></Border>
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <StackPanel Orientation="Vertical">
+                                        <ListBox ItemsSource="{Binding TopDay}" Background="Transparent" BorderThickness="0"
+                                              ItemTemplate="{StaticResource DayMusicItemsBox}" Style="{StaticResource ListBoxScrollDisable}" Margin="0 0 0 0">
+                                        </ListBox>
+                                    </StackPanel>
                                 </Grid>
                             </Grid>
                         </Border>

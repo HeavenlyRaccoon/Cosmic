@@ -6,7 +6,9 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using WMPLib;
 
 namespace Cosmic.Services
 {
@@ -14,6 +16,7 @@ namespace Cosmic.Services
     {
         private const string NodeUrl = "https://mp3trip.info";
 
+        //For mp3trip
         public async static Task<List<MusicItem>> GetMusicItems(string source)
         {
             List<MusicItem> musicItems = new List<MusicItem>();
@@ -32,6 +35,27 @@ namespace Cosmic.Services
                 musicItems.Add(musicItem);
             }
 
+            return musicItems;
+        }
+
+        //For megapesni.com
+        public async static Task<List<MusicItem>> GetDayMusicItems(string source)
+        {
+            List<MusicItem> musicItems = new List<MusicItem>();
+            var config = Configuration.Default;
+            var context = BrowsingContext.New(config);
+            var document = await context.OpenAsync(req => req.Content(source));
+            var tracks = document.GetElementsByClassName("playlist__item");
+            foreach (var track in tracks)
+            {
+                MusicItem musicItem = new MusicItem();
+                musicItem.Title = track.GetElementsByClassName("playlist__heading").First().GetElementsByTagName("a").Last().TextContent;
+                musicItem.Artist = track.GetElementsByClassName("playlist__heading").First().GetElementsByTagName("a").First().TextContent;
+                musicItem.ImgData = "https://www.pngkey.com/png/full/120-1205949_dj-record-png-graphic-freeuse-library-circle.png";
+                musicItem.MusicData =$"https://musify.club{track.GetElementsByClassName("playlist__control play").First().GetAttribute("data-url")}";
+                musicItem.TrackTime = track.GetElementsByClassName("text-muted")[1].TextContent;
+                musicItems.Add(musicItem);
+            }
             return musicItems;
         }
 
@@ -58,6 +82,13 @@ namespace Cosmic.Services
             List<MusicItem> musicItems = new List<MusicItem>();
             string source = GetRequest(url);
             musicItems = GetMusicItems(source).Result;
+            return musicItems;
+        }
+        public static List<MusicItem> DayPlaylist(string url)
+        {
+            List<MusicItem> musicItems = new List<MusicItem>();
+            string source = GetRequest(url);
+            musicItems = GetDayMusicItems(source).Result;
             return musicItems;
         }
 

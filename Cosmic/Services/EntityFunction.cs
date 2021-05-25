@@ -19,22 +19,36 @@ namespace Cosmic.Services
             {
                 using (var context = new MyDbContext())
                 {
-                    if (context.Users.Where(t=>t.Login==login).Count()!=0)
+                    using (var transaction = context.Database.BeginTransaction())
                     {
-                        return "Пользователь с таким логином уже существует";
+                        try
+                        {
+                            if (context.Users.Where(t => t.Login == login).Count() != 0)
+                            {
+                                return "Пользователь с таким логином уже существует";
+                            }
+
+
+                            var user = new User()
+                            {
+                                Login = login,
+                                Password = GetHashString(password)
+                            };
+
+                            context.Users.Add(user);
+                            context.SaveChanges();
+                            transaction.Commit();
+
+                            return "";
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            return "";
+                        }
+                        
                     }
-
-
-                    var user = new User()
-                    {
-                        Login = login,
-                        Password = GetHashString(password)
-                    };
-
-                    context.Users.Add(user);
-                    context.SaveChanges();
-
-                    return "";
+                    
                 }
             }
             catch (Exception ex)
@@ -282,6 +296,24 @@ namespace Cosmic.Services
                 hash += string.Format("{0:x2}", b);
 
             return hash;
+        }
+
+        public static User AuthorizationAsync(string login, string password)
+        {
+            try
+            {
+                string tmpPassword = GetHashString(password);
+                using (var context = new MyDbContext())
+                {
+                    User user = context.Users.FindAsync(2).Result;
+
+                    return user;
+                }
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

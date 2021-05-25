@@ -1444,4 +1444,78 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <DataTemplate x:Key="DayMusicItemsBox">
+        <Grid MaxWidth="250" Margin="0 10 0 10" Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" >
+                <Rectangle Width="40" Height="40" RadiusX="10" RadiusY="10">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding Path=ImgData}" Stretch="Uniform"></ImageBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="10 0 10 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock Text="{Binding Path=Title}" TextTrimming="CharacterEllipsis" FontSize="16" Foreground="White"
+                                                                       FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" x:Name="MusicTitle"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0 3 0 0">
+                    <TextBlock Text="{Binding Path=Artist}" MaxWidth="300" TextTrimming="CharacterEllipsis" FontSize="13" Foreground="#ccc"
+                                                                       FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" x:Name="MusicArtist"></TextBlock>
+                </Grid>
+            </Grid>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="Transparent">
+                <Rectangle.Resources>
+                    <converters:Converter x:Key="ParmConverter"></converters:Converter>
+                </Rectangle.Resources>
+                <Rectangle.InputBindings>
+                    <MouseBinding Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=DataContext.PlayDayMusic}" MouseAction="LeftClick">
+                        <MouseBinding.CommandParameter>
+                            <MultiBinding Converter="{StaticResource ParmConverter}">
+                                <Binding RelativeSource="{RelativeSource AncestorType=ListBox}" Path="ItemsSource"></Binding>
+                                <Binding></Binding>
+                            </MultiBinding>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </Rectangle.InputBindings>
+                <Rectangle.Triggers>
+                    <EventTrigger RoutedEvent="Rectangle.MouseEnter">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <ColorAnimation To="#E056FD" Duration="0:0:0:0.2" Storyboard.TargetName="MusicTitle" 
+                                                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"></ColorAnimation>
+                                    <ColorAnimation To="#E056FD" Duration="0:0:0:0.2" Storyboard.TargetName="MusicArtist"
+                                                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"></ColorAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <ColorAnimation To="White" Duration="0:0:0:2" Storyboard.TargetName="MusicTitle"
+                                                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"></ColorAnimation>
+                                    <ColorAnimation To="White" Duration="0:0:0:0.2" Storyboard.TargetName="MusicArtist"
+                                                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"></ColorAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Rectangle.Triggers>
+            </Rectangle>
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

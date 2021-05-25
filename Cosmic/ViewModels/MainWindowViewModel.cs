@@ -33,6 +33,17 @@ namespace Cosmic.ViewModels
 
         #endregion
 
+        #region TopDay
+
+        private static List<MusicItem> _TopDay;
+        public List<MusicItem> TopDay
+        {
+            get => _TopDay;
+        }
+
+
+        #endregion
+
         #region Popup
 
         private static bool _Popup=false;
@@ -144,7 +155,6 @@ namespace Cosmic.ViewModels
                 {
                     Task.Factory.StartNew(() =>
                     {
-
                         Popup = false;
                         Thread.Sleep(300);
                         Popup = true;
@@ -965,7 +975,7 @@ namespace Cosmic.ViewModels
         private bool CanSaveChangeCommandExecute(object p) => true;
         #endregion
         #region OpenPlaylistsCommand
-        public ICommand OpenPlaylistsCommand;
+        public ICommand OpenPlaylistsCommand { get; }
         private void OnOpenPlaylistsCommandExecuted(object p)
         {
             FrameContent = new Playlists();
@@ -976,13 +986,22 @@ namespace Cosmic.ViewModels
         private bool CanOpenPlaylistsCommandExecute(object p) => true;
         #endregion
         #region OpenPlaylistCommand
-        public ICommand OpenPlaylistCommand;
+        public ICommand OpenPlaylistCommand { get; }
         private void OnOpenPlaylistCommandExecuted(object p)
         {
             FrameContent = new UserPlaylist();
         }
 
         private bool CanOpenPlaylistCommandExecute(object p) => true;
+        #endregion
+        #region PlayDayMusic
+        public ICommand PlayDayMusic { get; }
+        private void OnPlayDayMusicExecuted(object p)
+        {
+            ((PagesView)MainPage.DataContext).PlayMusicCommand.Execute(p);
+        }
+
+        private bool CanPlayDayMusicExecute(object p) => true;
         #endregion
 
         public static void ChangeMusic(object item)
@@ -1038,6 +1057,7 @@ namespace Cosmic.ViewModels
             SaveChangeCommand = new LamdaCommand(OnSaveChangeCommandExecuted, CanSaveChangeCommandExecute);
             OpenPlaylistsCommand = new LamdaCommand(OnOpenPlaylistsCommandExecuted, CanOpenPlaylistsCommandExecute);
             OpenPlaylistCommand = new LamdaCommand(OnOpenPlaylistCommandExecuted, CanOpenPlaylistCommandExecute);
+            PlayDayMusic = new LamdaCommand(OnPlayDayMusicExecuted, CanPlayDayMusicExecute);
 
             #endregion
             BindWidth();
@@ -1067,6 +1087,7 @@ namespace Cosmic.ViewModels
             Shazam = new Shazam();
             _FrameContent = MainPage;
             Player.wplayer.MediaChange += ChangeMusic;
+            _TopDay = MusicParser.DayPlaylist("https://musify.club/hits/top100week?_pjax=%23bodyContent").GetRange(0, 18);
         }
 
         public async void OpacityFunc(Page page)
