@@ -72,9 +72,9 @@ namespace Cosmic.ViewModels
 
         private void OnAuthorizationCommandExecuted(object p)
         {
-            if (Login.Length > 0)
+            if (Login.Length > 0&&!Login.Contains(" "))
             {
-                if (Password.Length >= 6)
+                if (Password.Length >= 6&&!Password.Contains(" "))
                 {
                     User user = EntityFunction.Authorization(Login, Password);
                     if (user != null)
@@ -94,9 +94,9 @@ namespace Cosmic.ViewModels
                     }
                     else ExepMassage = "Неверный логин или пароль";
                 }
-                else ExepMassage = "Пароль слишком короткий, минимум 6 символов";
+                else ExepMassage = "Пароль должен содержать минимум 6\n символов, и не содержать пробелов";
             }
-            else ExepMassage = "Укажите логин";
+            else ExepMassage = "Укажите логин. Пробелы не разрешены.";
         }
 
         private bool CanAuthorizationCommandExecute(object p) => true;

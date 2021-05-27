@@ -282,7 +282,7 @@ namespace Cosmic.ViewModels
         #endregion
         #region ProfileChangeVisibility
 
-        private static Visibility _ProfileChangeVisibility = Visibility.Collapsed;
+        private Visibility _ProfileChangeVisibility = Visibility.Collapsed;
         public Visibility ProfileChangeVisibility
         {
             get => _ProfileChangeVisibility;
@@ -941,7 +941,7 @@ namespace Cosmic.ViewModels
             {
                 if (EntityFunction.PasswordEqual(Id, OldPassword))
                 {
-                    if (NewPassword.Length >= 6)
+                    if (NewPassword.Length >= 6&&!NewPassword.Contains(" "))
                     {
                         if (NewPassword == ConfirmPassword)
                         {
@@ -950,7 +950,7 @@ namespace Cosmic.ViewModels
                         }
                         else ExepMassage = "Пароли не совпадают";
                     }
-                    else ExepMassage = "Пароль слишком короткий, минимум 6 символов";
+                    else ExepMassage = "Пароль должен содержать минимум 6\n символов, и не содержать пробелов";
                 }
                 else ExepMassage = "Неверный старый пароль";
             }

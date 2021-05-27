@@ -61,9 +61,9 @@ namespace Cosmic.ViewModels
 
         private void OnRegistrationCommandExecuted(object p)
         {
-            if (Login.Length > 0)
+            if (Login.Length > 0 && !Login.Contains(" "))
             {
-                if (Password.Length >= 6)
+                if (Password.Length >= 6 && !Password.Contains(" "))
 	            {
                     bool en = true;
                     for (int i = 0; i < Password.Length; i++)
@@ -98,8 +98,8 @@ namespace Cosmic.ViewModels
                         }
                     }else ExepMassage = "Повторите пароль";
                 }
-                else ExepMassage = "Пароль слишком короткий, минимум 6 символов";
-            }else ExepMassage = "Укажите логин";
+                else ExepMassage = "Пароль должен содержать минимум 6\n символов, и не содержать пробелов";
+            }else ExepMassage = "Укажите логин. Пробелы не разрешены.";
         }
 
         private bool CanRegistrationCommandExecute(object p) => true;
