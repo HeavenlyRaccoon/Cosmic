@@ -353,7 +353,7 @@ namespace Cosmic.ViewModels
         public string Group
         {
             get {
-                if (Id <= 10)
+                if (Id <= 5)
                 {
                     return "Администратор";
                 }
