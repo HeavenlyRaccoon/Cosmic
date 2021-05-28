@@ -102,5 +102,29 @@ namespace Cosmic.Services
             List<MusicItem> musicItems = GetMusicItems(source).Result;
             return musicItems;
         }
+
+        public static bool ConnectionAvailable()
+        {
+            try
+            {
+                HttpWebRequest reqFP = (HttpWebRequest)HttpWebRequest.Create("http://www.google.com");
+
+                HttpWebResponse rspFP = (HttpWebResponse)reqFP.GetResponse();
+                if (HttpStatusCode.OK == rspFP.StatusCode)
+                {
+                    rspFP.Close();
+                    return true;
+                }
+                else
+                {
+                    rspFP.Close();
+                    return false;
+                }
+            }
+            catch (WebException)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -8,6 +8,8 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -882,6 +884,11 @@ namespace Cosmic.ViewModels
             Avatar = new BitmapImage(new Uri("../../Resources/Icons/noavatar.png", UriKind.Relative));
             Popup = false;
             Player.Pause();
+            IsolatedStorageFile storFile = IsolatedStorageFile.GetUserStoreForAssembly();
+            IsolatedStorageFileStream storStream = new IsolatedStorageFileStream("UserSetting.set", FileMode.Create, storFile);
+            StreamWriter userWriter = new StreamWriter(storStream);
+            userWriter.Write(0 + " " + 0 + " " + false);
+            userWriter.Close();
         }
 
         private bool CanExitCommandExecute(object p) => true;
@@ -1065,29 +1072,38 @@ namespace Cosmic.ViewModels
 
         static MainWindowViewModel()
         {
-            MainPage = new MainPage();
-            NewMusic = new NewMusic();
-            TopMusic = new TopMusic();
-            Hit2021 = new Hit2021();
-            Hit2020 = new Hit2020();
-            Hit2019 = new Hit2019();
-            Hit2018 = new Hit2018();
-            Hit2017 = new Hit2017();
-            ClubMusic = new ClubMusic();
-            CarMusic = new CarMusic();
-            AnimeMusic = new AnimeMusic();
-            TikTokMusic = new TikTokMusic();
-            RussianRap = new RussianRap();
-            NewYear = new NewYear();
-            ForeignRock = new ForeignRock();
-            RussianPop = new RussianPop();
-            ForeignRap = new ForeignRap();
-            ForeignPop = new ForeignPop();
-            OldMusic = new OldMusic();
-            Shazam = new Shazam();
+            try
+            {
+                MainPage = new MainPage();
+                NewMusic = new NewMusic();
+                TopMusic = new TopMusic();
+                Hit2021 = new Hit2021();
+                Hit2020 = new Hit2020();
+                Hit2019 = new Hit2019();
+                Hit2018 = new Hit2018();
+                Hit2017 = new Hit2017();
+                ClubMusic = new ClubMusic();
+                CarMusic = new CarMusic();
+                AnimeMusic = new AnimeMusic();
+                TikTokMusic = new TikTokMusic();
+                RussianRap = new RussianRap();
+                NewYear = new NewYear();
+                ForeignRock = new ForeignRock();
+                RussianPop = new RussianPop();
+                ForeignRap = new ForeignRap();
+                ForeignPop = new ForeignPop();
+                OldMusic = new OldMusic();
+                Shazam = new Shazam();
+                _TopDay = MusicParser.DayPlaylist("https://musify.club/hits/top100week?_pjax=%23bodyContent").GetRange(0, 18);
+            }
+            catch
+            {
+                throw new NetworkException();
+            }
+
             _FrameContent = MainPage;
             Player.wplayer.MediaChange += ChangeMusic;
-            _TopDay = MusicParser.DayPlaylist("https://musify.club/hits/top100week?_pjax=%23bodyContent").GetRange(0, 18);
+            
         }
 
         public async void OpacityFunc(Page page)
@@ -1117,6 +1133,32 @@ namespace Cosmic.ViewModels
             bind.Path = new PropertyPath("WindowWidth");
             bind.Mode = BindingMode.TwoWay;
             Application.Current.MainWindow.SetBinding(MainWindow.WidthProperty, bind);
+        }
+
+        public void AutoAuth()
+        {
+            IsolatedStorageFile userStorage = IsolatedStorageFile.GetUserStoreForAssembly();
+            string[] files = userStorage.GetFileNames("UserSetting.set");
+            if (files.Length == 0)
+            {
+                MessageBox.Show("Нет данных, сохраненных для этого пользователя");
+            }
+            else
+            {
+                IsolatedStorageFileStream userStream = new IsolatedStorageFileStream("UserSetting.set", FileMode.Open, userStorage);
+                StreamReader userReader = new StreamReader(userStream);
+                string contents = userReader.ReadToEnd();
+                userReader.Close();
+                AuthWindow authWindow = new AuthWindow();
+                var context = (AuthWindowViewModel)authWindow.DataContext;
+                context.Login = contents.Split(' ')[0];
+                context.Password = contents.Split(' ')[1];
+                context.checkbox = contents.Split(' ')[2] == "True";
+                if (contents.Split(' ')[2] == "True")
+                {
+                    context.AuthorizationCommand.Execute(null);
+                }
+            }
         }
     }
 }

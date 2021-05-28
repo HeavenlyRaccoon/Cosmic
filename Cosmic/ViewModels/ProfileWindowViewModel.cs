@@ -41,7 +41,7 @@ namespace Cosmic.ViewModels
 
         private void OnCloseProfileWindowCommandExecuted(object p)
         {
-            Application.Current.Windows[1].Close();
+            Application.Current.Windows[Application.Current.Windows.Count-1].Close();
             Application.Current.Windows[0].Effect = null;
         }
 
@@ -80,8 +80,8 @@ namespace Cosmic.ViewModels
         private void OnOpenPlaylistsCommandExecuted(object p)
         {
             var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
-            context.OpenPlaylistsCommand.Execute(p);
             context.CloseProfileWindowCommand.Execute(p);
+            context.OpenPlaylistsCommand.Execute(p);
         }
 
         private bool CanOpenPlaylistsCommandExecute(object p) => true;

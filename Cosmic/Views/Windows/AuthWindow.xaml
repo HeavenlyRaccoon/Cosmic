@@ -43,7 +43,7 @@
                         <styles:BindablePasswordBoxPlaceholder Tag="Пароль" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="16" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat" VerticalAlignment="Center" BorderThickness="0"></styles:BindablePasswordBoxPlaceholder>
                     </Border>
                     <DockPanel Width="280" Margin="0 0 0 15">
-                        <CheckBox  IsChecked="False" Style="{StaticResource CheckBoxStyle1}" Margin="0 0 5 0"></CheckBox>
+                        <CheckBox  IsChecked="{Binding checkbox}" Style="{StaticResource CheckBoxStyle1}" Margin="0 0 5 0"></CheckBox>
                         <Label Foreground="#939393" FontSize="14" FontFamily="/Cosmic;component/Resources/Fonts/#Montserrat">Запомнить</Label>
                     </DockPanel>
                     <Button Style="{StaticResource LogInBautton}" Margin='0 0 0 13' Command="{Binding AuthorizationCommand}"></Button>

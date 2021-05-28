@@ -144,7 +144,7 @@ namespace Cosmic.ViewModels
         private void OnCloseProfileWindowCommandExecuted(object p)
         {
             db.Dispose();
-            Application.Current.Windows[2].Close();
+            Application.Current.Windows[Application.Current.Windows.Count-1].Close();
         }
 
         private bool CanCloseProfileWindowCommandExecute(object p) => true;

@@ -23,7 +23,10 @@ namespace Cosmic.Resources.Styles
         public string Password
         {
             get { return (string)GetValue(PasswordProperty); }
-            set { SetValue(PasswordProperty, value); }
+            set 
+            {
+                SetValue(PasswordProperty, value);
+            }
         }
 
         // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...

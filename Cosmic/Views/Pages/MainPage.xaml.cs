@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmic.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,14 @@ namespace Cosmic.Views.Pages
     {
         public MainPage()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch
+            {
+                throw new NetworkException();
+            }
         }
     }
 }

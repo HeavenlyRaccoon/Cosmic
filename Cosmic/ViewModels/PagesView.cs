@@ -537,29 +537,37 @@ namespace Cosmic.ViewModels
 
         static PagesView()
         {
-            _Hit2021 = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2021/").GetRange(0, 5);
-            _TikTok = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-tik-tok/").GetRange(0, 5);
-            _NewMusic = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 13);
-            _PopularMusic = MusicParser.Playlist("https://mp3trip.info/populyarnye/").GetRange(0, 13);
-            _NewMusicPage = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 45);
-            _TopPage = MusicParser.Playlist("https://mp3trip.info/populyarnye/").GetRange(0, 45);
-            _Hit2021Page = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2021/").GetRange(0, 45);
-            _Hit2020Page = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2020/").GetRange(0, 45);
-            _Hit2019Page = MusicParser.Playlist("https://mp3trip.info/hity-2019/").GetRange(0, 45);
-            _Hit2018Page = MusicParser.Playlist("https://mp3trip.info/hity-2018/").GetRange(0, 45);
-            _Hit2017Page = MusicParser.Playlist("https://mp3trip.info/hity-2017/").GetRange(0, 45);
-            _ClubMusicPage = MusicParser.Playlist("https://mp3trip.info/klubnaya-muzyka/").GetRange(0, 45);
-            _CarMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-v-mashinu/").GetRange(0, 45);
-            _AnimeMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-anime/").GetRange(0, 45);
-            _TikTokMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-tik-tok/").GetRange(0, 45);
-            _RussianRapPage = MusicParser.Playlist("https://mp3trip.info/russkiy-rep/").GetRange(0, 45);
-            _NewYearPage = MusicParser.Playlist("https://mp3trip.info/novogodnie-pesni-2019-2020/").GetRange(0, 45);
-            _ForeignRockPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-rok/").GetRange(0, 45);
-            _RussianPopPage = MusicParser.Playlist("https://mp3trip.info/russkiy-pop/").GetRange(0, 45);
-            _ForeignRapPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-rep/").GetRange(0, 45);
-            _ForeignPopPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-pop/").GetRange(0, 45);
-            _OldMusicPage = MusicParser.Playlist("https://mp3trip.info/diskoteka-80-90x/").GetRange(0, 45);
-            _ShazamPage = MusicParser.Playlist("https://mp3trip.info/top-100-shazam/").GetRange(0, 45);
+            try
+            {
+                _Hit2021 = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2021/").GetRange(0, 5);
+                _TikTok = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-tik-tok/").GetRange(0, 5);
+                _NewMusic = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 13);
+                _PopularMusic = MusicParser.Playlist("https://mp3trip.info/populyarnye/").GetRange(0, 13);
+                _NewMusicPage = MusicParser.Playlist("https://mp3trip.info/novye-postuplenija-mp3/").GetRange(0, 45);
+                _TopPage = MusicParser.Playlist("https://mp3trip.info/populyarnye/").GetRange(0, 45);
+                _Hit2021Page = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2021/").GetRange(0, 45);
+                _Hit2020Page = MusicParser.Playlist("https://mp3trip.info/muzykalnye-hity-2020/").GetRange(0, 45);
+                _Hit2019Page = MusicParser.Playlist("https://mp3trip.info/hity-2019/").GetRange(0, 45);
+                _Hit2018Page = MusicParser.Playlist("https://mp3trip.info/hity-2018/").GetRange(0, 45);
+                _Hit2017Page = MusicParser.Playlist("https://mp3trip.info/hity-2017/").GetRange(0, 45);
+                _ClubMusicPage = MusicParser.Playlist("https://mp3trip.info/klubnaya-muzyka/").GetRange(0, 45);
+                _CarMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-v-mashinu/").GetRange(0, 45);
+                _AnimeMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-anime/").GetRange(0, 45);
+                _TikTokMusicPage = MusicParser.Playlist("https://mp3trip.info/muzyka-iz-tik-tok/").GetRange(0, 45);
+                _RussianRapPage = MusicParser.Playlist("https://mp3trip.info/russkiy-rep/").GetRange(0, 45);
+                _NewYearPage = MusicParser.Playlist("https://mp3trip.info/novogodnie-pesni-2019-2020/").GetRange(0, 45);
+                _ForeignRockPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-rok/").GetRange(0, 45);
+                _RussianPopPage = MusicParser.Playlist("https://mp3trip.info/russkiy-pop/").GetRange(0, 45);
+                _ForeignRapPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-rep/").GetRange(0, 45);
+                _ForeignPopPage = MusicParser.Playlist("https://mp3trip.info/zarubezhnyy-pop/").GetRange(0, 45);
+                _OldMusicPage = MusicParser.Playlist("https://mp3trip.info/diskoteka-80-90x/").GetRange(0, 45);
+                _ShazamPage = MusicParser.Playlist("https://mp3trip.info/top-100-shazam/").GetRange(0, 45);
+            }
+            catch
+            {
+                throw new NetworkException();
+            }
+           
         }
     }
 }

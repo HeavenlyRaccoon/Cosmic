@@ -2,6 +2,9 @@
 using Cosmic.Models;
 using Cosmic.Services;
 using Cosmic.ViewModels.Base;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
@@ -21,7 +24,7 @@ namespace Cosmic.ViewModels
         #endregion
         #region Password
 
-        private string _Password = "";
+        private static string _Password = "";
         public string Password
         {
             get => _Password;
@@ -39,6 +42,16 @@ namespace Cosmic.ViewModels
         }
 
         #endregion
+        #region checkbox
+
+        private static bool _checkbox = false;
+        public bool checkbox
+        {
+            get => _checkbox;
+            set => Set(ref _checkbox, value);
+        }
+
+        #endregion
 
         #region Команды
 
@@ -47,7 +60,7 @@ namespace Cosmic.ViewModels
 
         private void OnCloseAuthWindowCommandExecuted(object p)
         {
-            Application.Current.Windows[1].Close();
+            Application.Current.Windows[Application.Current.Windows.Count-1].Close();
             Application.Current.Windows[0].Effect = null;
         }
 
@@ -88,6 +101,13 @@ namespace Cosmic.ViewModels
                         {
                            context.Avatar = EntityFunction.ToImage(user.Avatar);
                         }
+
+                        IsolatedStorageFile storFile = IsolatedStorageFile.GetUserStoreForAssembly();
+                        IsolatedStorageFileStream storStream = new IsolatedStorageFileStream("UserSetting.set", FileMode.Create, storFile);
+                        StreamWriter userWriter = new StreamWriter(storStream);
+                        userWriter.Write(Login + " " + Password + " " + checkbox);
+                        userWriter.Close();
+
                         context.OpenMainPageCommand.Execute(p);
                         context.AuthorizationCommand.Execute(p);
                         CloseAuthWindowCommand.Execute(p);
@@ -102,6 +122,23 @@ namespace Cosmic.ViewModels
         private bool CanAuthorizationCommandExecute(object p) => true;
         #endregion
 
+        #region CheckInternet
+        public ICommand CheckInternetCommand { get; }
+
+        private void OnCheckInternetCommandExecuted(object p)
+        {
+            if (MusicParser.ConnectionAvailable())
+            {
+                Application.Current.MainWindow = new MainWindow();
+                Application.Current.Windows[1].Close();
+                Application.Current.Windows[0].Close();
+                Application.Current.MainWindow.Show();
+                
+            }
+        }
+
+        private bool CanCheckInternetCommandExecute(object p) => true;
+        #endregion
         #endregion
 
         public AuthWindowViewModel()
@@ -110,7 +147,7 @@ namespace Cosmic.ViewModels
             CloseAuthWindowCommand = new LamdaCommand(OnCloseAuthWindowCommandExecuted, CanCloseAuthWindowCommandExecute);
             OpenRegistrationCommand = new LamdaCommand(OnOpenRegistrationCommandExecuted, CanOpenRegistrationCommandExecute);
             AuthorizationCommand = new LamdaCommand(OnAuthorizationCommandExecuted, CanAuthorizationCommandExecute);
-
+            CheckInternetCommand = new LamdaCommand(OnCheckInternetCommandExecuted, CanCheckInternetCommandExecute);
             #endregion
         }
     }

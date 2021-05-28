@@ -162,7 +162,7 @@
         </Grid>
         
         <Grid Grid.Row="1" Grid.RowSpan="2">
-            <ScrollViewer Background="#1C272D" BorderBrush="#1C272D">
+            <ScrollViewer CanContentScroll="False" Background="#1C272D" BorderBrush="#1C272D">
                 <Grid Background="#141319">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"></RowDefinition>
