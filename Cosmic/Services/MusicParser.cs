@@ -19,7 +19,7 @@ namespace Cosmic.Services
         //For mp3trip
         public async static Task<List<MusicItem>> GetMusicItems(string source)
         {
-            List<MusicItem> musicItems = new List<MusicItem>();
+            List<MusicItem> musicItems = new List<MusicItem>(45);
             var config = Configuration.Default;
             var context = BrowsingContext.New(config);
             var document = await context.OpenAsync(req => req.Content(source));

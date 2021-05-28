@@ -374,7 +374,10 @@ namespace Cosmic.ViewModels
                 }
             }
             else Parm1 = (List<MusicItem>)values[0];
-
+            if (Parm2.Title == "")
+            {
+                return;
+            }
             Player.Play(Parm1, Parm2);
             var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
             context.Popup = false;
