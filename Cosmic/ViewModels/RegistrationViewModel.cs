@@ -68,7 +68,7 @@ namespace Cosmic.ViewModels
                     bool en = true;
                     for (int i = 0; i < Password.Length; i++)
                     {
-                        if (Password[i] >= 'А' && Password[i] <= 'Я') en = false;
+                        if (Password[i] >= 'А' && Password[i] <= 'Я'|| Password[i] >= 'а' && Password[i] <= 'я') en = false;
                     }
                     if (!en)
                     {
