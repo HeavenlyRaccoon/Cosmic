@@ -1,8 +1,6 @@
 ﻿using Cosmic.Services;
 using Cosmic.ViewModels;
-using Cosmic.Views.Pages;
 using Cosmic.Views.Windows;
-using System;
 using System.Windows;
 
 namespace Cosmic

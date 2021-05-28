@@ -1,14 +1,10 @@
 ﻿using AngleSharp;
 using Cosmic.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using WMPLib;
 
 namespace Cosmic.Services
 {

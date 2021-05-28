@@ -1,15 +1,9 @@
 ﻿using Cosmic.Infastructure.Commands;
 using Cosmic.ViewModels.Base;
 using Cosmic.Views.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
 
 namespace Cosmic.ViewModels
 {

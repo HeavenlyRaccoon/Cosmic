@@ -4,7 +4,6 @@ using Cosmic.Services;
 using Cosmic.ViewModels.Base;
 using System.IO;
 using System.IO.IsolatedStorage;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 

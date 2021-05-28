@@ -1,17 +1,11 @@
 ﻿using Cosmic.Infastructure.Commands;
 using Cosmic.Models;
-using Cosmic.Services;
 using Cosmic.ViewModels.Base;
-using Cosmic.Views.Windows;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Cosmic.ViewModels
