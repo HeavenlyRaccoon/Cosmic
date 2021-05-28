@@ -92,25 +92,29 @@ namespace Cosmic.ViewModels
                     User user = EntityFunction.Authorization(Login, Password);
                     if (user != null)
                     {
-                        var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
-                        context.Id = user.Id;
-                        context.Login = user.Login;
-                        context.Name = user.Name;
-                        context.AboutUser = user.AboutUser;
-                        if (user.Avatar != null)
+                        if (!user.IsBlocked)
                         {
-                           context.Avatar = EntityFunction.ToImage(user.Avatar);
+                            var context = (MainWindowViewModel)((Window)Application.Current.MainWindow).DataContext;
+                            context.Id = user.Id;
+                            context.Login = user.Login;
+                            context.Name = user.Name;
+                            context.AboutUser = user.AboutUser;
+                            if (user.Avatar != null)
+                            {
+                                context.Avatar = EntityFunction.ToImage(user.Avatar);
+                            }
+
+                            IsolatedStorageFile storFile = IsolatedStorageFile.GetUserStoreForAssembly();
+                            IsolatedStorageFileStream storStream = new IsolatedStorageFileStream("UserSetting.set", FileMode.Create, storFile);
+                            StreamWriter userWriter = new StreamWriter(storStream);
+                            userWriter.Write(Login + " " + Password + " " + checkbox);
+                            userWriter.Close();
+
+                            context.OpenMainPageCommand.Execute(p);
+                            context.AuthorizationCommand.Execute(p);
+                            CloseAuthWindowCommand.Execute(p);
                         }
-
-                        IsolatedStorageFile storFile = IsolatedStorageFile.GetUserStoreForAssembly();
-                        IsolatedStorageFileStream storStream = new IsolatedStorageFileStream("UserSetting.set", FileMode.Create, storFile);
-                        StreamWriter userWriter = new StreamWriter(storStream);
-                        userWriter.Write(Login + " " + Password + " " + checkbox);
-                        userWriter.Close();
-
-                        context.OpenMainPageCommand.Execute(p);
-                        context.AuthorizationCommand.Execute(p);
-                        CloseAuthWindowCommand.Execute(p);
+                        else ExepMassage = "Пользователь заблокирован";
                     }
                     else ExepMassage = "Неверный логин или пароль";
                 }

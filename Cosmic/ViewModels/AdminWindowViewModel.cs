@@ -214,14 +214,15 @@ namespace Cosmic.ViewModels
             {
                 if (SelectedUser != null)
                 {
-                    db.Users.Remove(SelectedUser);
+                    //db.Users.Remove(SelectedUser);
+                    db.Users.Where(t => t.Id == SelectedUser.Id).First().IsBlocked = true;
                     db.SaveChanges();
                     SelectedUser = null;
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show($"{ex.Message}\nОшибка, пользователь не удален");
+                MessageBox.Show($"{ex.Message}\nОшибка, пользователь не заблокирован");
             }
             
         }

@@ -32,7 +32,8 @@ namespace Cosmic.Services
                             var user = new User()
                             {
                                 Login = login,
-                                Password = GetHashString(password)
+                                Password = GetHashString(password),
+                                IsBlocked = false
                             };
 
                             context.Users.Add(user);

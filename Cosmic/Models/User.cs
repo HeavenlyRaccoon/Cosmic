@@ -14,6 +14,7 @@ namespace Cosmic.Models
         public string Name { get; set; }
         public byte[] Avatar { get; set; }
         public string AboutUser { get; set; }
+        public bool IsBlocked { get; set; }
 
         public virtual ICollection<Playlist> Playlists { get; set; }
     }

@@ -50,6 +50,7 @@
                             <DataGridTextColumn Header="Password" Binding="{Binding Path=Password}" Width="220" />
                             <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="100" />
                             <DataGridTextColumn Header="About User" Binding="{Binding Path=AboutUser}" Width="*" />
+                            <DataGridTextColumn Header="Blocked" Binding="{Binding Path=IsBlocked}" Width="50" />
                         </DataGrid.Columns>
                     </DataGrid>
 
